@@ -151,7 +151,7 @@
   // Load articles and display
   async function loadAndDisplayArticle() {
     try {
-      const response = await fetch('/articles/data.json');
+      const response = await fetch('/Humango/articles/data.json');
       if (!response.ok) throw new Error('Failed to load articles');
       const data = await response.json();
 
