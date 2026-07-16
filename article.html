@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="บทความ - HUMANgo">
+  <title>บทความ - HUMANgo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700;800;900&family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #1B2A5A;
+      --navy-dark: #0F1A3A;
+      --navy-mid: #1a3570;
+      --teal: #1a5c6b;
+      --gold: #C9A84C;
+      --gold-lt: #E8CC6E;
+      --white: #FFFFFF;
+      --off: #F5F7FF;
+      --text: #2D2D2D;
+      --muted: #66667A;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Sarabun', sans-serif; font-size: 20px; color: var(--text); background: var(--white); overflow-x: hidden; }
+    h1,h2,h3,.ral { font-family: 'Raleway', sans-serif; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(10,20,55,.95); backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 62px;
+      border-bottom: 1px solid rgba(201,168,76,.15);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo img { height: 36px; object-fit: contain; }
+    .nav-brand { font-family: 'Raleway', sans-serif; font-weight: 900; font-size: 1.25rem; color: #fff; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,.72); text-decoration: none; font-size: .88rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta { background: var(--gold) !important; color: var(--navy) !important; padding: 7px 22px; border-radius: 50px; font-weight: 700 !important; }
+    .nav-cta:hover { background: var(--gold-lt) !important; }
+
+    /* CONTAINER */
+    .con { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+    /* ARTICLE */
+    .article-section { padding: 80px 24px; }
+    .back-link { color: var(--gold); text-decoration: none; font-weight: 600; margin-bottom: 24px; display: inline-block; }
+    .back-link:hover { color: var(--gold-lt); }
+
+    .article-header-full h1 { font-size: 2rem; font-weight: 900; color: var(--navy); line-height: 1.3; margin-bottom: 16px; }
+    .article-meta-full { display: flex; gap: 20px; font-size: .9rem; color: var(--muted); margin-bottom: 20px; }
+    .article-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+    .tag { display: inline-block; background: var(--off); color: var(--navy);
+      font-size: .75rem; padding: 4px 12px; border-radius: 50px; font-weight: 600; }
+
+    .article-content { font-size: .95rem; color: var(--text); line-height: 2; }
+    .article-content p { margin-bottom: 20px; }
+    .article-content h1 { font-size: 1.8rem; margin: 40px 0 20px; color: var(--navy); }
+    .article-content h2 { font-size: 1.5rem; margin: 36px 0 18px; color: var(--navy); }
+    .article-content h3 { font-size: 1.2rem; margin: 28px 0 14px; color: var(--navy); }
+    .article-content strong { color: var(--navy); font-weight: 700; }
+    .article-content em { color: var(--teal); font-style: italic; }
+    .article-content a { color: var(--gold); text-decoration: none; font-weight: 600; }
+    .article-content a:hover { text-decoration: underline; }
+    .article-content ul { margin: 16px 0 16px 32px; }
+    .article-content li { margin-bottom: 8px; }
+    .article-content pre { background: var(--off); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 16px 0; }
+    .article-content code { font-family: 'Courier New', monospace; font-size: .85rem; }
+    .article-content table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    .article-content td { border: 1px solid #e8eaf5; padding: 12px; }
+    .article-content tr:first-child { background: var(--off); }
+
+    /* DIVIDER */
+    .article-divider { height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 60px 0; }
+
+    /* RELATED ARTICLES */
+    .related-section { padding: 60px 24px; background: var(--off); }
+    .related-section h3 { font-size: 1.5rem; font-weight: 800; color: var(--navy); margin-bottom: 28px; }
+    .related-articles { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+    .related-card { background: var(--white); border-radius: 12px; padding: 20px; border: 1px solid #e8eaf5;
+      transition: all .3s; }
+    .related-card:hover { border-color: var(--gold); box-shadow: 0 8px 24px rgba(27,42,90,.08); }
+    .related-card h4 { font-size: .95rem; font-weight: 700; margin-bottom: 10px; line-height: 1.4; }
+    .related-card a { color: var(--navy); text-decoration: none; }
+    .related-card a:hover { color: var(--gold); }
+    .related-card p { font-size: .82rem; color: var(--muted); margin-bottom: 12px; line-height: 1.6; }
+    .read-more { color: var(--gold); text-decoration: none; font-weight: 700; font-size: .8rem; }
+
+    /* FOOTER */
+    footer { background: var(--navy-dark); padding: 24px; text-align: center; border-top: 1px solid rgba(201,168,76,.1); }
+    footer p { font-size: .78rem; color: rgba(255,255,255,.28); }
+    footer span { color: var(--gold); }
+
+    /* RESPONSIVE */
+    @media (max-width: 860px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .article-header-full h1 { font-size: 1.4rem; }
+      .related-articles { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <img src="logo.png" alt="HUMANgo">
+    <span class="nav-brand">HUMANgo</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/#about">เกี่ยวกับเรา</a></li>
+    <li><a href="/#courses">หลักสูตร</a></li>
+    <li><a href="/blog.html" style="color: var(--gold);">บทความ</a></li>
+    <li><a href="/#track">ผลงาน</a></li>
+    <li><a href="/#contact" class="nav-cta">ติดต่อเรา</a></li>
+  </ul>
+</nav>
+
+<!-- ARTICLE -->
+<section class="article-section">
+  <div class="con">
+    <a href="/blog.html" class="back-link">← กลับไปหน้าบทความ</a>
+    <div id="articleContent"></div>
+  </div>
+</section>
+
+<!-- DIVIDER -->
+<div class="article-divider"></div>
+
+<!-- RELATED ARTICLES -->
+<section class="related-section">
+  <div class="con">
+    <div id="relatedArticles"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2568–2569 <span>HUMANgo</span> — Grow Your People &nbsp;|&nbsp; ดร.พลภัทร เจริญเวียงเวชกิจ &nbsp;|&nbsp; เชียงใหม่</p>
+</footer>
+
+<script src="/blog.js"></script>
+<script>
+  // Load article data (simulated)
+  const articleData = `---
+id: "article-001"
+title: "เงินเดือนที่ไม่เป็นธรรม: ต้นเหตุที่ทำให้คุณสูญเสีย 'คนเก่ง'"
+date: "2026-07-10"
+author: "ดร.พลภัทร เจริญเวียงเวชกิจ"
+tags: ["HR", "Compensation", "Employee Retention", "Salary", "Leadership", "Organization"]
+excerpt: "ระบบค่าตอบแทนที่ไม่ยุติธรรมคือหนึ่งในสาเหตุหลักที่ทำลายแรงจูงใจและขับไล่คนเก่งให้ออกจากองค์กร"
+---
+
+บทความเนื้อหา...`;
+
+  window.Blog.loadArticle(articleData);
+
+  // Get article ID from URL
+  const articleId = window.BlogUtils.getUrlParam('id') || 'article-001';
+  const article = window.Blog.getArticleById(articleId);
+
+  if (article) {
+    window.BlogUtils.renderArticle(article, 'articleContent');
+    const related = window.Blog.getRelatedArticles(articleId, 3);
+    window.BlogUtils.renderRelatedArticles(related, 'relatedArticles');
+  } else {
+    document.getElementById('articleContent').innerHTML = '<p>ไม่พบบทความ</p>';
+  }
+</script>
+
+</body>
+</html>

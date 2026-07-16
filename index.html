@@ -98,19 +98,30 @@
     .about-body { margin-top: 32px; }
     .about-text { font-size: .97rem; color: var(--muted); line-height: 1.95; max-width: 780px; }
 
-    /* SPEAKER */
+    /* SPEAKER GRID */
     #speaker { background: var(--white); }
-    .speaker-grid { display: grid; grid-template-columns: 300px 1fr; gap: 52px; align-items: start; margin-top: 36px; }
-    .speaker-card { background: var(--navy); border-radius: 22px; overflow: hidden; }
+    .speakers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; margin-top: 36px; }
+    .speaker-card { background: var(--navy); border-radius: 22px; overflow: hidden; cursor: pointer; transition: all .3s; }
+    .speaker-card:hover { transform: translateY(-8px); box-shadow: 0 16px 40px rgba(27,42,90,.2); }
     .speaker-photo { width: 100%; aspect-ratio: 1; object-fit: cover; object-position: top; display: block; }
     .speaker-card-body { padding: 22px 24px 28px; text-align: center; }
     .speaker-name { font-family: 'Raleway', sans-serif; font-size: .98rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
     .speaker-pos { font-size: .8rem; color: var(--gold); line-height: 1.6; }
-    .speaker-info { display: flex; flex-direction: column; gap: 18px; }
+
+    /* MODAL */
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,.5); z-index: 300; align-items: center; justify-content: center; }
+    .modal.active { display: flex; }
+    .modal-content { background: var(--white); border-radius: 20px; max-width: 600px; max-height: 90vh; overflow-y: auto; position: relative; padding: 40px; }
+    .modal-close { position: absolute; top: 20px; right: 20px; background: var(--off); border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; }
+    .modal-close:hover { background: #e8eaf5; }
+    .modal-speaker-photo { width: 160px; height: 160px; border-radius: 16px; object-fit: cover; margin: 0 auto 20px; display: block; }
+    .modal-speaker-name { font-family: 'Raleway', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+    .modal-speaker-pos { font-size: .95rem; color: var(--gold); font-weight: 700; margin-bottom: 20px; }
+    .speaker-info { display: flex; flex-direction: column; gap: 16px; }
     .si { display: flex; gap: 14px; align-items: flex-start; }
     .si-dot { width: 8px; height: 8px; min-width: 8px; background: var(--gold); border-radius: 50%; margin-top: 6px; }
     .si-text { font-size: .92rem; color: var(--text); line-height: 1.7; }
-    .si-text strong { color: var(--navy); }
+    .si-text strong { color: var(--navy); font-weight: 700; }
 
     /* COURSES */
     #courses { background: var(--off); }
@@ -191,20 +202,19 @@
       .stats-grid { grid-template-columns: 1fr; gap: 24px; }
       .stat { border-right: none; border-bottom: 1px solid rgba(201,168,76,.18); padding-bottom: 20px; }
       .stat:last-child { border-bottom: none; }
-      .speaker-grid { grid-template-columns: 1fr; }
-      .speaker-card { display: grid; grid-template-columns: 160px 1fr; }
-      .speaker-photo { aspect-ratio: auto; height: 100%; }
+      .speakers-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
       .cg-body.cols3, .cg-body.cols2, .cg-body.cols2-1 { grid-template-columns: 1fr; }
       .course-card.span2 { grid-column: span 1; }
       .svc-grid { grid-template-columns: 1fr; }
       .orgs-grid { grid-template-columns: 1fr 1fr; }
       .contact-grid { grid-template-columns: 1fr; gap: 36px; }
       .stitle { font-size: 1.75rem; }
+      .modal-content { padding: 30px; max-width: 90%; }
     }
     @media (max-width: 520px) {
       .hero-title { font-size: 1.8rem; }
       .orgs-grid { grid-template-columns: 1fr; }
-      .speaker-card { grid-template-columns: 1fr; }
+      .speakers-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -219,6 +229,7 @@
   <ul class="nav-links">
     <li><a href="#about">เกี่ยวกับเรา</a></li>
     <li><a href="#courses">หลักสูตร</a></li>
+    <li><a href="/blog.html">บทความ</a></li>
     <li><a href="#track">ผลงาน</a></li>
     <li><a href="#contact" class="nav-cta">ติดต่อเรา</a></li>
   </ul>
@@ -245,16 +256,16 @@
 <div class="stats">
   <div class="stats-grid">
     <div class="stat">
-      <div class="stat-num">20+</div>
-      <div class="stat-lbl">ปีประสบการณ์<br>HR &amp; จิตวิทยาองค์กร</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">45+</div>
-      <div class="stat-lbl">หน่วยงานที่ไว้วางใจ<br>ทั้งภาครัฐและเอกชน</div>
-    </div>
-    <div class="stat">
       <div class="stat-num">7</div>
       <div class="stat-lbl">หลักสูตรเฉพาะทาง<br>ออกแบบสำหรับองค์กร</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3</div>
+      <div class="stat-lbl">วิทยากรผู้เชี่ยวชาญ<br>HR &amp; Organization</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">Ready</div>
+      <div class="stat-lbl">ปรึกษาออกแบบ<br>โครงการฟรี</div>
     </div>
   </div>
 </div>
@@ -279,36 +290,94 @@
 <section id="speaker">
   <div class="con">
     <div class="slabel">วิทยากร</div>
-    <h2 class="stitle">Key Speaker <em>Profile</em></h2>
-    <div class="speaker-grid">
-      <div class="speaker-card">
+    <h2 class="stitle">Meet Our <em>Expert Team</em></h2>
+    <div class="speakers-grid">
+      <!-- Speaker 1: ดร.พลภัทร -->
+      <div class="speaker-card" onclick="openModal('speaker1')">
         <img src="speaker.jpg" alt="ดร.พลภัทร เจริญเวียงเวชกิจ" class="speaker-photo">
         <div class="speaker-card-body">
           <div class="speaker-name">ดร.พลภัทร เจริญเวียงเวชกิจ</div>
-          <div class="speaker-pos">อาจารย์พิเศษ ภาควิชาจิตวิทยา<br>คณะมนุษยศาสตร์ มหาวิทยาลัยเชียงใหม่</div>
+          <div class="speaker-pos">Lead Consultant<br>Organizational Psychology</div>
         </div>
       </div>
-      <div class="speaker-info">
-        <div class="si">
-          <div class="si-dot"></div>
-          <div class="si-text"><strong>Education:</strong> ปรัชญาดุษฎีบัณฑิต การวิจัยพฤติกรรมศาสตร์ประยุกต์ (มศว) · วท.ม. จิตวิทยาอุตสาหกรรมและองค์การ (มช.)</div>
+
+      <!-- Speaker 2: ครองพงษ์ -->
+      <div class="speaker-card" onclick="openModal('speaker2')">
+        <img src="speaker-2.jpg" alt="ครองพงษ์ ลังกาพินธุ์" class="speaker-photo">
+        <div class="speaker-card-body">
+          <div class="speaker-name">ครองพงษ์ ลังกาพินธุ์</div>
+          <div class="speaker-pos">HR Manager Consultant<br>Staff Management & Development</div>
         </div>
-        <div class="si">
-          <div class="si-dot"></div>
-          <div class="si-text"><strong>Expertise:</strong> ผู้เชี่ยวชาญด้านการวางระบบบริหารทรัพยากรมนุษย์ (HR Architecture), การพัฒนาภาวะผู้นำ (Leadership Transformation) และการออกแบบพฤติกรรมองค์กร</div>
-        </div>
-        <div class="si">
-          <div class="si-dot"></div>
-          <div class="si-text"><strong>Experience:</strong> ที่ปรึกษาและวิทยากรผู้จัดกระบวนการเรียนรู้ (Facilitator) ให้กับหน่วยงานภาครัฐ รัฐวิสาหกิจ และบริษัทเอกชนชั้นนำกว่า 45 หน่วยงาน</div>
-        </div>
-        <div class="si">
-          <div class="si-dot"></div>
-          <div class="si-text"><strong>ประสบการณ์ HR:</strong> หัวหน้าฝ่าย / รองผู้จัดการ / ผู้จัดการฝ่ายบุคคล ในบริษัทมหาชนชั้นนำ · รองคณบดีฝ่ายวิจัยและวิชาการ วิทยาลัยเซนต์หลุยส์</div>
+      </div>
+
+      <!-- Speaker 3: Coming Soon -->
+      <div class="speaker-card" style="opacity: .5; cursor: default;" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='.5'">
+        <div style="width: 100%; aspect-ratio: 1; background: var(--gold); display: flex; align-items: center; justify-content: center; color: var(--navy); font-size: 3rem; font-weight: 900;">+</div>
+        <div class="speaker-card-body">
+          <div class="speaker-name">Coming Soon</div>
+          <div class="speaker-pos">Expert Consultant<br>HR & Organization Development</div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- MODALS -->
+<!-- Modal 1: ดร.พลภัทร -->
+<div id="speaker1Modal" class="modal" onclick="closeModal(event, 'speaker1')">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal(null, 'speaker1')">✕</button>
+    <img src="speaker.jpg" alt="ดร.พลภัทร" class="modal-speaker-photo">
+    <h2 class="modal-speaker-name">ดร.พลภัทร เจริญเวียงเวชกิจ</h2>
+    <div class="modal-speaker-pos">Lead Consultant<br>Organizational Psychology</div>
+    <div class="speaker-info">
+      <div class="si">
+        <div class="si-dot"></div>
+        <div class="si-text"><strong>ตำแหน่ง:</strong> อาจารย์พิเศษ ภาควิชาจิตวิทยา คณะมนุษยศาสตร์ มหาวิทยาลัยเชียงใหม่</div>
+      </div>
+      <div class="si">
+        <div class="si-dot"></div>
+        <div class="si-text"><strong>การศึกษา:</strong> ปรัชญาดุษฎีบัณฑิต การวิจัยพฤติกรรมศาสตร์ประยุกต์ (มศว) · วท.ม. จิตวิทยาอุตสาหกรรมและองค์การ (มช.)</div>
+      </div>
+      <div class="si">
+        <div class="si-dot"></div>
+        <div class="si-text"><strong>ความเชี่ยวชาญ:</strong> HR Architecture, Leadership Transformation, Organization Behavior Design</div>
+      </div>
+      <div class="si">
+        <div class="si-dot"></div>
+        <div class="si-text"><strong>ประสบการณ์:</strong> ที่ปรึกษาและวิทยากรให้กับหน่วยงานกว่า 45 แห่ง • ประสบการณ์เป็นหัวหน้าฝ่าย/ผู้จัดการฝ่ายบุคคลในบริษัทมหาชนชั้นนำ • รองคณบดีฝ่ายวิจัยและวิชาการ วิทยาลัยเซนต์หลุยส์</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 2: ครองพงษ์ -->
+<div id="speaker2Modal" class="modal" onclick="closeModal(event, 'speaker2')">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal(null, 'speaker2')">✕</button>
+    <img src="speaker-2.jpg" alt="ครองพงษ์ ลังกาพินธุ์" class="modal-speaker-photo" style="background: var(--off);">
+    <h2 class="modal-speaker-name">ครองพงษ์ ลังกาพินธุ์</h2>
+    <div class="modal-speaker-pos">HR Manager Consultant<br>Staff Management & Employee Relations</div>
+    <div class="speaker-info">
+      <div class="si">
+        <div class="si-dot"></div>
+        <div class="si-text"><strong>ตำแหน่ง:</strong> Human Resources Manager Consultant</div>
+      </div>
+      <div class="si">
+        <div class="si-dot"></div>
+        <div class="si-text"><strong>การศึกษา:</strong> Bachelor of Science: Industrial Psychology (Chiang Mai University)</div>
+      </div>
+      <div class="si">
+        <div class="si-dot"></div>
+        <div class="si-text"><strong>ความเชี่ยวชาญ:</strong> Staff Management, Recruitment, Leadership Development, Employee Relations</div>
+      </div>
+      <div class="si">
+        <div class="si-dot"></div>
+        <div class="si-text"><strong>ประสบการณ์:</strong> HR Manager ที่ CPF (2004-2020) • ปฏิบัติงานในประเทศไทย รัสเซีย แทนซาเนีย ปากีสถาน • เชี่ยวชาญในการแก้ไขปัญหาอัตราส่วนพนักงาน การสื่อสารภายในองค์กร และการพัฒนาวัฒนธรรมการทำงาน</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- COURSES -->
 <section id="courses">
@@ -423,9 +492,9 @@
 <!-- TRACK RECORD -->
 <section id="track">
   <div class="con">
-    <div class="slabel">ผลงาน</div>
-    <h2 class="stitle">หน่วยงานที่<em>ไว้วางใจ</em></h2>
-    <p class="ssub">ประสบการณ์บรรยายและฝึกอบรมให้หน่วยงานทั้งภาครัฐและเอกชนกว่า 45 แห่งทั่วประเทศ</p>
+    <div class="slabel">ประสบการณ์</div>
+    <h2 class="stitle">ประสบการณ์ของ<em>ทีมวิทยากร</em></h2>
+    <p class="ssub">ทีมวิทยากรของเรามีประสบการณ์ในการให้บริการฝึกอบรมและให้คำปรึกษาแก่หน่วยงานกว่า 45 แห่ง ทั้งภาครัฐและเอกชนทั่วประเทศ</p>
     <div class="orgs-grid">
       <div class="org-card"><div class="org-name">มหาวิทยาลัยเชียงใหม่</div><div class="org-topic">หลายคณะ · จิตวิทยาองค์กร, Growth Mindset</div></div>
       <div class="org-card"><div class="org-name">CPF เจริญโภคภัณฑ์อาหาร</div><div class="org-topic">MBTI and Implication for Business (2568)</div></div>
@@ -487,6 +556,28 @@
 <footer>
   <p>© 2568–2569 <span>HUMANgo</span> — Grow Your People &nbsp;|&nbsp; ดร.พลภัทร เจริญเวียงเวชกิจ &nbsp;|&nbsp; เชียงใหม่</p>
 </footer>
+
+<script>
+  // Modal functions
+  function openModal(speaker) {
+    document.getElementById(speaker + 'Modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(event, speaker) {
+    if (event && event.target !== event.currentTarget) return;
+    document.getElementById(speaker + 'Modal').classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+
+  // Close modal on ESC key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal.active').forEach(m => m.classList.remove('active'));
+      document.body.style.overflow = 'auto';
+    }
+  });
+</script>
 
 </body>
 </html>
