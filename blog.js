@@ -2,12 +2,13 @@
  * HUMANgo Blog System
  * Markdown Parser + Tag Filtering + Related Articles
  */
-
 // Simple Markdown to HTML converter
 const markdownToHtml = (md) => {
   let html = md;
   // Code blocks
   html = html.replace(/```([^`]+)```/g, '<pre><code>$1</code></pre>');
+  // Images
+  html = html.replace(/!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1" style="max-width:100%; margin: 20px 0;">');
   // Headers
   html = html.replace(/^### (.*?)$/gm, '<h3>$1</h3>');
   html = html.replace(/^## (.*?)$/gm, '<h2>$1</h2>');
@@ -33,38 +34,30 @@ const markdownToHtml = (md) => {
 const parseFrontMatter = (content) => {
   const match = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
   if (!match) return { meta: {}, content: content };
-
   const metaStr = match[1];
   const bodyStr = match[2];
-
   const meta = {};
   metaStr.split('\n').forEach(line => {
     const [key, ...valueParts] = line.split(':');
     let value = valueParts.join(':').trim();
-
     // Remove quotes
     if (value.startsWith('"') && value.endsWith('"')) {
       value = value.slice(1, -1);
     }
-
     // Parse arrays (tags)
     if (value.startsWith('[') && value.endsWith(']')) {
       value = value.slice(1, -1).split(',').map(v => v.trim().replace(/"/g, ''));
     }
-
     meta[key.trim()] = value;
   });
-
   return { meta, content: bodyStr };
 };
-
 // Blog Data Manager
 class BlogSystem {
   constructor() {
     this.articles = [];
     this.allTags = [];
   }
-
   // Load article from markdown content
   loadArticle(markdownContent) {
     const { meta, content } = parseFrontMatter(markdownContent);
@@ -78,13 +71,10 @@ class BlogSystem {
       content: content,
       contentHtml: markdownToHtml(content)
     };
-
     this.articles.push(article);
     this.updateTags();
-
     return article;
   }
-
   // Update tag list
   updateTags() {
     const tagSet = new Set();
@@ -93,27 +83,22 @@ class BlogSystem {
     });
     this.allTags = Array.from(tagSet).sort();
   }
-
   // Get all articles
   getAllArticles() {
     return this.articles.sort((a, b) => new Date(b.date) - new Date(a.date));
   }
-
   // Filter articles by tag
   filterByTag(tag) {
     return this.articles.filter(article => article.tags.includes(tag));
   }
-
   // Get article by ID
   getArticleById(id) {
     return this.articles.find(article => article.id === id);
   }
-
   // Get related articles (same tags, excluding current)
   getRelatedArticles(articleId, limit = 3) {
     const article = this.getArticleById(articleId);
     if (!article) return [];
-
     const related = this.articles
       .filter(a => a.id !== articleId)
       .map(a => ({
@@ -123,10 +108,8 @@ class BlogSystem {
       .sort((a, b) => b.commonTags - a.commonTags)
       .slice(0, limit)
       .map(item => item.article);
-
     return related;
   }
-
   // Search articles
   search(query) {
     const q = query.toLowerCase();
@@ -136,10 +119,8 @@ class BlogSystem {
     );
   }
 }
-
 // Initialize global blog system
 window.Blog = new BlogSystem();
-
 // Fetch and load article from file
 const loadArticleFromFile = async (filename) => {
   try {
@@ -151,12 +132,10 @@ const loadArticleFromFile = async (filename) => {
     return null;
   }
 };
-
 // Render article list
 const renderArticleList = (articles, containerId) => {
   const container = document.getElementById(containerId);
   if (!container) return;
-
   container.innerHTML = articles.map(article => `
     <div class="article-card">
       <div class="article-header">
@@ -174,12 +153,10 @@ const renderArticleList = (articles, containerId) => {
     </div>
   `).join('');
 };
-
 // Render single article
 const renderArticle = (article, containerId) => {
   const container = document.getElementById(containerId);
   if (!container || !article) return;
-
   container.innerHTML = `
     <div class="article-full">
       <div class="article-header-full">
@@ -198,17 +175,14 @@ const renderArticle = (article, containerId) => {
     </div>
   `;
 };
-
 // Render related articles
 const renderRelatedArticles = (articles, containerId) => {
   const container = document.getElementById(containerId);
   if (!container) return;
-
   if (articles.length === 0) {
     container.innerHTML = '<p>ไม่มีบทความที่เกี่ยวข้อง</p>';
     return;
   }
-
   container.innerHTML = `
     <h3>บทความที่เกี่ยวข้อง</h3>
     <div class="related-articles">
@@ -222,12 +196,10 @@ const renderRelatedArticles = (articles, containerId) => {
     </div>
   `;
 };
-
 // Render tag filter
 const renderTagFilter = (tags, containerId, onTagClick) => {
   const container = document.getElementById(containerId);
   if (!container) return;
-
   container.innerHTML = `
     <div class="tag-filter">
       <button class="tag-btn active" data-tag="all">ทั้งหมด</button>
@@ -236,7 +208,6 @@ const renderTagFilter = (tags, containerId, onTagClick) => {
       `).join('')}
     </div>
   `;
-
   container.querySelectorAll('.tag-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       container.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active'));
@@ -245,13 +216,11 @@ const renderTagFilter = (tags, containerId, onTagClick) => {
     });
   });
 };
-
 // Get URL parameter
 const getUrlParam = (name) => {
   const params = new URLSearchParams(window.location.search);
   return params.get(name);
 };
-
 // Export for use
 window.BlogUtils = {
   markdownToHtml,
