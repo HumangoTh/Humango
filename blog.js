@@ -174,7 +174,7 @@ const renderArticleList = (articles, containerId) => {
   container.innerHTML = articles.map(article => `
     <div class="article-card">
       <div class="article-header">
-        <h3><a href="/article.html?id=${article.id}">${article.title}</a></h3>
+        <h3><a href="/Humango/article.html?id=${article.id}">${article.title}</a></h3>
         <div class="article-meta">
           <span class="article-date">${article.date}</span>
           <span class="article-author">โดย ${article.author}</span>
