@@ -68,11 +68,9 @@
     .article-content a:hover { text-decoration: underline; }
     .article-content ul { margin: 16px 0 16px 32px; }
     .article-content li { margin-bottom: 8px; }
-    .article-content pre { background: var(--off); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 16px 0; }
-    .article-content code { font-family: 'Courier New', monospace; font-size: .85rem; }
-    .article-content table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-    .article-content td { border: 1px solid #e8eaf5; padding: 12px; }
-    .article-content tr:first-child { background: var(--off); }
+
+    /* LOADING */
+    .loading { text-align: center; padding: 40px; color: var(--muted); }
 
     /* DIVIDER */
     .article-divider { height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent);
@@ -83,7 +81,7 @@
     .related-section h3 { font-size: 1.5rem; font-weight: 800; color: var(--navy); margin-bottom: 28px; }
     .related-articles { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
     .related-card { background: var(--white); border-radius: 12px; padding: 20px; border: 1px solid #e8eaf5;
-      transition: all .3s; }
+      transition: all .3s; cursor: pointer; }
     .related-card:hover { border-color: var(--gold); box-shadow: 0 8px 24px rgba(27,42,90,.08); }
     .related-card h4 { font-size: .95rem; font-weight: 700; margin-bottom: 10px; line-height: 1.4; }
     .related-card a { color: var(--navy); text-decoration: none; }
@@ -126,7 +124,10 @@
 <section class="article-section">
   <div class="con">
     <a href="/blog.html" class="back-link">← กลับไปหน้าบทความ</a>
-    <div id="articleContent"></div>
+    <div id="loadingState" class="loading">
+      <p>กำลังโหลดบทความ...</p>
+    </div>
+    <div id="articleContent" style="display: none;"></div>
   </div>
 </section>
 
@@ -147,31 +148,40 @@
 
 <script src="/blog.js"></script>
 <script>
-  // Load article data (simulated)
-  const articleData = `---
-id: "article-001"
-title: "เงินเดือนที่ไม่เป็นธรรม: ต้นเหตุที่ทำให้คุณสูญเสีย 'คนเก่ง'"
-date: "2026-07-10"
-author: "ดร.พลภัทร เจริญเวียงเวชกิจ"
-tags: ["HR", "Compensation", "Employee Retention", "Salary", "Leadership", "Organization"]
-excerpt: "ระบบค่าตอบแทนที่ไม่ยุติธรรมคือหนึ่งในสาเหตุหลักที่ทำลายแรงจูงใจและขับไล่คนเก่งให้ออกจากองค์กร"
----
+  // Load articles and display
+  async function loadAndDisplayArticle() {
+    try {
+      const response = await fetch('/articles/data.json');
+      if (!response.ok) throw new Error('Failed to load articles');
+      const data = await response.json();
 
-บทความเนื้อหา...`;
+      // Load articles to blog system
+      data.articles.forEach(article => {
+        window.Blog.articles.push(article);
+      });
+      window.Blog.updateTags();
 
-  window.Blog.loadArticle(articleData);
+      // Get article ID from URL
+      const articleId = window.BlogUtils.getUrlParam('id') || 'article-001';
+      const article = window.Blog.getArticleById(articleId);
 
-  // Get article ID from URL
-  const articleId = window.BlogUtils.getUrlParam('id') || 'article-001';
-  const article = window.Blog.getArticleById(articleId);
-
-  if (article) {
-    window.BlogUtils.renderArticle(article, 'articleContent');
-    const related = window.Blog.getRelatedArticles(articleId, 3);
-    window.BlogUtils.renderRelatedArticles(related, 'relatedArticles');
-  } else {
-    document.getElementById('articleContent').innerHTML = '<p>ไม่พบบทความ</p>';
+      if (article) {
+        document.getElementById('loadingState').style.display = 'none';
+        document.getElementById('articleContent').style.display = 'block';
+        window.BlogUtils.renderArticle(article, 'articleContent');
+        const related = window.Blog.getRelatedArticles(articleId, 3);
+        window.BlogUtils.renderRelatedArticles(related, 'relatedArticles');
+      } else {
+        document.getElementById('loadingState').innerHTML = '<p>ไม่พบบทความ</p>';
+      }
+    } catch (error) {
+      console.error('Error loading article:', error);
+      document.getElementById('loadingState').innerHTML = '<p>ไม่สามารถโหลดบทความได้</p>';
+    }
   }
+
+  // Load on page load
+  window.addEventListener('load', loadAndDisplayArticle);
 </script>
 
 </body>
