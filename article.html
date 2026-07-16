@@ -156,9 +156,10 @@
       const data = await response.json();
 
       // Load articles to blog system
-      data.articles.forEach(article => {
-        window.Blog.articles.push(article);
-      });
+     data.articles.forEach(article => {
+  article.contentHtml = window.BlogUtils.markdownToHtml(article.content);
+  window.Blog.articles.push(article);
+});
       window.Blog.updateTags();
 
       // Get article ID from URL
