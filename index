@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HUMANgo — วิทยากรและที่ปรึกษาด้านจิตวิทยาองค์กร โดย ดร.พลภัทร เจริญเวียงเวชกิจ">
+  <title>HUMANgo — Grow Your People</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700;800;900&family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:      #1B2A5A;
+      --navy-dark: #0F1A3A;
+      --navy-mid:  #1a3570;
+      --teal:      #1a5c6b;
+      --gold:      #C9A84C;
+      --gold-lt:   #E8CC6E;
+      --white:     #FFFFFF;
+      --off:       #F5F7FF;
+      --text:      #2D2D2D;
+      --muted:     #66667A;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Sarabun', sans-serif; font-size: 20px; color: var(--text); background: var(--white); overflow-x: hidden; }
+    h1,h2,h3,.ral { font-family: 'Raleway', sans-serif; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(10,20,55,.95); backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 62px;
+      border-bottom: 1px solid rgba(201,168,76,.15);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo img { height: 36px; object-fit: contain; }
+    .nav-brand { font-family: 'Raleway', sans-serif; font-weight: 900; font-size: 1.25rem; color: #fff; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,.72); text-decoration: none; font-size: .88rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta { background: var(--gold) !important; color: var(--navy) !important; padding: 7px 22px; border-radius: 50px; font-weight: 700 !important; }
+    .nav-cta:hover { background: var(--gold-lt) !important; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(140deg, var(--navy-dark) 0%, var(--navy) 55%, #1d3a7a 100%);
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 120px 24px 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 60% 40% at 20% 30%, rgba(201,168,76,.06) 0%, transparent 70%),
+        radial-gradient(1px 1px at 12% 18%, rgba(255,255,255,.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 88% 12%, rgba(255,255,255,.3) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 35% 75%, rgba(255,255,255,.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 72% 82%, rgba(255,255,255,.25) 0%, transparent 100%),
+        radial-gradient(1px 1px at 55% 8%, rgba(255,255,255,.35) 0%, transparent 100%),
+        radial-gradient(1px 1px at 92% 48%, rgba(255,255,255,.3) 0%, transparent 100%);
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 800px; }
+    .hero-logo { width: 240px; height: 240px; object-fit: contain; margin: 0 auto 24px; display: block; }
+    .hero-eyebrow { font-family: 'Raleway', sans-serif; font-size: .78rem; font-weight: 700; letter-spacing: 6px; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; }
+    .hero-title { font-family: 'Raleway', sans-serif; font-size: 3rem; font-weight: 900; color: #fff; line-height: 1.1; margin-bottom: 8px; letter-spacing: -1px; }
+    .hero-title span { color: var(--gold); }
+    .hero-sub-en { font-family: 'Raleway', sans-serif; font-size: 1rem; font-weight: 400; color: rgba(255,255,255,.5); letter-spacing: 2px; margin-bottom: 18px; }
+    .hero-divider { width: 44px; height: 2px; background: var(--gold); margin: 0 auto 20px; opacity: .5; }
+    .hero-desc { font-size: 1rem; color: rgba(255,255,255,.68); line-height: 1.9; margin-bottom: 10px; font-weight: 300; }
+    .hero-services { font-size: .82rem; color: rgba(255,255,255,.42); margin-bottom: 36px; }
+    .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-gold { background: var(--gold); color: var(--navy); padding: 12px 32px; border-radius: 50px; font-weight: 700; text-decoration: none; font-size: .9rem; transition: all .25s; }
+    .btn-gold:hover { background: var(--gold-lt); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,.35); }
+    .btn-outline { border: 1.5px solid rgba(255,255,255,.3); color: #fff; padding: 12px 32px; border-radius: 50px; font-weight: 400; text-decoration: none; font-size: .9rem; transition: all .25s; }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* STATS */
+    .stats { background: var(--navy); padding: 44px 24px; }
+    .stats-grid { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); text-align: center; }
+    .stat { padding: 0 20px; border-right: 1px solid rgba(201,168,76,.18); }
+    .stat:last-child { border-right: none; }
+    .stat-num { font-family: 'Raleway', sans-serif; font-size: 2.6rem; font-weight: 900; color: var(--gold); line-height: 1; margin-bottom: 8px; }
+    .stat-lbl { font-size: .82rem; color: rgba(255,255,255,.58); line-height: 1.55; }
+
+    /* SECTION BASE */
+    section { padding: 88px 24px; }
+    .con { max-width: 1060px; margin: 0 auto; }
+    .slabel { font-family: 'Raleway', sans-serif; font-size: .7rem; font-weight: 700; letter-spacing: 5px; color: var(--gold); text-transform: uppercase; margin-bottom: 8px; }
+    .stitle { font-family: 'Raleway', sans-serif; font-size: 2.1rem; font-weight: 800; color: var(--navy); line-height: 1.2; margin-bottom: 12px; }
+    .stitle em { font-style: normal; color: var(--gold); }
+    .ssub { font-size: .97rem; color: var(--muted); line-height: 1.85; max-width: 600px; }
+
+    /* ABOUT / WHY */
+    #about { background: var(--off); }
+    .about-body { margin-top: 32px; }
+    .about-text { font-size: .97rem; color: var(--muted); line-height: 1.95; max-width: 780px; }
+
+    /* SPEAKER GRID */
+    #speaker { background: var(--white); }
+    .speakers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; margin-top: 36px; }
+    .speaker-card { background: var(--navy); border-radius: 22px; overflow: hidden; cursor: pointer; transition: all .3s; }
+    .speaker-card:hover { transform: translateY(-8px); box-shadow: 0 16px 40px rgba(27,42,90,.2); }
+    .speaker-photo { width: 100%; aspect-ratio: 1; object-fit: cover; object-position: top; display: block; }
+    .speaker-card-body { padding: 22px 24px 28px; text-align: center; }
+    .speaker-name { font-family: 'Raleway', sans-serif; font-size: .98rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .speaker-pos { font-size: .8rem; color: var(--gold); line-height: 1.6; }
+
+    /* MODAL */
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,.5); z-index: 300; align-items: center; justify-content: center; }
+    .modal.active { display: flex; }
+    .modal-content { background: var(--white); border-radius: 20px; max-width: 600px; max-height: 90vh; overflow-y: auto; position: relative; padding: 40px; }
+    .modal-close { position: absolute; top: 20px; right: 20px; background: var(--off); border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; }
+    .modal-close:hover { background: #e8eaf5; }
+    .modal-speaker-photo { width: 160px; height: 160px; border-radius: 16px; object-fit: cover; margin: 0 auto 20px; display: block; }
+    .modal-speaker-name { font-family: 'Raleway', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+    .modal-speaker-pos { font-size: .95rem; color: var(--gold); font-weight: 700; margin-bottom: 20px; }
+    .speaker-info { display: flex; flex-direction: column; gap: 16px; }
+    .si { display: flex; gap: 14px; align-items: flex-start; }
+    .si-dot { width: 8px; height: 8px; min-width: 8px; background: var(--gold); border-radius: 50%; margin-top: 6px; }
+    .si-text { font-size: .92rem; color: var(--text); line-height: 1.7; }
+    .si-text strong { color: var(--navy); font-weight: 700; }
+
+    /* COURSES */
+    #courses { background: var(--off); }
+    .course-group { background: var(--white); border-radius: 20px; border: 1px solid #e8eaf5; overflow: hidden; margin-bottom: 20px; }
+    .cg-header { padding: 16px 24px; display: flex; align-items: center; gap: 12px; }
+    .cg-header.g1 { background: var(--navy); }
+    .cg-header.g2 { background: var(--navy-mid); }
+    .cg-header.g3 { background: var(--teal); }
+    .cg-title { font-family: 'Raleway', sans-serif; font-weight: 800; color: #fff; font-size: .95rem; }
+    .cg-sub { font-size: .78rem; color: rgba(201,168,76,.85); margin-top: 2px; }
+    .cg-body { padding: 20px 24px; display: grid; gap: 14px; align-items: start; }
+    .cg-body.cols3 { grid-template-columns: repeat(3,1fr); }
+    .cg-body.cols2 { grid-template-columns: repeat(2,1fr); }
+    .cg-body.cols2-1 { grid-template-columns: repeat(2,1fr); }
+    .course-card { padding: 16px 18px; border-radius: 12px; border: 1px solid #eaeaf5; border-left: 3px solid; }
+    .course-card.c1 { border-left-color: var(--gold); }
+    .course-card.c2 { border-left-color: var(--navy-mid); }
+    .course-card.c3 { border-left-color: var(--teal); }
+    .course-card.span2 { grid-column: span 2; }
+    .c-num { font-family: 'Raleway', sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; }
+    .c-num.g1 { color: var(--gold); }
+    .c-num.g2 { color: var(--navy-mid); }
+    .c-num.g3 { color: var(--teal); }
+    .c-title { font-family: 'Raleway', sans-serif; font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; line-height: 1.4; }
+    .c-desc { font-size: .92rem; color: var(--muted); line-height: 1.75; }
+
+    /* SERVICES */
+    #services { background: var(--white); }
+    .services-quote { font-size: .95rem; color: var(--muted); line-height: 1.9; max-width: 700px; margin: 12px 0 36px; font-style: italic; border-left: 3px solid var(--gold); padding-left: 16px; }
+    .svc-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .svc-card { border-radius: 18px; border: 1px solid #e8eaf5; padding: 28px 22px; text-align: center; transition: all .3s; }
+    .svc-card:hover { border-color: var(--gold); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(27,42,90,.1); }
+    .svc-card.featured { border: 2px solid var(--gold); position: relative; }
+    .svc-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gold); color: var(--navy); font-size: .7rem; font-weight: 700; padding: 3px 14px; border-radius: 50px; white-space: nowrap; }
+    .svc-icon { font-size: 2rem; margin-bottom: 14px; }
+    .svc-name { font-family: 'Raleway', sans-serif; font-weight: 800; color: var(--navy); font-size: .95rem; margin-bottom: 4px; }
+    .svc-dur { font-size: .75rem; color: var(--gold); margin-bottom: 10px; }
+    .svc-desc { font-size: .82rem; color: var(--muted); line-height: 1.75; }
+
+    /* TRACK */
+    #track { background: var(--off); }
+    .orgs-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 32px; }
+    .org-card { background: var(--white); border-radius: 10px; padding: 12px 16px; border-left: 3px solid var(--gold); }
+    .org-name { font-size: .85rem; color: var(--text); font-weight: 600; line-height: 1.4; }
+    .org-topic { font-size: .75rem; color: var(--muted); margin-top: 3px; }
+
+    /* CONTACT */
+    #contact { background: linear-gradient(140deg, var(--navy-dark) 0%, var(--navy) 100%); position: relative; overflow: hidden; }
+    #contact::before { content: ''; position: absolute; top: -100px; right: -100px; width: 450px; height: 450px; background: radial-gradient(circle, rgba(201,168,76,.06) 0%, transparent 65%); border-radius: 50%; pointer-events: none; }
+    .contact-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: center; position: relative; z-index: 1; }
+    .c-slabel { font-family: 'Raleway', sans-serif; font-size: .7rem; font-weight: 700; letter-spacing: 5px; color: var(--gold); text-transform: uppercase; margin-bottom: 8px; }
+    .ct-title { font-family: 'Raleway', sans-serif; font-size: 2rem; font-weight: 900; color: #fff; line-height: 1.2; margin-bottom: 10px; }
+    .ct-title em { font-style: normal; color: var(--gold); }
+    .c-sub { font-size: .92rem; color: rgba(255,255,255,.58); line-height: 1.85; margin-bottom: 32px; }
+    .ci-list { display: flex; flex-direction: column; gap: 18px; }
+    .ci { display: flex; align-items: center; gap: 14px; }
+    .ci-icon { width: 42px; height: 42px; flex-shrink: 0; background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.25); border-radius: 11px; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+    .ci-lbl { font-size: .75rem; color: rgba(255,255,255,.4); margin-bottom: 2px; }
+    .ci-val { font-size: .92rem; color: #fff; font-weight: 600; text-decoration: none; }
+    .ci-val:hover { color: var(--gold); }
+    .cta-card { background: rgba(255,255,255,.05); border: 1px solid rgba(201,168,76,.2); border-radius: 22px; padding: 40px 28px; text-align: center; }
+    .cta-logo { height: 80px; object-fit: contain; margin: 0 auto 14px; display: block; }
+    .cta-brand { font-family: 'Raleway', sans-serif; font-size: 1.8rem; font-weight: 900; color: #fff; }
+    .cta-tag { font-family: 'Raleway', sans-serif; font-size: .7rem; letter-spacing: 5px; color: var(--gold); margin: 4px 0 26px; }
+    .line-btn { display: inline-flex; align-items: center; gap: 8px; background: #06C755; color: #fff; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: .88rem; transition: all .25s; }
+    .line-btn:hover { background: #05a045; transform: translateY(-2px); }
+
+    /* FOOTER */
+    footer { background: var(--navy-dark); padding: 24px; text-align: center; border-top: 1px solid rgba(201,168,76,.1); }
+    footer p { font-size: .78rem; color: rgba(255,255,255,.28); }
+    footer span { color: var(--gold); }
+
+    /* RESPONSIVE */
+    @media (max-width: 860px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero-title { font-size: 2.2rem; }
+      .stats-grid { grid-template-columns: 1fr; gap: 24px; }
+      .stat { border-right: none; border-bottom: 1px solid rgba(201,168,76,.18); padding-bottom: 20px; }
+      .stat:last-child { border-bottom: none; }
+      .speakers-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+      .cg-body.cols3, .cg-body.cols2, .cg-body.cols2-1 { grid-template-columns: 1fr; }
+      .course-card.span2 { grid-column: span 1; }
+      .svc-grid { grid-template-columns: 1fr; }
+      .orgs-grid { grid-template-columns: 1fr 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 36px; }
+      .stitle { font-size: 1.75rem; }
+      .modal-content { padding: 30px; max-width: 90%; }
+    }
+    @media (max-width: 520px) {
+      .hero-title { font-size: 1.8rem; }
+      .orgs-grid { grid-template-columns: 1fr; }
+      .speakers-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <img src="logo.png" alt="HUMANgo">
+    <span class="nav-brand">HUMANgo</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">เกี่ยวกับเรา</a></li>
+    <li><a href="#courses">หลักสูตร</a></li>
+    <li><a href="/blog.html">บทความ</a></li>
+    <li><a href="#track">ผลงาน</a></li>
+    <li><a href="#contact" class="nav-cta">ติดต่อเรา</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <img src="logo.png" alt="HUMANgo" class="hero-logo">
+    <p class="hero-eyebrow">Human Insight. Organizational Growth.</p>
+    <h1 class="hero-title">UNLOCK YOUR<br><span>TEAM'S POTENTIAL</span></h1>
+    <p class="hero-sub-en">Grow Your People</p>
+    <div class="hero-divider"></div>
+    <p class="hero-desc">ขับเคลื่อนองค์กรด้วยความเข้าใจคน มุ่งสู่ความสำเร็จอย่างยั่งยืน</p>
+    <p class="hero-services">In-house Training &amp; Workshop &nbsp;·&nbsp; HR &amp; Organization Consulting</p>
+    <div class="hero-btns">
+      <a href="#courses" class="btn-gold">ดูหลักสูตรทั้งหมด</a>
+      <a href="#contact" class="btn-outline">ติดต่อขอใบเสนอราคา</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-grid">
+    <div class="stat">
+      <div class="stat-num">7</div>
+      <div class="stat-lbl">หลักสูตรเฉพาะทาง<br>ออกแบบสำหรับองค์กร</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3</div>
+      <div class="stat-lbl">วิทยากรผู้เชี่ยวชาญ<br>HR &amp; Organization</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">Ready</div>
+      <div class="stat-lbl">ปรึกษาออกแบบ<br>โครงการฟรี</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="con">
+    <div class="slabel">เกี่ยวกับเรา</div>
+    <h2 class="stitle">หลักสูตรที่<em>ใช้ได้จริง</em>ในองค์กรของคุณ</h2>
+    <div class="about-body">
+      <p class="about-text">
+        เราเชื่อว่าการพัฒนาคนที่ได้ผลต้องเริ่มจากความเข้าใจพฤติกรรมมนุษย์อย่างแท้จริง
+        หลักสูตรของเราผสานหลักจิตวิทยาองค์กรเข้ากับการเรียนรู้เชิงปฏิบัติ (Experiential Learning)
+        เพื่อให้ผู้เข้าอบรมสามารถนำไปปรับใช้ได้ทันที ไม่ใช่แค่ฟังแล้วลืม
+        ทุกเนื้อหาปรับให้เข้ากับบริบทและโจทย์จริงของแต่ละองค์กร
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKER -->
+<section id="speaker">
+  <div class="con">
+    <div class="slabel">วิทยากร</div>
+    <h2 class="stitle">Meet Our <em>Expert Team</em></h2>
+    <div class="speakers-grid">
+      <!-- Speaker 1: ดร.พลภัทร -->
+      <div class="speaker-card" onclick="openModal('speaker1')">
+        <img src="speaker.jpg" alt="ดร.พลภัทร เจริญเวียงเวชกิจ" class="speaker-photo">
+        <div class="speaker-card-body">
+          <div class="speaker-name">ดร.พลภัทร เจริญเวียงเวชกิจ</div>
+          <div class="speaker-pos">Lead Consultant<br>Organizational Psychology</div>
+        </div>
+      </div>
+
+      <!-- Speaker 2: ครองพงษ์ -->
+      <div class="speaker-card" onclick="openModal('speaker2')">
+        <img src="speaker-2.jpg" alt="ครองพงษ์ ลังกาพินธุ์" class="speaker-photo">
+        <div class="speaker-card-body">
+          <div class="speaker-name">ครองพงษ์ ลังกาพินธุ์</div>
+          <div class="speaker-pos">HR Manager Consultant<br>Staff Management & Development</div>
+        </div>
+      </div>
+
+      <!-- Speaker 3: Coming Soon -->
+      <div class="speaker-card" style="opacity: .5; cursor: default;" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='.5'">
+        <div style="width: 100%; aspect-ratio: 1; background: var(--gold); display: flex; align-items: center; justify-content: center; color: var(--navy); font-size: 3rem; font-weight: 900;">+</div>
+        <div class="speaker-card-body">
+          <div class="speaker-name">Coming Soon</div>
+          <div class="speaker-pos">Expert Consultant<br>HR & Organization Development</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODALS -->
+<!-- Modal 1: ดร.พลภัทร -->
+<div id="speaker1Modal" class="modal" onclick="closeModal(event, 'speaker1')">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal(null, 'speaker1')">✕</button>
+    <img src="speaker.jpg" alt="ดร.พลภัทร" class="modal-speaker-photo">
+    <h2 class="modal-speaker-name">ดร.พลภัทร เจริญเวียงเวชกิจ</h2>
+    <div class="modal-speaker-pos">Lead Consultant<br>Organizational Psychology</div>
+    <div class="speaker-info">
+      <div class="si">
+        <div class="si-dot"></div>
+        <div class="si-text"><strong>ตำแหน่ง:</strong> อาจารย์พิเศษ ภาควิชาจิตวิทยา คณะมนุษยศาสตร์ มหาวิทยาลัยเชียงใหม่</div>
+      </div>
+      <div class="si">
+        <div class="si-dot"></div>
+        <div class="si-text"><strong>การศึกษา:</strong> ปรัชญาดุษฎีบัณฑิต การวิจัยพฤติกรรมศาสตร์ประยุกต์ (มศว) · วท.ม. จิตวิทยาอุตสาหกรรมและองค์การ (มช.)</div>
+      </div>
+      <div class="si">
+        <div class="si-dot"></div>
+        <div class="si-text"><strong>ความเชี่ยวชาญ:</strong> HR Architecture, Leadership Transformation, Organization Behavior Design</div>
+      </div>
+      <div class="si">
+        <div class="si-dot"></div>
+        <div class="si-text"><strong>ประสบการณ์:</strong> ที่ปรึกษาและวิทยากรให้กับหน่วยงานกว่า 45 แห่ง • ประสบการณ์เป็นหัวหน้าฝ่าย/ผู้จัดการฝ่ายบุคคลในบริษัทมหาชนชั้นนำ • รองคณบดีฝ่ายวิจัยและวิชาการ วิทยาลัยเซนต์หลุยส์</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 2: ครองพงษ์ -->
+<div id="speaker2Modal" class="modal" onclick="closeModal(event, 'speaker2')">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal(null, 'speaker2')">✕</button>
+    <img src="speaker-2.jpg" alt="ครองพงษ์ ลังกาพินธุ์" class="modal-speaker-photo" style="background: var(--off);">
+    <h2 class="modal-speaker-name">ครองพงษ์ ลังกาพินธุ์</h2>
+    <div class="modal-speaker-pos">HR Manager Consultant<br>Staff Management & Employee Relations</div>
+    <div class="speaker-info">
+      <div class="si">
+        <div class="si-dot"></div>
+        <div class="si-text"><strong>ตำแหน่ง:</strong> Human Resources Manager Consultant</div>
+      </div>
+      <div class="si">
+        <div class="si-dot"></div>
+        <div class="si-text"><strong>การศึกษา:</strong> Bachelor of Science: Industrial Psychology (Chiang Mai University)</div>
+      </div>
+      <div class="si">
+        <div class="si-dot"></div>
+        <div class="si-text"><strong>ความเชี่ยวชาญ:</strong> Staff Management, Recruitment, Leadership Development, Employee Relations</div>
+      </div>
+      <div class="si">
+        <div class="si-dot"></div>
+        <div class="si-text"><strong>ประสบการณ์:</strong> HR Manager ที่ CPF (2004-2020) • ปฏิบัติงานในประเทศไทย รัสเซีย แทนซาเนีย ปากีสถาน • เชี่ยวชาญในการแก้ไขปัญหาอัตราส่วนพนักงาน การสื่อสารภายในองค์กร และการพัฒนาวัฒนธรรมการทำงาน</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COURSES -->
+<section id="courses">
+  <div class="con">
+    <div class="slabel">หลักสูตร</div>
+    <h2 class="stitle">Course Menu — <em>7 หลักสูตร</em></h2>
+    <p class="ssub" style="margin-bottom:32px">เนื้อหาออกแบบให้เข้ากับบริบทการทำงานจริง ประยุกต์ใช้ได้ทันที และปรับแต่งได้ตามความต้องการขององค์กร</p>
+
+    <!-- GROUP 1 -->
+    <div class="course-group">
+      <div class="cg-header g1">
+        <div>
+          <div class="cg-title">กลุ่มที่ 1 — ระบบบริหารคนและองค์กร</div>
+          <div class="cg-sub">HR Architecture &amp; Strategy · วางรากฐานองค์กรให้เติบโตอย่างเป็นระบบ</div>
+        </div>
+      </div>
+      <div class="cg-body cols3">
+        <div class="course-card c1">
+          <div class="c-num g1">หลักสูตร 1</div>
+          <div class="c-title">Competency-Based Interview Techniques</div>
+          <p class="c-desc">เทคนิคการสัมภาษณ์และคัดเลือกบุคลากรตามสมรรถนะ ออกแบบคำถามเชิงพฤติกรรม อ่านภาษากาย และประเมินทัศนคติ เพื่อคัดเลือกคนที่ "ใช่"</p>
+        </div>
+        <div class="course-card c1">
+          <div class="c-num g1">หลักสูตร 2</div>
+          <div class="c-title">Performance Management &amp; Evaluation Framework</div>
+          <p class="c-desc">ออกแบบระบบประเมินผลงานที่เป็นธรรม จับต้องได้ ลดอคติ (Bias) เชื่อมโยงเป้าหมายบุคคลสู่เป้าหมายบริษัท</p>
+        </div>
+        <div class="course-card c1">
+          <div class="c-num g1">หลักสูตร 3</div>
+          <div class="c-title">Salary Structure Design &amp; Compensation</div>
+          <p class="c-desc">Job Evaluation และออกแบบโครงสร้างเงินเดือนที่ดึงดูดคนเก่ง แข่งขันกับตลาด รวมทั้งสร้างแรงจูงใจในการทำงานให้แก่พนักงาน</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- GROUP 2 -->
+    <div class="course-group">
+      <div class="cg-header g2">
+        <div>
+          <div class="cg-title">กลุ่มที่ 2 — พัฒนาผู้นำและบุคลากร</div>
+          <div class="cg-sub">Leadership &amp; Growth · ปลดล็อกศักยภาพผู้นำ ยกระดับขีดความสามารถขององค์กร</div>
+        </div>
+      </div>
+      <div class="cg-body cols2">
+        <div class="course-card c2">
+          <div class="c-num g2">หลักสูตร 4</div>
+          <div class="c-title">Leadership Transformation for Modern Leaders</div>
+          <p class="c-desc">การสร้างภาวะผู้นำสำหรับผู้บริหาร หัวหน้างาน และผู้จัดการยุคใหม่ ครอบคลุมทักษะครองใจคน การสอนงาน (Coaching) และการให้ Feedback ที่สร้างสรรค์</p>
+        </div>
+        <div class="course-card c2">
+          <div class="c-num g2">หลักสูตร 5</div>
+          <div class="c-title">Employee Development for Organizational Excellence</div>
+          <p class="c-desc">วิเคราะห์ความจำเป็นในการฝึกอบรม (TNA) วางแผน Upskill/Reskill เพื่อบรรลุเป้าหมายขององค์กร</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- GROUP 3 -->
+    <div class="course-group">
+      <div class="cg-header g3">
+        <div>
+          <div class="cg-title">กลุ่มที่ 3 — ทีมงานและวัฒนธรรมองค์กร</div>
+          <div class="cg-sub">Culture &amp; Team Dynamics · หล่อหลอมวัฒนธรรมเชิงบวก สร้างพลังการทำงานร่วมกัน</div>
+        </div>
+      </div>
+      <div class="cg-body cols2-1">
+        <div class="course-card c3">
+          <div class="c-num g3">หลักสูตร 6</div>
+          <div class="c-title">High-Impact Internal Communication &amp; Teamwork</div>
+          <p class="c-desc">ลดปัญหาการทำงานแบบแยกส่วน (Silo Effect) บริหารความแตกต่างระหว่างวัย (Generation Gap) และสร้างทัศนคติเชิงบวกในการทำงานร่วมกัน</p>
+        </div>
+        <div class="course-card c3 span2">
+          <div class="c-num g3">หลักสูตร 7</div>
+          <div class="c-title">Boosting Employee Satisfaction &amp; Corporate Culture</div>
+          <p class="c-desc">เครื่องมือทางจิตวิทยาเพื่อป้องกันภาวะหมดไฟ (Burnout) สร้างความผูกพันต่อองค์กร (Employee Engagement) หล่อหลอมค่านิยมร่วม (Core Values) และสร้างวัฒนธรรมองค์กรอย่างยั่งยืน</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="con">
+    <div class="slabel">รูปแบบบริการ</div>
+    <h2 class="stitle">Tailor-made <em>Solutions</em></h2>
+    <p class="services-quote">เพราะแต่ละองค์กรมีโจทย์ที่แตกต่างกัน ทุกหลักสูตรสามารถปรับแต่งเนื้อหาและกรณีศึกษา (Case Study) ให้ตรงกับปัญหาและบริบทจริงของธุรกิจคุณ</p>
+    <div class="svc-grid">
+      <div class="svc-card">
+        <div class="svc-icon">🎤</div>
+        <div class="svc-name">Seminar</div>
+        <div class="svc-dur">Half-day / 1-Day</div>
+        <p class="svc-desc">บรรยายสรุปเนื้อหาเข้มข้น เหมาะสำหรับสร้างความตระหนักรู้และแรงบันดาลใจในองค์กร</p>
+      </div>
+      <div class="svc-card featured">
+        <div class="svc-badge">ยอดนิยม</div>
+        <div class="svc-icon">🛠️</div>
+        <div class="svc-name">Workshop</div>
+        <div class="svc-dur">1-Day / 2-Days</div>
+        <p class="svc-desc">ฝึกอบรมเชิงปฏิบัติการ เน้นลงมือทำและถอดบทเรียน ได้เครื่องมือพร้อมใช้งานจริง</p>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">💼</div>
+        <div class="svc-name">Consulting</div>
+        <div class="svc-dur">รายโครงการ</div>
+        <p class="svc-desc">บริการที่ปรึกษาวางระบบและออกแบบโครงสร้าง HR ตามความต้องการขององค์กร</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRACK RECORD -->
+<section id="track">
+  <div class="con">
+    <div class="slabel">ประสบการณ์</div>
+    <h2 class="stitle">ประสบการณ์ของ<em>ทีมวิทยากร</em></h2>
+    <p class="ssub">ทีมวิทยากรของเรามีประสบการณ์ในการให้บริการฝึกอบรมและให้คำปรึกษาแก่หน่วยงานกว่า 45 แห่ง ทั้งภาครัฐและเอกชนทั่วประเทศ</p>
+    <div class="orgs-grid">
+      <div class="org-card"><div class="org-name">มหาวิทยาลัยเชียงใหม่</div><div class="org-topic">หลายคณะ · จิตวิทยาองค์กร, Growth Mindset</div></div>
+      <div class="org-card"><div class="org-name">CPF เจริญโภคภัณฑ์อาหาร</div><div class="org-topic">MBTI and Implication for Business (2568)</div></div>
+      <div class="org-card"><div class="org-name">กองบัญชาการกองทัพไทย</div><div class="org-topic">การพัฒนาภาวะผู้นำ (2569)</div></div>
+      <div class="org-card"><div class="org-name">โรงแรม Novotel เชียงใหม่</div><div class="org-topic">จิตวิทยาการสื่อสารสำหรับผู้บริหาร (2568)</div></div>
+      <div class="org-card"><div class="org-name">อุทยานวิทยาศาสตร์ฯ มช. (STeP)</div><div class="org-topic">Growth Mindset · การบริหารความเครียด</div></div>
+      <div class="org-card"><div class="org-name">มหาวิทยาลัยแม่ฟ้าหลวง</div><div class="org-topic">Growth Mindset สำหรับเจ้าหน้าที่ (2567)</div></div>
+      <div class="org-card"><div class="org-name">สถานีตำรวจภูธรช้างเผือก</div><div class="org-topic">Team Building Walk Rally (2567)</div></div>
+      <div class="org-card"><div class="org-name">ศาลปกครองจังหวัดเชียงใหม่</div><div class="org-topic">เพิ่มทักษะการคิด พิชิตเป้าหมาย (2566)</div></div>
+      <div class="org-card"><div class="org-name">สมาคมส่งเสริมเทคโนโลยี ไทย-ญี่ปุ่น</div><div class="org-topic">การบริหารค่าตอบแทน · ภาวะผู้นำ</div></div>
+      <div class="org-card"><div class="org-name">กรมส่งเสริมการเรียนรู้</div><div class="org-topic">การแนะแนวและการให้คำปรึกษา (2567)</div></div>
+      <div class="org-card"><div class="org-name">Prince Royal's College</div><div class="org-topic">Resilience and Soft Skill Development (2567)</div></div>
+      <div class="org-card"><div class="org-name">สำนักงานกรรมการส่งเสริมการศึกษาเอกชน</div><div class="org-topic">Growth Mindset สำหรับผู้บริหาร (2568)</div></div>
+      <div class="org-card"><div class="org-name">Siwaporn Medical Center</div><div class="org-topic">พัฒนาการทำงานเป็นทีม (2567)</div></div>
+      <div class="org-card"><div class="org-name">กระทรวงแรงงาน</div><div class="org-topic">การใช้แบบวัดบุคลิกภาพเพื่อการเลือกอาชีพ</div></div>
+      <div class="org-card"><div class="org-name">วิทยาลัยเซนต์หลุยส์</div><div class="org-topic">อาจารย์ประจำ / รองคณบดี (2554–2562)</div></div>
+      <div class="org-card"><div class="org-name">และอีกกว่า 30 หน่วยงาน</div><div class="org-topic">ภาครัฐ · สถาบันการศึกษา · ภาคอุตสาหกรรม</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="con">
+    <div class="contact-grid">
+      <div>
+        <div class="c-slabel">ติดต่อเรา</div>
+        <h2 class="ct-title">พร้อมออกแบบ<br><em>หลักสูตรสำหรับคุณ</em></h2>
+        <p class="c-sub">ติดต่อสอบถามเพื่อรับการประเมินความต้องการเบื้องต้น (ฟรีไม่มีค่าใช้จ่าย)<br>ผู้ประสานงาน: คุณสิริลักษณ์ มีธัญญากร</p>
+        <div class="ci-list">
+          <div class="ci">
+            <div class="ci-icon">📱</div>
+            <div><div class="ci-lbl">โทรศัพท์</div><a href="tel:0873032305" class="ci-val">087-303-2305</a></div>
+          </div>
+          <div class="ci">
+            <div class="ci-icon">✉️</div>
+            <div><div class="ci-lbl">อีเมล</div><a href="mailto:humangothailand@gmail.com" class="ci-val">humangothailand@gmail.com</a></div>
+          </div>
+          <div class="ci">
+            <div class="ci-icon">💬</div>
+            <div><div class="ci-lbl">Line Official Account</div><span class="ci-val">@539hmybx</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="cta-card">
+        <img src="logo.png" alt="HUMANgo" class="cta-logo">
+        <div class="cta-brand">HUMANgo</div>
+        <div class="cta-tag">GROW YOUR PEOPLE</div>
+        <a href="https://line.me/R/ti/p/@539hmybx" class="line-btn" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+          แอดไลน์เลย @539hmybx
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2568–2569 <span>HUMANgo</span> — Grow Your People &nbsp;|&nbsp; ดร.พลภัทร เจริญเวียงเวชกิจ &nbsp;|&nbsp; เชียงใหม่</p>
+</footer>
+
+<script>
+  // Modal functions
+  function openModal(speaker) {
+    document.getElementById(speaker + 'Modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(event, speaker) {
+    if (event && event.target !== event.currentTarget) return;
+    document.getElementById(speaker + 'Modal').classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+
+  // Close modal on ESC key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal.active').forEach(m => m.classList.remove('active'));
+      document.body.style.overflow = 'auto';
+    }
+  });
+</script>
+
+</body>
+</html>
