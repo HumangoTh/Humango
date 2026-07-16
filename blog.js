@@ -6,43 +6,35 @@
 // Simple Markdown to HTML converter
 const markdownToHtml = (md) => {
   let html = md;
-
-  // Code blocks
-  html = html.replace(/```([^`]+)```/g, '<pre><code>$1</code></pre>');
-
+  
+  // Line breaks FIRST (before other replacements)
+  html = html.replace(/\n\n+/g, '</p><p>');
+  
   // Headers
-  html = html.replace(/^### (.*?)$/gm, '<h3>$1</h3>');
-  html = html.replace(/^## (.*?)$/gm, '<h2>$1</h2>');
-  html = html.replace(/^# (.*?)$/gm, '<h1>$1</h1>');
-
-  // Bold
+  html = html.replace(/^### (.*?)$/gm, '</p><h3>$1</h3><p>');
+  html = html.replace(/^## (.*?)$/gm, '</p><h2>$1</h2><p>');
+  html = html.replace(/^# (.*?)$/gm, '</p><h1>$1</h1><p>');
+  
+  // Bold & Italic
   html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-  html = html.replace(/__(.*?)__/g, '<strong>$1</strong>');
-
-  // Italic
   html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
-  html = html.replace(/_(.*?)_/g, '<em>$1</em>');
-
-  // Links
-  html = html.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank">$1</a>');
-
+  
   // Lists
   html = html.replace(/^\- (.*?)$/gm, '<li>$1</li>');
   html = html.replace(/(<li>.*?<\/li>)/s, '<ul>$1</ul>');
-  html = html.replace(/^\d+\. (.*?)$/gm, '<li>$1</li>');
-
-  // Tables
-  html = html.replace(/\| (.*?) \|/g, '<td>$1</td>');
-  html = html.replace(/\n\n<td>/g, '<tr><td>');
-  html = html.replace(/<\/td>\n/g, '</td></tr>\n');
-
-  // Line breaks
-  html = html.replace(/\n\n/g, '</p><p>');
+  
+  // Links
+  html = html.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>');
+  
+  // Code blocks
+  html = html.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
+  
+  // Wrap in paragraphs
   html = '<p>' + html + '</p>';
-
+  html = html.replace(/<p><\/p>/g, '');
+  
   return html;
 };
-
 // Parse YAML front matter
 const parseFrontMatter = (content) => {
   const match = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
