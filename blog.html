@@ -11,119 +11,71 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --navy: #1B2A5A;
-      --navy-dark: #0F1A3A;
-      --navy-mid: #1a3570;
-      --teal: #1a5c6b;
-      --gold: #C9A84C;
-      --gold-lt: #E8CC6E;
-      --white: #FFFFFF;
-      --off: #F5F7FF;
-      --text: #2D2D2D;
-      --muted: #66667A;
+      --indigo:    #475569;
+      --indigo-dark: #334155;
+      --amber:     #D97706;
+      --mint:      #10B981;
+      --white:     #FFFFFF;
+      --soft-bg:   #F8FAFC;
+      --text:      #1E293B;
+      --muted:     #64748B;
     }
     html { scroll-behavior: smooth; }
     body { font-family: 'Sarabun', sans-serif; font-size: 20px; color: var(--text); background: var(--white); overflow-x: hidden; }
-    h1,h2,h3,.ral { font-family: 'Raleway', sans-serif; }
-
-    /* NAV */
+    h1,h2,h3 { font-family: 'Raleway', sans-serif; }
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      background: rgba(10,20,55,.95); backdrop-filter: blur(12px);
+      background: var(--white); backdrop-filter: blur(12px);
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 48px; height: 62px;
-      border-bottom: 1px solid rgba(201,168,76,.15);
+      border-bottom: 1px solid rgba(71,85,105,.08);
+      box-shadow: 0 2px 8px rgba(0,0,0,.04);
     }
     .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
     .nav-logo img { height: 36px; object-fit: contain; }
-    .nav-brand { font-family: 'Raleway', sans-serif; font-weight: 900; font-size: 1.25rem; color: #fff; }
     .nav-links { display: flex; gap: 28px; list-style: none; }
-    .nav-links a { color: rgba(255,255,255,.72); text-decoration: none; font-size: .88rem; font-weight: 500; transition: color .2s; }
-    .nav-links a:hover { color: var(--gold); }
-    .nav-cta { background: var(--gold) !important; color: var(--navy) !important; padding: 7px 22px; border-radius: 50px; font-weight: 700 !important; }
-    .nav-cta:hover { background: var(--gold-lt) !important; }
-
-    /* HEADER */
+    .nav-links a { color: var(--text); text-decoration: none; font-size: .88rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--indigo); }
+    .nav-cta { background: var(--amber) !important; color: #fff !important; padding: 7px 22px; border-radius: 50px; font-weight: 700 !important; }
     .blog-header {
-      background: linear-gradient(140deg, var(--navy-dark) 0%, var(--navy) 100%);
+      background: linear-gradient(135deg, var(--indigo) 0%, #64748B 100%);
       padding: 120px 24px 60px;
       margin-top: 62px;
       text-align: center;
     }
-    .blog-header h1 {
-      font-size: 2.4rem; font-weight: 900; color: #fff; margin-bottom: 12px;
-    }
-    .blog-header p {
-      font-size: 1rem; color: rgba(255,255,255,.68); max-width: 600px; margin: 0 auto;
-    }
-
-    /* CONTAINER */
+    .blog-header h1 { font-size: 2.4rem; font-weight: 900; color: #fff; margin-bottom: 12px; }
+    .blog-header p { font-size: 1rem; color: rgba(255,255,255,.68); max-width: 600px; margin: 0 auto; }
     .con { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
-
-    /* TAG FILTER */
-    .tag-filter {
-      display: flex; gap: 10px; flex-wrap: wrap; margin: 36px 0; justify-content: center;
-    }
-    .tag-btn {
-      background: var(--white); border: 1.5px solid #e8eaf5; color: var(--text);
-      padding: 8px 18px; border-radius: 50px; font-size: .85rem; font-weight: 600;
-      cursor: pointer; transition: all .25s;
-    }
-    .tag-btn:hover { border-color: var(--gold); color: var(--gold); }
-    .tag-btn.active { background: var(--gold); color: var(--navy); border-color: var(--gold); }
-
-    /* ARTICLE CARDS */
+    .tag-filter { display: flex; gap: 10px; flex-wrap: wrap; margin: 36px 0; justify-content: center; }
+    .tag-btn { background: var(--white); border: 1.5px solid #E2E8F0; color: var(--text); padding: 8px 18px; border-radius: 50px; font-size: .85rem; font-weight: 600; cursor: pointer; transition: all .25s; }
+    .tag-btn:hover { border-color: var(--indigo); color: var(--indigo); }
+    .tag-btn.active { background: var(--indigo); color: #fff; border-color: var(--indigo); }
     .articles-grid { display: grid; gap: 28px; margin: 44px 0; }
-    .article-card {
-      background: var(--white); border: 1px solid #e8eaf5; border-radius: 14px;
-      padding: 28px; transition: all .3s; cursor: pointer;
-    }
-    .article-card:hover { border-color: var(--gold); box-shadow: 0 12px 32px rgba(27,42,90,.08); transform: translateY(-4px); }
-
+    .article-card { background: var(--white); border: 1px solid #E2E8F0; border-radius: 14px; padding: 28px; transition: all .3s; cursor: pointer; }
+    .article-card:hover { border-color: var(--indigo); box-shadow: 0 12px 32px rgba(71,85,105,.08); transform: translateY(-4px); }
     .article-header h3 { font-size: 1.3rem; margin-bottom: 10px; line-height: 1.4; }
-    .article-header a { color: var(--navy); text-decoration: none; }
-    .article-header a:hover { color: var(--gold); }
-
-    .article-meta {
-      display: flex; gap: 16px; font-size: .82rem; color: var(--muted); margin-bottom: 16px;
-    }
-    .article-date::before { content: "📅 "; }
-    .article-author::before { content: "✍️ "; }
-
+    .article-header a { color: var(--indigo); text-decoration: none; }
+    .article-header a:hover { color: var(--amber); }
+    .article-meta { display: flex; gap: 16px; font-size: .82rem; color: var(--muted); margin-bottom: 16px; }
     .article-excerpt { font-size: .95rem; color: var(--muted); line-height: 1.8; margin-bottom: 16px; }
-
     .article-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
-    .tag { display: inline-block; background: var(--off); color: var(--navy);
-      font-size: .75rem; padding: 4px 12px; border-radius: 50px; font-weight: 600; }
-
-    .read-more { color: var(--gold); text-decoration: none; font-weight: 700; font-size: .9rem; }
-    .read-more:hover { color: var(--gold-lt); }
-
-    /* EMPTY STATE */
+    .tag { display: inline-block; background: var(--soft-bg); color: var(--indigo); font-size: .75rem; padding: 4px 12px; border-radius: 50px; font-weight: 600; }
+    .read-more { color: var(--amber); text-decoration: none; font-weight: 700; font-size: .9rem; }
     .empty-state { text-align: center; padding: 60px 24px; }
     .empty-state h3 { color: var(--muted); margin-bottom: 12px; }
-    .empty-state p { color: var(--muted); }
-
-    /* LOADING */
     .loading { text-align: center; padding: 40px; color: var(--muted); }
-
-    /* FOOTER */
-    footer { background: var(--navy-dark); padding: 24px; text-align: center; border-top: 1px solid rgba(201,168,76,.1); margin-top: 60px; }
+    footer { background: var(--text); padding: 24px; text-align: center; border-top: 1px solid rgba(71,85,105,.1); margin-top: 60px; }
     footer p { font-size: .78rem; color: rgba(255,255,255,.28); }
-    footer span { color: var(--gold); }
-
-    /* RESPONSIVE */
+    footer span { color: var(--amber); }
+    section { padding: 60px 24px; }
     @media (max-width: 860px) {
       nav { padding: 0 20px; }
       .nav-links { display: none; }
       .blog-header h1 { font-size: 1.8rem; }
-      .tag-filter { justify-content: flex-start; }
     }
   </style>
 </head>
 <body>
-
-<!-- NAV -->
 <nav>
   <a href="/" class="nav-logo">
     <img src="logo.png" alt="HUMANgo">
@@ -131,81 +83,52 @@
   <ul class="nav-links">
     <li><a href="/Humango/#about">เกี่ยวกับเรา</a></li>
     <li><a href="/Humango/#courses">หลักสูตร</a></li>
-    <li><a href="blog.html" style="color: var(--gold);">บทความ</a></li>
+    <li><a href="blog.html" style="color: var(--indigo);">บทความ</a></li>
     <li><a href="/Humango/#track">ผลงาน</a></li>
     <li><a href="/Humango/#contact" class="nav-cta">ติดต่อเรา</a></li>
   </ul>
 </nav>
-
-<!-- HEADER -->
 <section class="blog-header">
   <h1>บทความและความรู้</h1>
   <p>เรียนรู้เกี่ยวกับการพัฒนาผู้นำ การบริหารทรัพยากรบุคคล และการสร้างวัฒนธรรมองค์กรที่ยั่งยืน</p>
 </section>
-
-<!-- BLOG CONTENT -->
 <section style="padding: 60px 24px;">
   <div class="con">
-    <!-- TAG FILTER -->
     <div id="tagFilter"></div>
-
-    <!-- LOADING -->
-    <div id="loadingState" class="loading">
-      <p>กำลังโหลดบทความ...</p>
-    </div>
-
-    <!-- ARTICLES -->
+    <div id="loadingState" class="loading"><p>กำลังโหลดบทความ...</p></div>
     <div id="articlesList" class="articles-grid" style="display: none;"></div>
-
-    <!-- EMPTY STATE -->
     <div id="emptyState" class="empty-state" style="display: none;">
       <h3>ไม่พบบทความ</h3>
       <p>ลองเลือกป้ายกำกับอื่น ๆ หรือกลับมาในภายหลัง</p>
     </div>
   </div>
 </section>
-
-<!-- FOOTER -->
 <footer>
   <p>© 2568–2569 <span>HUMANgo</span> — Grow Your People &nbsp;|&nbsp; ดร.พลภัทร เจริญเวียงเวชกิจ &nbsp;|&nbsp; เชียงใหม่</p>
 </footer>
-
 <script src="/Humango/blog.js"></script>
 <script>
-  // Load articles from data.json
   async function loadArticles() {
     try {
       const response = await fetch('/Humango/articles/data.json');
-      if (!response.ok) throw new Error('Failed to load articles');
+      if (!response.ok) throw new Error('Failed');
       const data = await response.json();
-
-      // Load articles to blog system
-      data.articles.forEach(article => {
-        window.Blog.articles.push(article);
-      });
+      data.articles.forEach(article => window.Blog.articles.push(article));
       window.Blog.updateTags();
-
-      // Hide loading, show content
       document.getElementById('loadingState').style.display = 'none';
       document.getElementById('articlesList').style.display = 'grid';
-
-      // Render
       renderTags();
       window.BlogUtils.renderArticleList(window.Blog.getAllArticles(), 'articlesList');
     } catch (error) {
-      console.error('Error loading articles:', error);
       document.getElementById('loadingState').innerHTML = '<p>ไม่สามารถโหลดบทความได้</p>';
     }
   }
-
-  // Render tag filter
   const renderTags = () => {
     const allTags = window.Blog.allTags;
     window.BlogUtils.renderTagFilter(allTags, 'tagFilter', (tag) => {
       let articles = tag === 'all' ? window.Blog.getAllArticles() : window.Blog.filterByTag(tag);
       const articlesList = document.getElementById('articlesList');
       const emptyState = document.getElementById('emptyState');
-
       if (articles.length === 0) {
         articlesList.innerHTML = '';
         emptyState.style.display = 'block';
@@ -215,10 +138,7 @@
       }
     });
   };
-
-  // Initial load
   window.addEventListener('load', loadArticles);
 </script>
-
 </body>
 </html>
