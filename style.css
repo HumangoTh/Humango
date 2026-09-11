@@ -275,7 +275,7 @@
   [hidden]{display:none!important}
 
   /* ---------- articles: list ---------- */
-  .article-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:52px}
+  .article-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:52px}
   .article-card{
     display:flex;flex-direction:column;text-decoration:none;color:inherit;
     background:var(--surface);border:1px solid var(--line);border-radius:2px;overflow:hidden;
@@ -382,6 +382,7 @@
   .cov{background-position:center;background-size:cover;background-repeat:no-repeat;display:block;width:100%}
   .cov-1{background-image:url(cover-salary.jpg)}
   .cov-2{background-image:url(cover-psycap.jpg)}
+  .cov-3{background-image:url(cover-interview.jpg)}
   a:focus-visible,.line-btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
   .speaker-card:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
