@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>แบบประเมินแนวโน้ม Growth Mindset — HUMANgo</title>
+<meta name="description" content="แบบประเมินแนวโน้ม Growth Mindset ฟรี 10 ข้อ ใช้เวลาประมาณ 3 นาที รู้ผลทันที พร้อมผลรายมิติ 5 ด้าน จาก HUMANgo">
+<link rel="canonical" href="https://humangoth.github.io/Humango/assessment-free.html">
+<meta name="theme-color" content="#F6F8F5">
+<link rel="icon" href="logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HUMANgo">
+<meta property="og:locale" content="th_TH">
+<meta property="og:url" content="https://humangoth.github.io/Humango/assessment-free.html">
+<meta property="og:title" content="แบบประเมินแนวโน้ม Growth Mindset — HUMANgo">
+<meta property="og:description" content="สำรวจวิธีที่คุณตอบสนองต่อความท้าทาย อุปสรรค ความพยายาม คำวิจารณ์ และความสำเร็จของผู้อื่น 10 ข้อ ใช้เวลา 3 นาที รู้ผลทันที">
+<meta property="og:image" content="https://humangoth.github.io/Humango/og-home.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Thai:wght@200;300;400;500;600&display=swap">
+<link rel="stylesheet" href="style.css">
+<style>
+  :root{color-scheme:light dark}
+  html,body{margin:0}
+  img{max-width:100%}
+  [hidden]{display:none!important}
+
+  .quiz-wrap{max-width:820px;margin:0 auto;padding:0 32px}
+  .screen{animation:fade-up .3s ease both}
+  @keyframes fade-up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+  /* ---------- intro ---------- */
+  .intro-lead{font-size:1.06rem;line-height:1.8;color:var(--ink-2);max-width:46ch;margin:0 0 30px}
+  .facts{
+    display:flex;flex-wrap:wrap;gap:10px 28px;margin:0 0 38px;
+    font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--muted);
+  }
+  .facts span{display:flex;align-items:center;gap:9px}
+  .facts i{width:6px;height:6px;border-radius:50%;background:var(--accent);flex:none}
+
+  .scale-box{
+    border:1px solid var(--line);border-radius:2px;background:var(--surface);
+    padding:28px 28px 24px;margin:0 0 28px;
+  }
+  .scale-box h2{
+    font-family:"IBM Plex Sans Thai",sans-serif;font-size:1.02rem;font-weight:500;
+    margin:0 0 20px;line-height:1.5;
+  }
+  .scale-list{display:grid;gap:0;border-top:1px solid var(--line-soft)}
+  .scale-item{
+    display:grid;grid-template-columns:40px 1fr;align-items:center;gap:16px;
+    padding:13px 0;border-bottom:1px solid var(--line-soft);
+  }
+  .scale-num{
+    width:34px;height:34px;display:grid;place-items:center;border-radius:2px;
+    background:var(--accent-soft);color:var(--accent-ink);
+    font-family:"IBM Plex Mono",monospace;font-weight:500;font-size:.85rem;
+  }
+  .scale-item p{margin:0;font-size:.92rem;color:var(--ink-2)}
+
+  .disclaimer{
+    display:flex;gap:14px;align-items:flex-start;
+    padding:18px 20px;border-left:2px solid var(--accent);background:var(--accent-soft);
+    border-radius:0 2px 2px 0;
+  }
+  .disclaimer p{margin:0;font-size:.85rem;line-height:1.75;color:var(--ink-2)}
+  .disclaimer b{font-weight:500;color:var(--ink)}
+
+  /* ---------- quiz ---------- */
+  .quiz-top{display:flex;align-items:center;gap:18px;margin-bottom:44px}
+  .icon-btn{
+    flex:none;width:44px;height:44px;display:grid;place-items:center;
+    border:1px solid var(--line);border-radius:50%;background:var(--surface);
+    color:var(--ink);font-size:1rem;cursor:pointer;transition:border-color .18s ease,color .18s ease;
+  }
+  .icon-btn:hover{border-color:var(--accent);color:var(--accent)}
+  .progress-wrap{flex:1}
+  .progress-labels{
+    display:flex;justify-content:space-between;margin-bottom:9px;
+    font-family:"IBM Plex Mono",monospace;font-size:.63rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--muted);
+  }
+  .progress-track{height:3px;background:var(--line);border-radius:99px;overflow:hidden}
+  .progress-fill{display:block;height:100%;width:10%;background:var(--accent);transition:width .3s ease}
+
+  .q-no{
+    font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--accent);margin:0 0 14px;
+  }
+  .q-text{
+    font-family:"IBM Plex Sans Thai",sans-serif;
+    font-size:clamp(1.25rem,3.4vw,1.72rem);font-weight:500;letter-spacing:-.01em;
+    line-height:1.5;margin:0;outline:none;
+  }
+  .q-hint{margin:16px 0 34px;font-size:.85rem;color:var(--muted)}
+  .choices{display:grid;gap:12px}
+  .choice{
+    display:grid;grid-template-columns:44px 1fr;align-items:center;gap:16px;
+    width:100%;padding:18px 20px;text-align:left;cursor:pointer;
+    border:1px solid var(--line);border-radius:2px;background:var(--surface);
+    color:var(--ink);font-family:inherit;
+    transition:border-color .16s ease,background .16s ease;
+  }
+  .choice:hover{border-color:var(--accent);background:var(--accent-soft)}
+  .choice[aria-checked="true"]{border-color:var(--accent);background:var(--accent-soft)}
+  .choice-score{
+    width:38px;height:38px;display:grid;place-items:center;border-radius:2px;
+    background:var(--paper);border:1px solid var(--line);
+    font-family:"IBM Plex Mono",monospace;font-weight:500;font-size:.88rem;color:var(--muted);
+  }
+  .choice[aria-checked="true"] .choice-score,
+  .choice:hover .choice-score{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+  .choice-text{font-size:1rem;font-weight:400;line-height:1.5}
+  .kbd-hint{
+    margin:26px 0 0;font-family:"IBM Plex Mono",monospace;font-size:.6rem;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
+  }
+
+  /* ---------- results ---------- */
+  .result-head{
+    display:grid;grid-template-columns:minmax(0,1fr) auto;gap:44px;align-items:center;
+    padding-bottom:40px;border-bottom:1px solid var(--line);
+  }
+  .result-title{
+    font-family:"IBM Plex Sans Thai",sans-serif;
+    font-size:clamp(1.6rem,4vw,2.3rem);font-weight:500;letter-spacing:-.015em;
+    line-height:1.3;margin:12px 0 16px;
+  }
+  .result-summary{margin:0;font-size:.97rem;line-height:1.8;color:var(--ink-2);max-width:52ch}
+  .score-box{
+    flex:none;text-align:center;border:1px solid var(--accent);border-radius:2px;
+    padding:26px 34px;background:var(--accent-soft);
+  }
+  .score-box strong{
+    display:block;font-family:"Familjen Grotesk",sans-serif;
+    font-size:3.2rem;font-weight:600;line-height:1;color:var(--accent-ink);
+    font-variant-numeric:tabular-nums;
+  }
+  .score-box span{
+    display:block;margin-top:10px;font-family:"IBM Plex Mono",monospace;
+    font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-ink);
+  }
+  .score-note{
+    margin:26px 0 0;font-size:.82rem;color:var(--muted);line-height:1.7;
+    padding-left:16px;border-left:2px solid var(--line);max-width:60ch;
+  }
+
+  .dims{display:grid;gap:0;border-top:1px solid var(--line);margin-top:8px}
+  .dim{padding:26px 0;border-bottom:1px solid var(--line-soft)}
+  .dim-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+  .dim-idx{
+    font-family:"IBM Plex Mono",monospace;font-size:.6rem;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--accent);margin:0 0 7px;
+  }
+  .dim h3{font-family:"IBM Plex Sans Thai",sans-serif;font-size:1.06rem;font-weight:500;margin:0;line-height:1.45}
+  .dim-score{
+    flex:none;font-family:"Familjen Grotesk",sans-serif;font-size:1.5rem;font-weight:600;
+    color:var(--ink);font-variant-numeric:tabular-nums;
+  }
+  .dim-score small{font-size:.8rem;color:var(--muted);font-weight:400}
+  .bar{height:4px;background:var(--line);border-radius:99px;overflow:hidden;margin:18px 0 14px}
+  .bar span{display:block;height:100%;background:var(--accent)}
+  .dim-result{margin:0;font-size:.94rem;color:var(--ink-2);line-height:1.7}
+  .dim-helper{
+    margin:6px 0 0;font-family:"IBM Plex Mono",monospace;font-size:.6rem;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+  }
+
+  .guidance{
+    margin-top:44px;padding:30px 32px;border:1px solid var(--line);
+    border-radius:2px;background:var(--surface);
+  }
+  .guidance h2{font-family:"IBM Plex Sans Thai",sans-serif;font-size:1.06rem;font-weight:500;margin:0 0 12px}
+  .guidance p{margin:0;font-size:.92rem;line-height:1.8;color:var(--ink-2)}
+
+  .next-step{margin-top:22px;padding:32px;border-radius:2px;background:var(--accent-soft)}
+  .next-step h2{font-family:"IBM Plex Sans Thai",sans-serif;font-size:1.12rem;font-weight:500;margin:0 0 12px}
+  .next-step p{margin:0 0 22px;font-size:.92rem;line-height:1.8;color:var(--ink-2)}
+  .next-step .btn-row{display:flex;gap:14px;flex-wrap:wrap}
+
+  .result-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
+
+  @media (max-width:860px){
+    .quiz-wrap{padding:0 22px}
+    .result-head{grid-template-columns:1fr;gap:28px}
+    .score-box{justify-self:start;padding:22px 30px}
+  }
+  @media (max-width:560px){
+    .choice{grid-template-columns:38px 1fr;gap:13px;padding:15px 16px}
+    .kbd-hint{display:none}
+  }
+  @media print{
+    .masthead,.result-actions,.next-step,.site-foot{display:none!important}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-inner">
+      <a class="logo" href="index.html" aria-label="HUMANgo">
+        <img class="logo-img" src="logo.png" alt="HUMANgo" width="499" height="150">
+      </a>
+      <nav>
+        <a href="index.html#assessment">แบบประเมิน</a>
+        <a href="index.html#courses">หลักสูตร</a>
+        <a href="index.html#speakers">ทีมวิทยากร</a>
+        <a href="articles.html">บทความ</a>
+        <a href="index.html#contact">ติดต่อเรา</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main>
+<section style="border-top:none">
+  <div class="quiz-wrap pad">
+
+    <!-- ============ INTRO ============ -->
+    <div id="intro" class="screen">
+      <p class="eyebrow">Free Self-Assessment</p>
+      <h1 class="section-title" style="margin-bottom:22px">แบบประเมินแนวโน้ม<br>Growth Mindset</h1>
+      <p class="intro-lead">สำรวจวิธีที่คุณตอบสนองต่อความท้าทาย อุปสรรค ความพยายาม คำวิจารณ์ และความสำเร็จของผู้อื่น ผ่านคำถามสั้นๆ 10 ข้อ</p>
+
+      <div class="facts">
+        <span><i aria-hidden="true"></i>10 คำถาม</span>
+        <span><i aria-hidden="true"></i>ประมาณ 3 นาที</span>
+        <span><i aria-hidden="true"></i>ไม่เก็บคำตอบ</span>
+      </div>
+
+      <div class="scale-box">
+        <h2>พิจารณาว่าคุณเห็นด้วยกับแต่ละข้อความมากน้อยเพียงใด</h2>
+        <div class="scale-list">
+          <div class="scale-item"><span class="scale-num">0</span><p>ไม่เห็นด้วยเลย</p></div>
+          <div class="scale-item"><span class="scale-num">1</span><p>ค่อนข้างไม่เห็นด้วย</p></div>
+          <div class="scale-item"><span class="scale-num">2</span><p>ค่อนข้างเห็นด้วย</p></div>
+          <div class="scale-item"><span class="scale-num">3</span><p>เห็นด้วยอย่างยิ่ง</p></div>
+        </div>
+      </div>
+
+      <div class="disclaimer" role="note">
+        <p><b>ขอบเขตการใช้งาน</b> — แบบประเมินนี้ใช้เพื่อการสำรวจและสะท้อนตนเองเบื้องต้น ไม่ใช่เครื่องมือวินิจฉัยทางจิตวิทยา และไม่ควรใช้ตัดสิน คัดออก หรือประเมินบุคคลเพียงลำพัง หากยังไม่ได้ตรวจสอบคุณภาพทางจิตมิติในกลุ่มเป้าหมาย</p>
+      </div>
+
+      <div style="margin-top:38px">
+        <button id="start-btn" class="btn btn-primary" type="button">เริ่มทำแบบประเมิน &nbsp;→</button>
+      </div>
+    </div>
+
+    <!-- ============ QUIZ ============ -->
+    <div id="quiz" class="screen" hidden>
+      <div class="quiz-top">
+        <button id="back-btn" class="icon-btn" type="button" aria-label="ย้อนกลับ">←</button>
+        <div class="progress-wrap">
+          <div class="progress-labels">
+            <span id="progress-label">ข้อ 1 / 10</span>
+            <span id="progress-percent">10%</span>
+          </div>
+          <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="10">
+            <span id="progress-fill" class="progress-fill"></span>
+          </div>
+        </div>
+      </div>
+
+      <p id="question-number" class="q-no">คำถามข้อที่ 1</p>
+      <h1 id="question-text" class="q-text" tabindex="-1"></h1>
+      <p class="q-hint">เลือกคำตอบที่ตรงกับตัวคุณมากที่สุด ไม่มีคำตอบที่ถูกหรือผิด</p>
+      <div id="choices" class="choices" role="radiogroup" aria-labelledby="question-text"></div>
+      <p class="kbd-hint">กดปุ่มตัวเลข 0–3 บนแป้นพิมพ์เพื่อตอบเร็วขึ้น</p>
+    </div>
+
+    <!-- ============ RESULTS ============ -->
+    <div id="results" class="screen" hidden>
+      <div class="result-head">
+        <div>
+          <p class="eyebrow">ผลประเมินภาพรวม</p>
+          <h1 id="result-title" class="result-title"></h1>
+          <p id="result-summary" class="result-summary"></p>
+        </div>
+        <div class="score-box">
+          <strong id="total-score">0</strong>
+          <span>คะแนน จาก 30</span>
+        </div>
+      </div>
+
+      <p class="score-note">แบบประเมินนี้ใช้คะแนนดิบแบบทิศทางลบ — คะแนนรวมยิ่งต่ำ ยิ่งสะท้อนแนวโน้ม Growth Mindset ที่สูง</p>
+
+      <div class="head-row" style="margin-top:52px">
+        <div>
+          <p class="eyebrow">Dimension Results</p>
+          <h2 class="section-title">ผลการประเมินรายมิติ</h2>
+        </div>
+      </div>
+      <div id="dimension-list" class="dims"></div>
+
+      <div class="guidance">
+        <h2>ใช้ผลลัพธ์เพื่อเริ่มต้นการเรียนรู้</h2>
+        <p>คะแนนสะท้อนคำตอบของคุณในช่วงเวลานี้ ไม่ได้กำหนดว่าคุณเป็นคนแบบใดอย่างถาวร ลองเลือกมิติที่ต้องการพัฒนาเพียงหนึ่งด้าน แล้วสังเกตพฤติกรรมของตนในสถานการณ์จริง เช่น วิธีรับมือกับงานยาก ความผิดพลาด หรือข้อเสนอแนะจากผู้อื่น</p>
+      </div>
+
+      <div class="next-step">
+        <h2>อยากพัฒนา Growth Mindset ทั้งทีม?</h2>
+        <p>HUMANgo มีหลักสูตร Building Psychological Capital ที่พัฒนา Growth Mindset ความฉลาดทางอารมณ์ และความยืดหยุ่นทางใจ ผ่าน Workshop ที่ปรับกรณีศึกษาให้ตรงกับบริบทองค์กรของคุณ</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="index.html#courses">ดูหลักสูตร</a>
+          <a class="btn btn-ghost" href="index.html#contact">ปรึกษาทีม HUMANgo</a>
+        </div>
+      </div>
+
+      <div class="result-actions">
+        <button id="restart-btn" class="btn btn-ghost" type="button">ทำแบบประเมินอีกครั้ง</button>
+        <button id="print-btn" class="btn btn-ghost" type="button">บันทึกผลเป็น PDF</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div>
+      <img src="logo.png" alt="HUMANgo">
+      <p>Human Insight. Organizational Growth.<br>People Assessment · Training · HR Consulting</p>
+    </div>
+    <div>
+      <p class="lbl">ติดต่อ</p>
+      <p>
+        <a href="tel:0873032305">087-303-2305</a><br>
+        <a href="mailto:humangothailand@gmail.com">humangothailand@gmail.com</a>
+      </p>
+    </div>
+    <div>
+      <p class="lbl">ช่องทางออนไลน์</p>
+      <p>
+        <a href="https://lin.ee/w5Gh5uiA" target="_blank" rel="noopener">LINE Official Account</a><br>
+        <a href="https://www.facebook.com/profile.php?id=61590830550104" target="_blank" rel="noopener">Facebook</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<noscript><p style="padding:24px">กรุณาเปิดใช้งาน JavaScript เพื่อทำแบบประเมินและดูผลลัพธ์</p></noscript>
+
+<script>
+const questions = [
+  "ถ้าไม่แน่ใจว่างานจะสำเร็จตามเป้าหมาย ฉันจะไม่เสี่ยงรับทำงานนั้น",
+  "ฉันรู้สึกว่าตนเองเป็นคนล้มเหลว เมื่อทำงานไม่สำเร็จตามเป้าหมาย",
+  "เมื่อเจออุปสรรคในการทำงาน ฉันจะลดเป้าหมายในงานนั้นลง",
+  "เป็นเรื่องยากที่จะแก้ไข หากเกิดความผิดพลาดในการทำงาน",
+  "ไม่มีประโยชน์ที่จะพยายามต่อไป หากยังไม่เห็นโอกาสที่จะประสบความสำเร็จ",
+  "คนที่ขาดศักยภาพ ย่อมต้องใช้ความพยายามในการทำงานมาก",
+  "ฉันไม่สนใจในคำวิจารณ์เชิงลบที่ทำให้เสียกำลังใจ",
+  "ฉันมักจะพิสูจน์ตนเองเพื่อให้ได้รับคำชมอยู่เสมอ",
+  "ฉันคิดเสมอว่า ยังมีอีกหลายคนที่ทำงานแย่กว่าตนเอง",
+  "การเปรียบเทียบผลงานกับผู้อื่นที่ทำได้ดีกว่า ทำให้เสียกำลังใจ"
+];
+
+const scale = [
+  { score: 0, label: "ไม่เห็นด้วยเลย" },
+  { score: 1, label: "ค่อนข้างไม่เห็นด้วย" },
+  { score: 2, label: "ค่อนข้างเห็นด้วย" },
+  { score: 3, label: "เห็นด้วยอย่างยิ่ง" }
+];
+
+const dimensions = [
+  { name: "การยอมรับความท้าทาย", items: [0, 1],
+    levels: ["ยอมรับความท้าทายได้สูง", "ยอมรับความท้าทายได้ปานกลาง", "ยอมรับความท้าทายได้ต่ำ"] },
+  { name: "การฟันฝ่าอุปสรรค", items: [2, 3],
+    levels: ["มีพลังในการฟันฝ่าอุปสรรคสูง", "มีพลังในการฟันฝ่าอุปสรรคปานกลาง", "มีพลังในการฟันฝ่าอุปสรรคต่ำ"] },
+  { name: "ทัศนคติต่อความพยายาม", items: [4, 5],
+    levels: ["มีทัศนคติที่ดีต่อความพยายาม", "มีทัศนคติปานกลางต่อความพยายาม", "มีทัศนคติที่ไม่ดีต่อความพยายาม"] },
+  { name: "การยอมรับคำวิจารณ์", items: [6, 7],
+    levels: ["เปิดใจยอมรับและเรียนรู้จากคำวิจารณ์ได้มาก", "เปิดใจยอมรับและเรียนรู้จากคำวิจารณ์ได้ปานกลาง", "เปิดใจยอมรับและเรียนรู้จากคำวิจารณ์ได้น้อย"] },
+  { name: "การเรียนรู้และรับแรงบันดาลใจจากผู้อื่น", items: [8, 9],
+    levels: ["เรียนรู้และรับแรงบันดาลใจจากผู้อื่นได้สูง", "เรียนรู้และรับแรงบันดาลใจจากผู้อื่นได้ปานกลาง", "เรียนรู้และรับแรงบันดาลใจจากผู้อื่นได้ต่ำ"] }
+];
+
+const overallLevels = [
+  { min: 0, max: 7, title: "Growth Mindset สูงมาก",
+    summary: "คำตอบของคุณสะท้อนแนวโน้มที่เปิดรับความท้าทาย มองอุปสรรคและความผิดพลาดเป็นส่วนหนึ่งของการเรียนรู้ และพร้อมพัฒนาตนเองจากประสบการณ์" },
+  { min: 8, max: 15, title: "Growth Mindset ค่อนข้างสูง",
+    summary: "คุณมีแนวโน้มแบบ Growth Mindset ในหลายสถานการณ์ และอาจมีบางบริบทที่ความกังวล ความกดดัน หรือความคาดหวังส่งผลต่อวิธีตอบสนองของคุณ" },
+  { min: 16, max: 23, title: "Growth Mindset ปานกลาง",
+    summary: "คุณมีทั้งมุมมองแบบเติบโตและมุมมองที่ระมัดระวังต่อความล้มเหลว ลองใช้ผลรายมิติเพื่อมองหาสถานการณ์ที่คุณพร้อมเรียนรู้ และสถานการณ์ที่ยังรู้สึกติดขัด" },
+  { min: 24, max: 30, title: "Growth Mindset ค่อนข้างน้อย",
+    summary: "ขณะนี้คุณอาจรู้สึกไม่มั่นใจเมื่อต้องเผชิญความท้าทาย ความผิดพลาด หรือการเปรียบเทียบกับผู้อื่น ผลนี้ไม่ใช่ข้อสรุปถาวร แต่เป็นจุดเริ่มต้นในการเลือกพฤติกรรมเล็กๆ ที่ช่วยให้เรียนรู้ต่อได้" }
+];
+
+let currentQuestion = 0;
+let answers = Array(questions.length).fill(null);
+
+const get = (id) => document.getElementById(id);
+const screens = { intro: get("intro"), quiz: get("quiz"), results: get("results") };
+
+function showScreen(name){
+  Object.entries(screens).forEach(([k, node]) => { node.hidden = k !== name; });
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function renderQuestion(){
+  const n = currentQuestion + 1;
+  const pct = Math.round((n / questions.length) * 100);
+  get("question-number").textContent = "คำถามข้อที่ " + n;
+  get("question-text").textContent = questions[currentQuestion];
+  get("progress-label").textContent = "ข้อ " + n + " / " + questions.length;
+  get("progress-percent").textContent = pct + "%";
+  get("progress-fill").style.width = pct + "%";
+  get("progress-fill").parentElement.setAttribute("aria-valuenow", String(pct));
+  get("back-btn").setAttribute("aria-label", currentQuestion === 0 ? "กลับหน้าคำชี้แจง" : "ย้อนกลับข้อก่อนหน้า");
+
+  const box = get("choices");
+  box.replaceChildren();
+  scale.forEach((opt) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "choice";
+    b.setAttribute("role", "radio");
+    b.setAttribute("aria-checked", answers[currentQuestion] === opt.score ? "true" : "false");
+    b.innerHTML = '<span class="choice-score">' + opt.score + '</span><span class="choice-text">' + opt.label + '</span>';
+    b.addEventListener("click", () => selectAnswer(opt.score));
+    box.appendChild(b);
+  });
+}
+
+function selectAnswer(score){
+  answers[currentQuestion] = score;
+  if (currentQuestion < questions.length - 1){
+    currentQuestion += 1;
+    renderQuestion();
+    get("question-text").focus({ preventScroll: true });
+  } else {
+    renderResults();
+  }
+}
+
+const getOverall = (s) => overallLevels.find(l => s >= l.min && s <= l.max);
+const getDimLevel = (s, d) => s <= 2 ? d.levels[0] : (s <= 4 ? d.levels[1] : d.levels[2]);
+
+function renderResults(){
+  const total = answers.reduce((a, b) => a + b, 0);
+  const overall = getOverall(total);
+  get("total-score").textContent = String(total);
+  get("result-title").textContent = overall.title;
+  get("result-summary").textContent = overall.summary;
+
+  const list = get("dimension-list");
+  list.replaceChildren();
+  dimensions.forEach((d, i) => {
+    const score = d.items.reduce((sum, idx) => sum + answers[idx], 0);
+    const strength = Math.round(((6 - score) / 6) * 100);
+    const el = document.createElement("article");
+    el.className = "dim";
+    el.innerHTML =
+      '<div class="dim-top"><div><p class="dim-idx">มิติที่ ' + (i + 1) + '</p><h3>' + d.name + '</h3></div>' +
+      '<div class="dim-score">' + score + '<small>/6</small></div></div>' +
+      '<div class="bar" aria-label="แนวโน้มเชิงเติบโต ' + strength + ' เปอร์เซ็นต์"><span style="width:' + strength + '%"></span></div>' +
+      '<p class="dim-result">' + getDimLevel(score, d) + '</p>' +
+      '<p class="dim-helper">คะแนนดิบ ' + score + ' · ยิ่งต่ำยิ่งสะท้อนแนวโน้มเชิงเติบโต</p>';
+    list.appendChild(el);
+  });
+
+  showScreen("results");
+  document.title = overall.title + " — HUMANgo";
+}
+
+get("start-btn").addEventListener("click", () => {
+  currentQuestion = 0;
+  answers = Array(questions.length).fill(null);
+  renderQuestion();
+  showScreen("quiz");
+});
+
+get("back-btn").addEventListener("click", () => {
+  if (currentQuestion === 0){ showScreen("intro"); return; }
+  currentQuestion -= 1;
+  renderQuestion();
+});
+
+get("restart-btn").addEventListener("click", () => {
+  currentQuestion = 0;
+  answers = Array(questions.length).fill(null);
+  document.title = "แบบประเมินแนวโน้ม Growth Mindset — HUMANgo";
+  renderQuestion();
+  showScreen("quiz");
+});
+
+get("print-btn").addEventListener("click", () => window.print());
+
+document.addEventListener("keydown", (e) => {
+  if (screens.quiz.hidden) return;
+  const s = Number(e.key);
+  if (Number.isInteger(s) && s >= 0 && s <= 3) selectAnswer(s);
+});
+</script>
+</body>
+</html>

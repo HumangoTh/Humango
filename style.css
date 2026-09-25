@@ -97,12 +97,14 @@
     max-width:32ch;margin:0 0 46px;
   }
   .services-split{
-    display:grid;grid-template-columns:1fr 1fr;
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
     border-top:1px solid var(--line);
   }
-  .services-split div{padding:26px 32px 26px 0;border-bottom:1px solid var(--line)}
-  .services-split div:first-child{border-right:1px solid var(--line)}
-  .services-split div:last-child{padding-left:36px}
+  .services-split div{
+    padding:26px 28px;border-bottom:1px solid var(--line);border-right:1px solid var(--line);
+  }
+  .services-split div:first-child{padding-left:0}
+  .services-split div:last-child{border-right:none;padding-right:0}
   .svc-en{
     font-family:"Familjen Grotesk",sans-serif;font-weight:500;font-size:1.06rem;
     color:var(--ink);margin:0 0 4px;
@@ -385,6 +387,45 @@
   .cov-2{background-image:url(cover-psycap.jpg)}
   .cov-3{background-image:url(cover-interview.jpg)}
   .cov-4{background-image:url(cover-growth-mindset.jpg)}
+
+  /* ---------- hero buttons ---------- */
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin:0 0 46px}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;text-decoration:none;border-radius:2px;
+    font-family:"IBM Plex Sans Thai",sans-serif;font-weight:500;font-size:.92rem;
+    padding:14px 26px;border:1px solid var(--accent);transition:opacity .18s ease,background .18s ease;
+  }
+  .btn-primary{background:var(--accent);color:var(--paper)}
+  .btn-primary:hover{opacity:.87}
+  .btn-ghost{background:transparent;color:var(--accent)}
+  .btn-ghost:hover{background:var(--accent-soft)}
+
+  /* ---------- assessment solutions ---------- */
+  .solutions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:52px}
+  .solution{
+    display:flex;flex-direction:column;background:var(--surface);
+    border:1px solid var(--line);border-radius:2px;padding:30px 28px 28px;
+    transition:border-color .18s ease;
+  }
+  .solution:hover{border-color:var(--accent)}
+  .solution.featured{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+  .solution-flag{
+    font-family:"IBM Plex Mono",monospace;font-size:.6rem;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--accent);margin:0 0 16px;
+  }
+  .solution svg{color:var(--accent);margin-bottom:18px;display:block}
+  .solution h3{
+    font-family:"Familjen Grotesk",sans-serif;font-size:1.06rem;font-weight:600;
+    letter-spacing:-.005em;margin:0 0 5px;
+  }
+  .solution .sub{font-size:.88rem;color:var(--ink-2);margin:0 0 14px;font-weight:400}
+  .solution p.desc{margin:0 0 26px;font-size:.88rem;color:var(--muted);line-height:1.7}
+  .solution .btn{margin-top:auto;align-self:flex-start;font-size:.85rem;padding:12px 22px}
+  .note-line{
+    margin:28px 0 0;font-size:.85rem;color:var(--muted);
+    padding-left:16px;border-left:2px solid var(--line);max-width:64ch;
+  }
+
   a:focus-visible,.line-btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
   .speaker-card:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -402,6 +443,7 @@
   }
   @media (max-width:860px){
     html{--scale:1.1}
+    .solutions{grid-template-columns:1fr;gap:18px}
     .article-grid,.article-grid.three{grid-template-columns:1fr;gap:18px}
     .compare{grid-template-columns:1fr}
     .step{grid-template-columns:1fr;gap:0}
@@ -411,8 +453,7 @@
     .pillar,.format{padding:26px 0}
     .pillar + .pillar,.format + .format{border-left:none;border-top:1px solid var(--line);padding-left:0}
     .services-split{grid-template-columns:1fr}
-    .services-split div:first-child{border-right:none}
-    .services-split div:last-child{padding-left:0}
+    .services-split div{padding:24px 0;border-right:none}
     .contact-grid{grid-template-columns:1fr}
     .contact-item:nth-child(even){border-left:none;padding-left:0}
     .pad,.contact .pad{padding:62px 0}
