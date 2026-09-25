@@ -581,6 +581,7 @@
   }
   .choice[aria-checked="true"] .choice-score,
   .choice:hover .choice-score{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+  .choice.no-score{grid-template-columns:1fr}
   .choice-text{font-size:1rem;font-weight:400;line-height:1.5}
   .kbd-hint{
     margin:26px 0 0;font-family:"IBM Plex Mono",monospace;font-size:.6rem;

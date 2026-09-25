@@ -22,6 +22,8 @@
                   levels เรียงจาก "ดี/สูง" ไป "ต้องพัฒนา/ต่ำ" ตาม direction
    overall      null ถ้าไม่มีคะแนนรวม (เช่น Big Five)
                 หรือ { direction, note, levels:[{min,max,title,summary}] }
+   showScores   false = ไม่แสดงตัวเลขคะแนนข้างตัวเลือก (กันผู้ตอบเดาว่าข้อไหนได้แต้มมาก)
+                ไม่ใส่ = แสดงตามปกติ
    sortDimensions  true = เรียงผลรายมิติจากจุดเด่นมากไปน้อย (แบบวัดบุคลิกภาพ)
                    false/ไม่ใส่ = เรียงตามลำดับที่ประกาศไว้
    perPage      1 = ถามทีละข้อ, มากกว่านั้น = แสดงหลายข้อต่อหน้า (เหมาะกับแบบวัดยาว)
@@ -99,14 +101,15 @@ const HUMANgoQuiz = (function () {
         '<h2 class="q-text" tabindex="-1">' + esc(Q.questions[qi].text) + "</h2>" +
         '<div class="choices" role="radiogroup" aria-label="' + esc(Q.questions[qi].text) + '"></div>';
       const choices = wrap.querySelector(".choices");
+      const showScores = Q.showScores !== false;
       Q.scale.forEach((opt) => {
         const b = document.createElement("button");
         b.type = "button";
-        b.className = "choice";
+        b.className = showScores ? "choice" : "choice no-score";
         b.setAttribute("role", "radio");
         b.setAttribute("aria-checked", answers[qi] === opt.value ? "true" : "false");
         b.innerHTML =
-          '<span class="choice-score">' + opt.value + "</span>" +
+          (showScores ? '<span class="choice-score">' + opt.value + "</span>" : "") +
           '<span class="choice-text">' + esc(opt.label) + "</span>";
         b.addEventListener("click", () => answer(qi, opt.value));
         choices.appendChild(b);
@@ -120,6 +123,9 @@ const HUMANgoQuiz = (function () {
       $("next-btn").disabled = !items.every((i) => answers[i] !== null);
     }
     $("kbd-hint").hidden = Q.perPage !== 1;
+    if (Q.perPage === 1) {
+      $("kbd-hint").textContent = "กดปุ่มตัวเลข 1–" + Q.scale.length + " บนแป้นพิมพ์เพื่อเลือกตัวเลือกที่ 1–" + Q.scale.length;
+    }
   }
 
   function answer(qi, value) {
@@ -164,7 +170,8 @@ const HUMANgoQuiz = (function () {
     // levels เรียงจาก "ดี/สูง" ไป "ต่ำ" เสมอ; แบ่งช่วงเท่าๆ กันตามจำนวน level
     const n = levels.length;
     const good = direction === "low" ? 100 - pct : pct;
-    const idx = Math.min(n - 1, Math.floor(((100 - good) / 100) * n));
+    // ลบค่าน้อยมากก่อน floor เพื่อให้คะแนนที่ตกบนรอยต่อพอดี ไปอยู่ระดับที่ดีกว่า
+    const idx = Math.max(0, Math.min(n - 1, Math.floor(((100 - good) / 100) * n - 1e-9)));
     const lv = levels[idx];
     return typeof lv === "string" ? { label: lv, text: "" } : lv;
   }
@@ -201,9 +208,10 @@ const HUMANgoQuiz = (function () {
       const items = Q.questions.map((q, idx) => (q.dim === d.key ? idx : -1)).filter((x) => x >= 0);
       const score = items.reduce((sum, idx) => sum + itemScore(idx), 0);
       const max = items.length * perItemMax;
-      const pct = Math.round((score / max) * 100);
+      const pctExact = (score / max) * 100;              // ใช้ตัดสินระดับ (ไม่ปัดเศษ)
+      const pct = Math.round(pctExact);                  // ใช้แสดงผลเท่านั้น
       const barPct = d.direction === "low" ? 100 - pct : pct;
-      return { d: d, order: i, score: score, max: max, pct: pct, barPct: barPct };
+      return { d: d, order: i, score: score, max: max, pct: pctExact, barPct: barPct };
     });
 
     // sortDimensions: true = เรียงจากจุดเด่นมากไปน้อย (เหมาะกับแบบวัดบุคลิกภาพ)
@@ -278,8 +286,10 @@ const HUMANgoQuiz = (function () {
 
     document.addEventListener("keydown", (e) => {
       if ($("quiz").hidden || Q.perPage !== 1) return;
-      const v = Number(e.key);
-      if (!Number.isNaN(v) && Q.scale.some((o) => o.value === v)) answer(pages[page][0], v);
+      const n = Number(e.key);
+      if (Number.isInteger(n) && n >= 1 && n <= Q.scale.length) {
+        answer(pages[page][0], Q.scale[n - 1].value);
+      }
     });
   }
 
