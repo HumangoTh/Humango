@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>แบบประเมินแนวโน้ม Growth Mindset — HUMANgo</title>
+<meta name="description" content="แบบประเมินแนวโน้ม Growth Mindset ฟรี 10 ข้อ ใช้เวลาประมาณ 3 นาที รู้ผลทันที พร้อมผลรายมิติ 5 ด้าน จาก HUMANgo">
+<link rel="canonical" href="https://humangoth.github.io/Humango/assess-growth-mindset.html">
+<meta name="theme-color" content="#F6F8F5">
+<link rel="icon" href="logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HUMANgo">
+<meta property="og:locale" content="th_TH">
+<meta property="og:url" content="https://humangoth.github.io/Humango/assess-growth-mindset.html">
+<meta property="og:title" content="แบบประเมินแนวโน้ม Growth Mindset — HUMANgo">
+<meta property="og:description" content="แบบประเมินแนวโน้ม Growth Mindset ฟรี 10 ข้อ ใช้เวลาประมาณ 3 นาที รู้ผลทันที พร้อมผลรายมิติ 5 ด้าน จาก HUMANgo">
+<meta property="og:image" content="https://humangoth.github.io/Humango/og-home.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Thai:wght@200;300;400;500;600&display=swap">
+<link rel="stylesheet" href="style.css">
+<style>
+  :root{color-scheme:light dark}
+  html,body{margin:0}
+  img{max-width:100%}
+  [hidden]{display:none!important}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-inner">
+      <a class="logo" href="index.html" aria-label="HUMANgo">
+        <img class="logo-img" src="logo.png" alt="HUMANgo" width="499" height="150">
+      </a>
+      <nav>
+        <a href="assessment.html">แบบประเมิน</a>
+        <a href="index.html#courses">หลักสูตร</a>
+        <a href="index.html#speakers">ทีมวิทยากร</a>
+        <a href="articles.html">บทความ</a>
+        <a href="index.html#contact">ติดต่อเรา</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main>
+<section style="border-top:none">
+  <div class="quiz-wrap pad">
+
+    <!-- ===== intro ===== -->
+    <div id="intro" class="screen">
+      <a class="back-link" href="assessment.html">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H6M11 6l-6 6 6 6"/></svg>
+        แบบประเมินทั้งหมด
+      </a>
+      <p class="eyebrow">Free Self-Assessment</p>
+      <h1 id="quiz-title" class="section-title" style="margin-bottom:22px"></h1>
+      <p id="quiz-lead" class="intro-lead"></p>
+
+      <div class="facts">
+        <span><i aria-hidden="true"></i><span id="fact-count"></span></span>
+        <span><i aria-hidden="true"></i><span id="fact-time"></span></span>
+        <span><i aria-hidden="true"></i>ไม่เก็บคำตอบ</span>
+      </div>
+
+      <div class="scale-box">
+        <h2 id="scale-title"></h2>
+        <div id="scale-list" class="scale-list"></div>
+      </div>
+
+      <div class="disclaimer" role="note"><p id="disclaimer-text"></p></div>
+
+      <div style="margin-top:38px">
+        <button id="start-btn" class="btn btn-primary" type="button">เริ่มทำแบบประเมิน &nbsp;→</button>
+      </div>
+    </div>
+
+    <!-- ===== quiz ===== -->
+    <div id="quiz" class="screen" hidden>
+      <div class="quiz-top">
+        <button id="back-btn" class="icon-btn" type="button" aria-label="ย้อนกลับ">←</button>
+        <div class="progress-wrap">
+          <div class="progress-labels">
+            <span id="progress-label"></span>
+            <span id="progress-percent"></span>
+          </div>
+          <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <span id="progress-fill" class="progress-fill"></span>
+          </div>
+        </div>
+      </div>
+
+      <div id="question-area"></div>
+
+      <div class="quiz-foot">
+        <button id="next-btn" class="btn btn-primary" type="button" hidden>ถัดไป →</button>
+        <p id="kbd-hint" class="kbd-hint">กดปุ่มตัวเลขบนแป้นพิมพ์เพื่อตอบเร็วขึ้น</p>
+      </div>
+    </div>
+
+    <!-- ===== results ===== -->
+    <div id="results" class="screen" hidden>
+      <div id="overall-block">
+        <div class="result-head">
+          <div>
+            <p class="eyebrow">ผลประเมินภาพรวม</p>
+            <h1 id="result-title" class="result-title"></h1>
+            <p id="result-summary" class="result-summary"></p>
+          </div>
+          <div class="score-box">
+            <strong id="total-score">0</strong>
+            <span id="total-max"></span>
+          </div>
+        </div>
+        <p id="score-note" class="score-note"></p>
+      </div>
+
+      <div id="profile-head" hidden>
+        <p class="eyebrow">ผลประเมิน</p>
+        <h1 id="profile-title" class="result-title"></h1>
+      </div>
+
+      <div class="head-row" style="margin-top:52px">
+        <div>
+          <p class="eyebrow">Dimension Results</p>
+          <h2 class="section-title">ผลการประเมินรายมิติ</h2>
+        </div>
+      </div>
+      <div id="dimension-list" class="dims"></div>
+
+      <div id="guidance" class="guidance">
+        <h2 id="guidance-title"></h2>
+        <p id="guidance-text"></p>
+      </div>
+
+      <div id="cta" class="next-step">
+        <h2 id="cta-title"></h2>
+        <p id="cta-text"></p>
+        <div class="btn-row">
+          <a id="cta-primary" class="btn btn-primary" href="#"></a>
+          <a id="cta-secondary" class="btn btn-ghost" href="#"></a>
+        </div>
+      </div>
+
+      <div class="result-actions">
+        <button id="restart-btn" class="btn btn-ghost" type="button">ทำแบบประเมินอีกครั้ง</button>
+        <button id="print-btn" class="btn btn-ghost" type="button">บันทึกผลเป็น PDF</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div>
+      <img src="logo.png" alt="HUMANgo">
+      <p>Human Insight. Organizational Growth.<br>People Assessment · Training · HR Consulting</p>
+    </div>
+    <div>
+      <p class="lbl">ติดต่อ</p>
+      <p><a href="tel:0873032305">087-303-2305</a><br><a href="mailto:humangothailand@gmail.com">humangothailand@gmail.com</a></p>
+    </div>
+    <div>
+      <p class="lbl">ช่องทางออนไลน์</p>
+      <p><a href="https://lin.ee/w5Gh5uiA" target="_blank" rel="noopener">LINE Official Account</a><br>
+         <a href="https://www.facebook.com/profile.php?id=61590830550104" target="_blank" rel="noopener">Facebook</a></p>
+    </div>
+  </div>
+</footer>
+
+<noscript><p style="padding:24px">กรุณาเปิดใช้งาน JavaScript เพื่อทำแบบประเมินและดูผลลัพธ์</p></noscript>
+
+<script src="quiz.js"></script>
+<script>
+const QUIZ = {
+  title: "แบบประเมินแนวโน้ม Growth Mindset",
+  lead: "สำรวจวิธีที่คุณตอบสนองต่อความท้าทาย อุปสรรค ความพยายาม คำวิจารณ์ และความสำเร็จของผู้อื่น ผ่านคำถามสั้นๆ 10 ข้อ",
+  minutes: 3,
+  perPage: 1,
+
+  scaleTitle: "พิจารณาว่าคุณเห็นด้วยกับแต่ละข้อความมากน้อยเพียงใด",
+  scale: [
+    { value: 0, label: "ไม่เห็นด้วยเลย" },
+    { value: 1, label: "ค่อนข้างไม่เห็นด้วย" },
+    { value: 2, label: "ค่อนข้างเห็นด้วย" },
+    { value: 3, label: "เห็นด้วยอย่างยิ่ง" }
+  ],
+
+  questions: [
+    { text: "ถ้าไม่แน่ใจว่างานจะสำเร็จตามเป้าหมาย ฉันจะไม่เสี่ยงรับทำงานนั้น", dim: "challenge" },
+    { text: "ฉันรู้สึกว่าตนเองเป็นคนล้มเหลว เมื่อทำงานไม่สำเร็จตามเป้าหมาย", dim: "challenge" },
+    { text: "เมื่อเจออุปสรรคในการทำงาน ฉันจะลดเป้าหมายในงานนั้นลง", dim: "obstacle" },
+    { text: "เป็นเรื่องยากที่จะแก้ไข หากเกิดความผิดพลาดในการทำงาน", dim: "obstacle" },
+    { text: "ไม่มีประโยชน์ที่จะพยายามต่อไป หากยังไม่เห็นโอกาสที่จะประสบความสำเร็จ", dim: "effort" },
+    { text: "คนที่ขาดศักยภาพ ย่อมต้องใช้ความพยายามในการทำงานมาก", dim: "effort" },
+    { text: "ฉันไม่สนใจในคำวิจารณ์เชิงลบที่ทำให้เสียกำลังใจ", dim: "feedback" },
+    { text: "ฉันมักจะพิสูจน์ตนเองเพื่อให้ได้รับคำชมอยู่เสมอ", dim: "feedback" },
+    { text: "ฉันคิดเสมอว่า ยังมีอีกหลายคนที่ทำงานแย่กว่าตนเอง", dim: "others" },
+    { text: "การเปรียบเทียบผลงานกับผู้อื่นที่ทำได้ดีกว่า ทำให้เสียกำลังใจ", dim: "others" }
+  ],
+
+  dimensions: [
+    { key: "challenge", name: "การยอมรับความท้าทาย", direction: "low",
+      levels: ["ยอมรับความท้าทายได้สูง", "ยอมรับความท้าทายได้ปานกลาง", "ยอมรับความท้าทายได้ต่ำ"],
+      note: "คะแนนยิ่งต่ำยิ่งสะท้อนแนวโน้มเชิงเติบโต" },
+    { key: "obstacle", name: "การฟันฝ่าอุปสรรค", direction: "low",
+      levels: ["มีพลังในการฟันฝ่าอุปสรรคสูง", "มีพลังในการฟันฝ่าอุปสรรคปานกลาง", "มีพลังในการฟันฝ่าอุปสรรคต่ำ"],
+      note: "คะแนนยิ่งต่ำยิ่งสะท้อนแนวโน้มเชิงเติบโต" },
+    { key: "effort", name: "ทัศนคติต่อความพยายาม", direction: "low",
+      levels: ["มีทัศนคติที่ดีต่อความพยายาม", "มีทัศนคติปานกลางต่อความพยายาม", "มีทัศนคติที่ไม่ดีต่อความพยายาม"],
+      note: "คะแนนยิ่งต่ำยิ่งสะท้อนแนวโน้มเชิงเติบโต" },
+    { key: "feedback", name: "การยอมรับคำวิจารณ์", direction: "low",
+      levels: ["เปิดใจยอมรับและเรียนรู้จากคำวิจารณ์ได้มาก", "เปิดใจยอมรับและเรียนรู้จากคำวิจารณ์ได้ปานกลาง", "เปิดใจยอมรับและเรียนรู้จากคำวิจารณ์ได้น้อย"],
+      note: "คะแนนยิ่งต่ำยิ่งสะท้อนแนวโน้มเชิงเติบโต" },
+    { key: "others", name: "การเรียนรู้และรับแรงบันดาลใจจากผู้อื่น", direction: "low",
+      levels: ["เรียนรู้และรับแรงบันดาลใจจากผู้อื่นได้สูง", "เรียนรู้และรับแรงบันดาลใจจากผู้อื่นได้ปานกลาง", "เรียนรู้และรับแรงบันดาลใจจากผู้อื่นได้ต่ำ"],
+      note: "คะแนนยิ่งต่ำยิ่งสะท้อนแนวโน้มเชิงเติบโต" }
+  ],
+
+  overall: {
+    direction: "low",
+    note: "แบบประเมินนี้ใช้คะแนนดิบแบบทิศทางลบ — คะแนนรวมยิ่งต่ำ ยิ่งสะท้อนแนวโน้ม Growth Mindset ที่สูง",
+    levels: [
+      { min: 0, max: 7, title: "Growth Mindset สูงมาก",
+        summary: "คำตอบของคุณสะท้อนแนวโน้มที่เปิดรับความท้าทาย มองอุปสรรคและความผิดพลาดเป็นส่วนหนึ่งของการเรียนรู้ และพร้อมพัฒนาตนเองจากประสบการณ์" },
+      { min: 8, max: 15, title: "Growth Mindset ค่อนข้างสูง",
+        summary: "คุณมีแนวโน้มแบบ Growth Mindset ในหลายสถานการณ์ และอาจมีบางบริบทที่ความกังวล ความกดดัน หรือความคาดหวังส่งผลต่อวิธีตอบสนองของคุณ" },
+      { min: 16, max: 23, title: "Growth Mindset ปานกลาง",
+        summary: "คุณมีทั้งมุมมองแบบเติบโตและมุมมองที่ระมัดระวังต่อความล้มเหลว ลองใช้ผลรายมิติเพื่อมองหาสถานการณ์ที่คุณพร้อมเรียนรู้ และสถานการณ์ที่ยังรู้สึกติดขัด" },
+      { min: 24, max: 30, title: "Growth Mindset ค่อนข้างน้อย",
+        summary: "ขณะนี้คุณอาจรู้สึกไม่มั่นใจเมื่อต้องเผชิญความท้าทาย ความผิดพลาด หรือการเปรียบเทียบกับผู้อื่น ผลนี้ไม่ใช่ข้อสรุปถาวร แต่เป็นจุดเริ่มต้นในการเลือกพฤติกรรมเล็กๆ ที่ช่วยให้เรียนรู้ต่อได้" }
+    ]
+  },
+
+  guidance: {
+    title: "ใช้ผลลัพธ์เพื่อเริ่มต้นการเรียนรู้",
+    text: "คะแนนสะท้อนคำตอบของคุณในช่วงเวลานี้ ไม่ได้กำหนดว่าคุณเป็นคนแบบใดอย่างถาวร ลองเลือกมิติที่ต้องการพัฒนาเพียงหนึ่งด้าน แล้วสังเกตพฤติกรรมของตนในสถานการณ์จริง เช่น วิธีรับมือกับงานยาก ความผิดพลาด หรือข้อเสนอแนะจากผู้อื่น"
+  },
+
+  cta: {
+    title: "อยากพัฒนา Growth Mindset ทั้งทีม?",
+    text: "HUMANgo มีหลักสูตร Building Psychological Capital ที่พัฒนา Growth Mindset ความฉลาดทางอารมณ์ และความยืดหยุ่นทางใจ ผ่าน Workshop ที่ปรับกรณีศึกษาให้ตรงกับบริบทองค์กรของคุณ",
+    primary: { label: "ดูหลักสูตร", href: "index.html#courses" },
+    secondary: { label: "ปรึกษาทีม HUMANgo", href: "index.html#contact" }
+  },
+
+  disclaimer: "แบบประเมินนี้ใช้เพื่อการสำรวจและสะท้อนตนเองเบื้องต้น ไม่ใช่เครื่องมือวินิจฉัยทางจิตวิทยา และไม่ควรใช้ตัดสิน คัดออก หรือประเมินบุคคลเพียงลำพัง หากยังไม่ได้ตรวจสอบคุณภาพทางจิตมิติในกลุ่มเป้าหมาย"
+};
+
+HUMANgoQuiz.mount(QUIZ);
+</script>
+</body>
+</html>
