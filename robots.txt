@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://humangoth.github.io/Humango/sitemap.xml
