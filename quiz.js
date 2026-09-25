@@ -189,9 +189,12 @@ const HUMANgoQuiz = (function () {
     const perItemMax = s.max;
 
     /* overall */
+    let overallTitle = "";
+    let totalScore = Q.questions.reduce((sum, _, i) => sum + itemScore(i), 0);
     if (Q.overall) {
-      const total = Q.questions.reduce((sum, _, i) => sum + itemScore(i), 0);
+      const total = totalScore;
       const lvl = Q.overall.levels.find((l) => total >= l.min && total <= l.max) || Q.overall.levels[Q.overall.levels.length - 1];
+      overallTitle = lvl.title;
       const maxTotal = Q.questions.length * perItemMax;
       $("overall-block").hidden = false;
       $("result-title").textContent = lvl.title;
@@ -225,6 +228,12 @@ const HUMANgoQuiz = (function () {
     // sortDimensions: true = เรียงจากจุดเด่นมากไปน้อย (เหมาะกับแบบวัดบุคลิกภาพ)
     if (Q.sortDimensions) rows.sort((a, b) => b.barPct - a.barPct);
 
+    // ถ้าไม่มีคะแนนรวม ใช้ชื่อมิติที่คะแนนสูงสุดเป็นตัวแทนผลลัพธ์ในสถิติ
+    if (!Q.overall && rows.length) {
+      const top = rows.slice().sort((a, b) => b.barPct - a.barPct)[0];
+      overallTitle = "จุดเด่น: " + top.d.name;
+    }
+
     rows.forEach((r, i) => {
       const lv = bandLevel(r.pct, r.d.levels, r.d.direction);
       const tag = Q.sortDimensions ? "อันดับที่ " + (i + 1) : "มิติที่ " + (r.order + 1);
@@ -253,13 +262,31 @@ const HUMANgoQuiz = (function () {
       $("cta-text").textContent = Q.cta.text;
       const a1 = $("cta-primary"), a2 = $("cta-secondary");
       a1.textContent = Q.cta.primary.label; a1.href = Q.cta.primary.href;
-      if (Q.cta.secondary) { a2.textContent = Q.cta.secondary.label; a2.href = Q.cta.secondary.href; }
+      a1.onclick = function () { track("assessment_cta_click", { cta: Q.cta.primary.label }); };
+      if (Q.cta.secondary) {
+        a2.textContent = Q.cta.secondary.label; a2.href = Q.cta.secondary.href;
+        a2.onclick = function () { track("assessment_cta_click", { cta: Q.cta.secondary.label }); };
+      }
       else a2.hidden = true;
     } else {
       $("cta").hidden = true;
     }
 
+    const done = { result_level: overallTitle || "", score: totalScore };
+    track("assessment_complete", done);
     show("results");
+  }
+
+  /* ---------------- นับจำนวนผู้ใช้งาน (Google Analytics) ----------------
+     ส่งเฉพาะ "เหตุการณ์" ว่ามีคนเริ่ม/ทำจบ ไม่ส่งคำตอบและไม่ส่งผลลัพธ์รายบุคคล
+     ถ้าหน้าไหนไม่มีแท็ก Google ฟังก์ชันนี้จะไม่ทำอะไร ไม่มี error */
+  function track(name, extra) {
+    try {
+      if (typeof gtag !== "function") return;
+      const data = { assessment: Q && Q.title ? Q.title : "" };
+      if (extra) Object.keys(extra).forEach(function (k) { data[k] = extra[k]; });
+      gtag("event", name, data);
+    } catch (e) { /* ไม่ให้เรื่องสถิติทำให้แบบประเมินพัง */ }
   }
 
   /* ---------------- screens ---------------- */
@@ -282,8 +309,8 @@ const HUMANgoQuiz = (function () {
     reset();
     renderIntro();
 
-    $("start-btn").addEventListener("click", () => { reset(); renderPage(); show("quiz"); });
-    $("restart-btn").addEventListener("click", () => { reset(); renderPage(); show("quiz"); });
+    $("start-btn").addEventListener("click", () => { reset(); renderPage(); show("quiz"); track("assessment_start"); });
+    $("restart-btn").addEventListener("click", () => { reset(); renderPage(); show("quiz"); track("assessment_restart"); });
     $("print-btn").addEventListener("click", () => window.print());
     $("next-btn").addEventListener("click", goNext);
     $("back-btn").addEventListener("click", () => {
