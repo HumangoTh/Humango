@@ -70,8 +70,15 @@ const HUMANgoQuiz = (function () {
     $("fact-count").textContent = Q.questions.length + " คำถาม";
     $("fact-time").textContent = "ประมาณ " + Q.minutes + " นาที";
     $("scale-title").textContent = Q.scaleTitle || "พิจารณาว่าคุณเห็นด้วยกับแต่ละข้อความมากน้อยเพียงใด";
+    const showScores = Q.showScores !== false;
     $("scale-list").innerHTML = Q.scale
-      .map((o) => '<div class="scale-item"><span class="scale-num">' + o.value + "</span><p>" + esc(o.label) + "</p></div>")
+      .map(function (o) {
+        // ซ่อนตัวเลขในหน้าคำชี้แจงด้วย ไม่งั้นผู้ตอบเห็นก่อนว่าตอบทางไหนได้แต้มมาก
+        // ใส่ค่าความกว้างแบบ inline เพื่อไม่ต้องพึ่ง CSS ที่อาจถูกแคชไว้
+        return showScores
+          ? '<div class="scale-item"><span class="scale-num">' + o.value + "</span><p>" + esc(o.label) + "</p></div>"
+          : '<div class="scale-item" style="grid-template-columns:1fr"><p>' + esc(o.label) + "</p></div>";
+      })
       .join("");
     $("disclaimer-text").innerHTML = "<b>ขอบเขตการใช้งาน</b> — " + Q.disclaimer;
     document.title = Q.title + " — HUMANgo";
