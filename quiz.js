@@ -106,6 +106,7 @@ const HUMANgoQuiz = (function () {
         const b = document.createElement("button");
         b.type = "button";
         b.className = showScores ? "choice" : "choice no-score";
+        if (!showScores) b.style.gridTemplateColumns = "1fr";   // กันกรณีเบราว์เซอร์ใช้ CSS ตัวเก่าที่แคชไว้
         b.setAttribute("role", "radio");
         b.setAttribute("aria-checked", answers[qi] === opt.value ? "true" : "false");
         b.innerHTML =
