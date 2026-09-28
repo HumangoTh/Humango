@@ -22,8 +22,13 @@
   </url>
   <url>
     <loc>https://humangoth.github.io/Humango/articles.html</loc>
-    <lastmod>2026-09-25</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://humangoth.github.io/Humango/psycap-components.html</loc>
+    <lastmod>2026-09-28</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://humangoth.github.io/Humango/growth-mindset.html</loc>
