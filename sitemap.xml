@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://humangoth.github.io/Humango/</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
@@ -22,8 +22,13 @@
   </url>
   <url>
     <loc>https://humangoth.github.io/Humango/articles.html</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://humangoth.github.io/Humango/emotional-intelligence.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://humangoth.github.io/Humango/psycap-components.html</loc>
