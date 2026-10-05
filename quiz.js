@@ -13,6 +13,9 @@
    questions    [{ text, dim, reverse }]
                   dim     = key ของมิติที่ข้อนี้สังกัด
                   reverse = true ถ้าเป็นข้อที่ต้องกลับคะแนน
+   dimensions[].descMore   (ไม่บังคับ) ข้อความอธิบายส่วนที่เหลือ แสดงแบบกด "อ่านเพิ่ม"
+   overall.levels[].summary  เป็นข้อความ หรือ array ของย่อหน้าก็ได้
+   onComplete(result)      (ไม่บังคับ) เรียกเมื่อแสดงผลแล้ว ได้ { answers, total, overallTitle, dimensions, startedAt, durationSec }
    dimensions   [{ key, name, desc, direction, levels:[...] }]
                   desc   = คำอธิบายสั้นๆ ว่ามิตินี้วัดอะไร (ไม่ใส่ก็ได้)
                   levels = ["ระดับสูง", ...] หรือแบบมีคำอธิบาย
@@ -20,6 +23,9 @@
                   direction "low"  = คะแนนยิ่งต่ำยิ่งดี/ยิ่งมีลักษณะนั้น
                   direction "high" = คะแนนยิ่งสูงยิ่งมีลักษณะนั้น
                   levels เรียงจาก "ดี/สูง" ไป "ต้องพัฒนา/ต่ำ" ตาม direction
+                  ถ้าต้องการกำหนดช่วงคะแนนเอง ใส่ min/max (คะแนนดิบของมิติ) ทุก level
+                           [{ min:7, max:9, label:"สูง", text:"..." }, ...]
+                           ไม่ใส่ = แบ่งช่วงเท่าๆ กันตามจำนวน level
    overall      null ถ้าไม่มีคะแนนรวม (เช่น Big Five)
                 หรือ { direction, note, levels:[{min,max,title,summary}] }
    showScores   false = ไม่แสดงตัวเลขคะแนนข้างตัวเลือก (กันผู้ตอบเดาว่าข้อไหนได้แต้มมาก)
@@ -174,8 +180,13 @@ const HUMANgoQuiz = (function () {
   }
 
   /* ---------------- render: results ---------------- */
-  function bandLevel(pct, levels, direction) {
-    // levels เรียงจาก "ดี/สูง" ไป "ต่ำ" เสมอ; แบ่งช่วงเท่าๆ กันตามจำนวน level
+  function bandLevel(pct, levels, direction, score) {
+    // ถ้าทุก level กำหนด min/max (คะแนนดิบของมิติ) ให้ใช้ช่วงคะแนนนั้นตรงๆ
+    if (levels.every((l) => typeof l === "object" && typeof l.min === "number" && typeof l.max === "number")) {
+      const hit = levels.find((l) => score >= l.min && score <= l.max) || levels[levels.length - 1];
+      return hit;
+    }
+    // ไม่กำหนด min/max: levels เรียงจาก "ดี/สูง" ไป "ต่ำ" เสมอ; แบ่งช่วงเท่าๆ กันตามจำนวน level
     const n = levels.length;
     const good = direction === "low" ? 100 - pct : pct;
     // ลบค่าน้อยมากก่อน floor เพื่อให้คะแนนที่ตกบนรอยต่อพอดี ไปอยู่ระดับที่ดีกว่า
@@ -198,7 +209,8 @@ const HUMANgoQuiz = (function () {
       const maxTotal = Q.questions.length * perItemMax;
       $("overall-block").hidden = false;
       $("result-title").textContent = lvl.title;
-      $("result-summary").textContent = lvl.summary;
+      if (Array.isArray(lvl.summary)) $("result-summary").innerHTML = lvl.summary.map(esc).join("<br><br>");
+      else $("result-summary").textContent = lvl.summary;
       $("total-score").textContent = String(total);
       $("total-max").textContent = "คะแนน จาก " + maxTotal;
       $("score-note").textContent = Q.overall.note || "";
@@ -235,13 +247,14 @@ const HUMANgoQuiz = (function () {
     }
 
     rows.forEach((r, i) => {
-      const lv = bandLevel(r.pct, r.d.levels, r.d.direction);
+      const lv = bandLevel(r.pct, r.d.levels, r.d.direction, r.score);
       const tag = Q.sortDimensions ? "อันดับที่ " + (i + 1) : "มิติที่ " + (r.order + 1);
       const el = document.createElement("article");
       el.className = "dim";
       el.innerHTML =
         '<div class="dim-top"><div><p class="dim-idx">' + tag + "</p><h3>" + esc(r.d.name) + "</h3>" +
-        (r.d.desc ? '<p class="dim-desc">' + esc(r.d.desc) + "</p>" : "") + "</div>" +
+        (r.d.desc ? '<p class="dim-desc">' + esc(r.d.desc) + "</p>" : "") +
+        (r.d.descMore ? '<details class="dim-more"><summary>อ่านเพิ่ม</summary><p class="dim-desc">' + esc(r.d.descMore) + "</p></details>" : "") + "</div>" +
         '<div class="dim-score">' + r.score + "<small>/" + r.max + "</small></div></div>" +
         '<div class="bar" aria-label="ระดับ ' + r.barPct + ' เปอร์เซ็นต์"><span style="width:' + r.barPct + '%"></span></div>' +
         '<p class="dim-result">' + esc(lv.label) + "</p>" +
@@ -274,6 +287,20 @@ const HUMANgoQuiz = (function () {
 
     const done = { result_level: overallTitle || "", score: totalScore };
     track("assessment_complete", done);
+
+    // hook สำหรับหน้าแบบประเมินที่ต้องการส่งข้อมูลต่อ (เช่น เก็บค่ากลาง) — ไม่มี hook = ไม่ส่งอะไร
+    if (typeof Q.onComplete === "function") {
+      try {
+        Q.onComplete({
+          answers: answers.slice(),
+          total: totalScore,
+          overallTitle: overallTitle,
+          dimensions: rows.map((r) => ({ key: r.d.key, score: r.score, label: bandLevel(r.pct, r.d.levels, r.d.direction, r.score).label })),
+          startedAt: startedAt,
+          durationSec: startedAt ? Math.round((Date.now() - startedAt) / 1000) : null
+        });
+      } catch (e) { /* ไม่ให้การส่งข้อมูลทำให้หน้าผลพัง */ }
+    }
     show("results");
   }
 
@@ -295,7 +322,10 @@ const HUMANgoQuiz = (function () {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
+  let startedAt = null;
+
   function reset() {
+    startedAt = Date.now();
     answers = Array(Q.questions.length).fill(null);
     page = 0;
     document.title = Q.title + " — HUMANgo";
