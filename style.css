@@ -393,6 +393,7 @@
   .cov-4{background-image:url(cover-growth-mindset.jpg)}
   .cov-5{background-image:url(cover-psycap-components.jpg),url(cover-psycap.jpg)}
   .cov-6{background-image:url(cover-eq.jpg),linear-gradient(135deg,var(--accent-soft),var(--accent))}
+  .cov-7{background-image:url(cover-perma.jpg),linear-gradient(135deg,var(--accent-soft),var(--accent))}
 
   /* ---------- hero buttons ---------- */
   .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin:0 0 46px}
