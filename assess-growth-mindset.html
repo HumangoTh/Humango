@@ -34,6 +34,17 @@
   html,body{margin:0}
   img{max-width:100%}
   [hidden]{display:none!important}
+  /* กล่องขอรับรายงานทางอีเมล */
+  .report-box{margin-top:22px}
+  .report-form{display:flex;flex-direction:column;gap:14px;margin-top:6px}
+  .report-row{display:flex;gap:10px;flex-wrap:wrap}
+  .report-row input[type=email]{flex:1 1 240px;min-width:0;font:inherit;font-size:.95rem;color:var(--ink);background:var(--paper);border:1px solid var(--line);padding-block:11px;padding-inline:14px;border-radius:2px}
+  .report-row input[type=email]:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+  .report-row .btn{flex:none}
+  .report-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+  .report-status{margin:0;font-size:.88rem;line-height:1.7;color:var(--accent-ink)}
+  .report-status.is-error{color:#B3261E}
+  @media print{ #report-box{display:none!important} }
 </style>
 </head>
 <body>
@@ -180,6 +191,21 @@
         </div>
       </div>
       <div id="dimension-list" class="dims"></div>
+
+      <div id="report-box" class="survey report-box" hidden>
+        <h2>รับรายงานฉบับละเอียดทางอีเมล</h2>
+        <p class="consent-text">ไม่บังคับ — รายงานอธิบายผลของคุณครบทั้ง 5 ด้าน พร้อมแนวทางพัฒนา และแผนพัฒนา 30 วันสำหรับด้านที่คุณอาจให้ความสำคัญเป็นอันดับแรก ระบบใช้อีเมลและคำตอบของคุณเพื่อสร้างและส่งรายงานครั้งนี้เท่านั้น ไม่บันทึกอีเมลรวมกับคำตอบ และไม่ใช้ส่งข่าวสารอื่น</p>
+        <form id="report-form" class="report-form" novalidate>
+          <label class="consent-check"><input type="checkbox" id="report-consent"><span>ยินยอมให้ HUMANgo ใช้อีเมลนี้เพื่อส่งรายงานผลแบบวัดครั้งนี้</span></label>
+          <div class="report-row">
+            <label for="report-email" class="report-hp">อีเมล</label>
+            <input type="email" id="report-email" autocomplete="email" inputmode="email" placeholder="อีเมลของคุณ" aria-label="อีเมลสำหรับรับรายงาน">
+            <button id="report-btn" class="btn btn-primary" type="submit">ส่งรายงานทางอีเมล</button>
+          </div>
+          <div class="report-hp" aria-hidden="true"><input type="text" id="report-website" tabindex="-1" autocomplete="off"></div>
+          <p id="report-status" class="report-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
 
       <div id="guidance" class="guidance">
         <h2 id="guidance-title"></h2>
@@ -372,7 +398,7 @@ const QUIZ = {
 
   disclaimer: "แบบประเมินนี้ใช้เพื่อการสำรวจและสะท้อนตนเองเบื้องต้น ไม่ใช่เครื่องมือวินิจฉัยทางจิตวิทยา และไม่ควรใช้ตัดสิน คัดออก หรือประเมินบุคคลเพียงลำพัง แบบวัดนี้อยู่ระหว่างพัฒนา ผลที่ได้เป็นผลเบื้องต้นตามเกณฑ์ที่กำหนดจากทฤษฎีกรอบความคิด (Mindset Theory) ของ Carol S. Dweck และจะปรับปรุงเมื่อวิเคราะห์ข้อมูลเสร็จ",
 
-  onComplete: sendResponse
+  onComplete: function (r) { prepareReport(r); sendResponse(r); }
 };
 
 /* ===== ขอความยินยอม + ข้อมูลพื้นฐาน ===== */
@@ -428,6 +454,39 @@ function sendResponse(r) {
 }
 
 HUMANgoQuiz.mount(QUIZ);
+
+/* ===== ขอรับรายงานฉบับละเอียดทางอีเมล (ไม่บังคับ) =====
+   ส่งเฉพาะอีเมล + คำตอบดิบไปให้ Apps Script สร้างรายงานและส่งอีเมล ไม่เขียนลงชีต */
+let lastAnswers = null;
+function prepareReport(r) {
+  lastAnswers = r.answers.slice();
+  const box = document.getElementById("report-box");
+  box.hidden = !ENDPOINT;
+  document.getElementById("report-btn").disabled = false;
+  const st = document.getElementById("report-status");
+  st.textContent = ""; st.classList.remove("is-error");
+}
+document.getElementById("report-form").addEventListener("submit", function (e) {
+  e.preventDefault();
+  const st = document.getElementById("report-status");
+  const btn = document.getElementById("report-btn");
+  const email = document.getElementById("report-email").value.trim();
+  const fail = function (msg) { st.textContent = msg; st.classList.add("is-error"); };
+  st.classList.remove("is-error");
+  if (!/^[^\s@<>,;]+@[^\s@<>,;]+\.[A-Za-z]{2,}$/.test(email)) return fail("กรุณากรอกอีเมลให้ถูกต้อง");
+  if (!document.getElementById("report-consent").checked) return fail("กรุณาติ๊กยินยอมให้ใช้อีเมลเพื่อส่งรายงาน");
+  if (!ENDPOINT || !lastAnswers) return fail("ยังส่งรายงานไม่ได้ในขณะนี้ กรุณาลองใหม่ภายหลัง");
+  btn.disabled = true;
+  try {
+    fetch(ENDPOINT, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({ instrument: INSTRUMENT, report: { email: email, answers: lastAnswers, website: document.getElementById("report-website").value } }) })
+      .then(function () {
+        st.textContent = "ส่งคำขอแล้ว รายงานจะถึงอีเมล " + email + " ภายในไม่กี่นาที หากไม่พบ ลองดูในโฟลเดอร์จดหมายขยะ (Spam) หรือ Promotions";
+      })
+      .catch(function () { btn.disabled = false; fail("ส่งไม่สำเร็จ กรุณาตรวจการเชื่อมต่ออินเทอร์เน็ตแล้วลองอีกครั้ง"); });
+    if (typeof gtag === "function") gtag("event", "report_request", { assessment: INSTRUMENT });
+  } catch (err) { btn.disabled = false; fail("ส่งไม่สำเร็จ กรุณาลองอีกครั้ง"); }
+});
 
 /* นับว่าผู้เริ่มทำกดยินยอมกี่คน (Google Analytics) — ไม่ส่งคำตอบ */
 document.getElementById("start-btn").addEventListener("click", function () {
