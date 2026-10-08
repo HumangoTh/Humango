@@ -809,3 +809,16 @@
   .assess-invite{margin-top:40px;border:1px solid var(--accent);padding-block:22px;padding-inline:24px;display:flex;gap:18px;align-items:center;justify-content:space-between;flex-wrap:wrap}
   .assess-invite p{margin:0;font-size:.95rem;line-height:1.6;max-width:44ch}
   .assess-invite b{font-weight:500}
+
+
+/* ---------- home v2: hero hierarchy, CTAs ---------- */
+.hero h1.h1-th{
+  font-family:"IBM Plex Sans Thai",sans-serif;
+  font-size:clamp(2.1rem,5.6vw,3.5rem);font-weight:500;letter-spacing:-.01em;line-height:1.2;
+  margin:0 0 16px;
+}
+.hero-note{margin:-22px 0 46px;font-size:.92rem;color:var(--muted);line-height:1.7}
+.hero-note a{color:var(--accent-ink);text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.pain-link{display:block;margin-top:8px;font-size:.86rem;color:var(--accent-ink);text-decoration:underline;text-underline-offset:3px}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;margin:40px 0 0}
+.course[id]{scroll-margin-top:90px}
