@@ -387,13 +387,13 @@
   .post-cta a{color:var(--accent-ink);font-weight:500}
 
   .cov{background-position:center;background-size:cover;background-repeat:no-repeat;display:block;width:100%}
-  .cov-1{background-image:url(cover-salary.jpg)}
-  .cov-2{background-image:url(cover-psycap.jpg)}
-  .cov-3{background-image:url(cover-interview.jpg)}
-  .cov-4{background-image:url(cover-growth-mindset.jpg)}
-  .cov-5{background-image:url(cover-psycap-components.jpg),url(cover-psycap.jpg)}
-  .cov-6{background-image:url(cover-eq.jpg),linear-gradient(135deg,var(--accent-soft),var(--accent))}
-  .cov-7{background-image:url(cover-perma.jpg),linear-gradient(135deg,var(--accent-soft),var(--accent))}
+  .cov-1{background-image:url(../img/cover-salary.jpg)}
+  .cov-2{background-image:url(../img/cover-psycap.jpg)}
+  .cov-3{background-image:url(../img/cover-interview.jpg)}
+  .cov-4{background-image:url(../img/cover-growth-mindset.jpg)}
+  .cov-5{background-image:url(../img/cover-psycap-components.jpg),url(../img/cover-psycap.jpg)}
+  .cov-6{background-image:url(../img/cover-eq.jpg),linear-gradient(135deg,var(--accent-soft),var(--accent))}
+  .cov-7{background-image:url(../img/cover-perma.jpg),linear-gradient(135deg,var(--accent-soft),var(--accent))}
 
   /* ---------- hero buttons ---------- */
   .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin:0 0 46px}
