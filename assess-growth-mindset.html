@@ -13,7 +13,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>แบบวัดแนวโน้ม Growth Mindset — HUMANgo</title>
-<meta name="description" content="แบบวัดแนวโน้ม Growth Mindset 25 ข้อ ใช้เวลาประมาณ 8 นาที รู้ผลทันที พร้อมผลรายมิติ 5 ด้าน เปิดให้ทำฟรีในช่วงร่วมพัฒนาเกณฑ์มาตรฐาน จาก HUMANgo">
+<meta name="description" content="แบบวัดแนวโน้ม Growth Mindset 25 ข้อ ใช้เวลาประมาณ 10 นาที รู้ผลทันที พร้อมผลรายมิติ 5 ด้าน เปิดให้ทำฟรีในช่วงร่วมพัฒนาเกณฑ์มาตรฐาน จาก HUMANgo">
 <link rel="canonical" href="https://humango.co/assess-growth-mindset.html">
 <meta name="theme-color" content="#F6F8F5">
 <link rel="icon" href="assets/img/logo.png">
@@ -22,7 +22,7 @@
 <meta property="og:locale" content="th_TH">
 <meta property="og:url" content="https://humango.co/assess-growth-mindset.html">
 <meta property="og:title" content="แบบวัดแนวโน้ม Growth Mindset — HUMANgo">
-<meta property="og:description" content="แบบวัดแนวโน้ม Growth Mindset 25 ข้อ ใช้เวลาประมาณ 8 นาที รู้ผลทันที พร้อมผลรายมิติ 5 ด้าน เปิดให้ทำฟรีในช่วงร่วมพัฒนาเกณฑ์มาตรฐาน จาก HUMANgo">
+<meta property="og:description" content="แบบวัดแนวโน้ม Growth Mindset 25 ข้อ ใช้เวลาประมาณ 10 นาที รู้ผลทันที พร้อมผลรายมิติ 5 ด้าน เปิดให้ทำฟรีในช่วงร่วมพัฒนาเกณฑ์มาตรฐาน จาก HUMANgo">
 <meta property="og:image" content="https://humango.co/assets/img/og-home.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -101,7 +101,7 @@
 
       <div class="survey">
         <h2>ร่วมพัฒนาเกณฑ์มาตรฐาน</h2>
-        <p class="consent-text">HUMANgo ขอเก็บข้อมูลพื้นฐานและคำตอบของท่าน เพื่อใช้พัฒนาเกณฑ์การแปลผลของแบบประเมินนี้ ข้อมูลไม่ระบุตัวตน ไม่มีการเก็บชื่อหรือช่องทางติดต่อ และจัดเก็บในระบบคลาวด์ของ Google ท่านสามารถข้ามคำถามข้อมูลพื้นฐานได้ทุกข้อ หากไม่ยินยอม ท่านยังทำแบบประเมินและดูผลได้ตามปกติ โดยไม่มีการเก็บคำตอบ</p>
+        <p class="consent-text">HUMANgo ขอเก็บข้อมูลพื้นฐานและคำตอบของท่าน เพื่อใช้พัฒนาเกณฑ์การแปลผลของแบบประเมินนี้ ข้อมูลไม่ระบุตัวตน ไม่มีการเก็บชื่อหรือช่องทางติดต่อ จัดเก็บในระบบคลาวด์ของ Google ซึ่งอยู่ในต่างประเทศ และเก็บไว้ไม่เกิน 3 ปีนับจากวันที่ตอบ ท่านสามารถข้ามคำถามข้อมูลพื้นฐานได้ทุกข้อ หากไม่ยินยอม ท่านยังทำแบบประเมินและดูผลได้ตามปกติ โดยไม่มีการเก็บคำตอบ</p>
         <label class="consent-check"><input type="checkbox" id="consent"><span>ยินยอมให้ใช้ข้อมูลเพื่อพัฒนาแบบประเมิน</span></label>
         <div id="demo" class="demo" hidden>
           <p class="demo-note">ข้อมูลพื้นฐาน (ไม่บังคับ ข้ามข้อที่ไม่ต้องการตอบได้)</p>
@@ -258,13 +258,13 @@
    ENDPOINT     = URL ของ Google Apps Script (Deploy > Web app) — เว้นว่าง = ไม่ส่งข้อมูล
    CAMPAIGN_END = วันสิ้นสุดแคมเปญ เช่น "31 ธันวาคม 2569" — เว้นว่าง = ไม่แสดง */
 const ENDPOINT = "https://script.google.com/macros/s/AKfycbzQkEI4XGfdR-OMXW8OQuwc5yU0AVkRvGqqi6vIkPrmLl9ffc7VRAWm6U7DaSXH2MVMxg/exec";
-const CAMPAIGN_END = "";
+const CAMPAIGN_END = "31 ธันวาคม 2569";
 const INSTRUMENT = "growth_mindset_v2";
 
 const QUIZ = {
   title: "แบบวัดแนวโน้ม Growth Mindset",
   lead: "สำรวจกรอบความคิดแบบเติบโต 5 ด้าน ได้แก่ การยอมรับความท้าทาย การฟันฝ่าอุปสรรค ทัศนคติต่อความพยายาม การยอมรับคำวิจารณ์ และการเรียนรู้จากผู้อื่น ผ่านข้อความ 25 ข้อ — เปิดให้ทำฟรีในช่วงร่วมพัฒนาเกณฑ์มาตรฐานของแบบประเมินนี้",
-  minutes: 8,
+  minutes: 10,
   perPage: 5,
   showScores: false,
 
@@ -392,8 +392,8 @@ const QUIZ = {
 
   cta: {
     title: "อยากพัฒนา Growth Mindset ทั้งทีม?",
-    text: "HUMANgo มีหลักสูตร Building Psychological Capital ที่พัฒนา Growth Mindset ความฉลาดทางอารมณ์ และความยืดหยุ่นทางใจ ผ่าน Workshop ที่ปรับกรณีศึกษาให้ตรงกับบริบทองค์กรของคุณ",
-    primary: { label: "ดูหลักสูตร", href: "courses.html" },
+    text: "HUMANgo มีหลักสูตร Growth Mindset: Building a Culture of Continuous Growth ที่พัฒนากรอบความคิดแบบเติบโตทั้ง 5 ด้าน ผ่านกิจกรรมและกรณีศึกษาที่ปรับให้ตรงกับบริบทองค์กรของคุณ",
+    primary: { label: "ดูหลักสูตร Growth Mindset", href: "courses.html#c06" },
     secondary: { label: "ปรึกษาทีม HUMANgo", href: "index.html#contact" }
   },
 
