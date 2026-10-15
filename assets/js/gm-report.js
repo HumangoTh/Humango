@@ -69,29 +69,29 @@
       '<a class="btn btn-ghost" href="#plan30" data-rep="plan">ดูแผนพัฒนาตัวเอง 30 วัน ↓</a></div>';
 
     /* ---------- ทำความเข้าใจ + วิธีอ่านผล ---------- */
-    h += '<section class="rep-sec"><h2>ทำความเข้าใจ Growth Mindset</h2>' + paras(R.understanding) + "</section>";
-    h += '<section class="rep-sec"><h2>การอ่านผลของคุณ</h2>' + paras(R.reading) + "</section>";
+    h += '<section class="rep-sec"><h2>ทำความเข้าใจกรอบความคิดแบบเติบโต (Growth Mindset)</h2>' + paras(R.understanding) + "</section>";
+    h += '<section class="rep-sec"><h2>วิธีอ่านผลการประเมิน</h2>' + paras(R.reading) + "</section>";
 
     /* ---------- ผลรวม ---------- */
-    h += '<section class="rep-sec"><h2>ผลคะแนนรวม Growth Mindset</h2>' +
-      '<p class="rep-small">' + overall.min + "–" + overall.max + " คะแนน · คะแนนของคุณ " + sc.total + "</p>" +
+    h += '<section class="rep-sec"><h2>การแปลผลคะแนนรวม</h2>' +
+      '<p class="rep-small">' + overall.min + "–" + overall.max + " คะแนน · คะแนนของท่าน " + sc.total + "</p>" +
       '<h3 class="rep-h3">' + overall.title + "</h3>" + paras(overall.body) + "</section>";
 
     /* ---------- ผลรายด้าน ---------- */
-    h += '<section class="rep-sec"><h2>ผลรายด้าน</h2>';
+    h += '<section class="rep-sec"><h2>การแปลผลรายด้าน</h2>';
     R.dimensions.forEach((d, i) => {
       const s = scoreOf[d.key], lv = pick(d.levels, s);
       h += '<div class="rep-dim"><h3 class="rep-h3">' + (i + 1) + ". " + d.name + '</h3><p class="rep-small">' + d.en + "</p>" +
         paras(d.intro) +
-        '<div class="rep-levelbox"><p class="rep-levelhead">คะแนนของคุณ ' + s + "/15 — " + lv.label + " (" + lv.min + "–" + lv.max + " คะแนน)</p>" +
+        '<div class="rep-levelbox"><p class="rep-levelhead">คะแนนของท่าน ' + s + "/15 — " + lv.label + " (" + lv.min + "–" + lv.max + " คะแนน)</p>" +
         paras(lv.body) + "</div>" +
         '<p class="rep-label">แนวทางพัฒนา</p>' + paras(d.guide) +
-        '<p class="rep-label">คำถามสำหรับสะท้อนตนเอง</p>' + quote(d.reflect) + "</div>";
+        '<p class="rep-label">คำถามชวนคิด</p>' + quote(d.reflect) + "</div>";
     });
     h += "</section>";
 
     /* ---------- เริ่มพัฒนาอย่างไร ---------- */
-    h += '<section class="rep-sec"><h2>จะเริ่มพัฒนา Growth Mindset อย่างไร</h2>' + paras(R.howToStart.intro);
+    h += '<section class="rep-sec"><h2>เริ่มต้นพัฒนากรอบความคิดแบบเติบโตอย่างไร</h2>' + paras(R.howToStart.intro);
     R.howToStart.steps.forEach((st) => { h += '<h3 class="rep-h3">' + st.title + "</h3>" + paras(st.body); });
     h += "</section>";
 
@@ -109,8 +109,8 @@
       const p = R.plan.byDimension[fd.key];
       h += '<div class="rep-plan-dim">';
       if (multi) h += '<p class="rep-small">' + R.plan.multiHeading + '</p><h3 class="rep-h3" style="margin-top:2px">' + fd.name + "</h3>";
-      h += '<h4 class="rep-h4">เป้าหมาย 30 วัน</h4>' + para(p.goal);
-      h += '<h4 class="rep-h4">3 Micro Actions</h4><ol class="rep-ol">' + p.actions.map((a) => "<li>" + inline(a) + "</li>").join("") + "</ol>";
+      h += '<h4 class="rep-h4">เป้าหมาย</h4>' + para(p.goal);
+      h += '<h4 class="rep-h4">กิจกรรมที่ควรปฏิบัติ</h4><ol class="rep-ol">' + p.actions.map((a) => "<li>" + inline(a) + "</li>").join("") + "</ol>";
       h += paras(p.extra);
       h += '<h4 class="rep-h4">ประโยคเตือนใจ</h4>' + quote(p.reminder) + "</div>";
     });
@@ -118,7 +118,8 @@
 
     /* ---------- Commitment + Reflection (พิมพ์ได้ ไม่เก็บข้อมูล) ---------- */
     h += '<section class="rep-sec"><h2>' + R.commitment.title + "</h2>" +
-      '<p class="rep-note">พิมพ์คำตอบลงในช่องได้ก่อนบันทึกเป็น PDF หรือเว้นว่างไว้แล้วเขียนด้วยมือหลังพิมพ์ ระบบไม่เก็บสิ่งที่คุณพิมพ์</p>';
+      '<p class="rep-note">พิมพ์คำตอบลงในช่องได้ก่อนบันทึกเป็น PDF หรือเว้นว่างไว้แล้วเขียนด้วยมือหลังพิมพ์ ระบบไม่เก็บสิ่งที่ท่านพิมพ์</p>' +
+      (R.commitment.intro ? para(R.commitment.intro) : "");
     R.commitment.prompts.forEach((p) => { h += '<h4 class="rep-h4">' + p.q + "</h4>" + write(p.lines, p.q); });
     h += "</section>";
     h += '<section class="rep-sec"><h2>' + R.reflection30.title + "</h2>" + para(R.reflection30.intro);
