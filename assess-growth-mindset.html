@@ -13,7 +13,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>แบบวัดแนวโน้ม Growth Mindset — HUMANgo</title>
-<meta name="description" content="แบบวัดแนวโน้ม Growth Mindset 25 ข้อ ใช้เวลาประมาณ 10 นาที รู้ผลทันที พร้อมผลรายมิติ 5 ด้าน เปิดให้ทำฟรีในช่วงร่วมพัฒนาเกณฑ์มาตรฐาน จาก HUMANgo">
+<meta name="description" content="แบบวัดแนวโน้ม Growth Mindset 25 ข้อ ใช้เวลาประมาณ 10 นาที รู้ผลทันที พร้อมรายงานฉบับเต็ม 5 ด้าน และแผนพัฒนาตัวเอง 30 วัน เปิดให้ทำฟรีในช่วงร่วมพัฒนาเกณฑ์มาตรฐาน จาก HUMANgo">
 <link rel="canonical" href="https://humango.co/assess-growth-mindset.html">
 <meta name="theme-color" content="#F6F8F5">
 <link rel="icon" href="assets/img/logo.png">
@@ -22,7 +22,7 @@
 <meta property="og:locale" content="th_TH">
 <meta property="og:url" content="https://humango.co/assess-growth-mindset.html">
 <meta property="og:title" content="แบบวัดแนวโน้ม Growth Mindset — HUMANgo">
-<meta property="og:description" content="แบบวัดแนวโน้ม Growth Mindset 25 ข้อ ใช้เวลาประมาณ 10 นาที รู้ผลทันที พร้อมผลรายมิติ 5 ด้าน เปิดให้ทำฟรีในช่วงร่วมพัฒนาเกณฑ์มาตรฐาน จาก HUMANgo">
+<meta property="og:description" content="แบบวัดแนวโน้ม Growth Mindset 25 ข้อ ใช้เวลาประมาณ 10 นาที รู้ผลทันที พร้อมรายงานฉบับเต็ม 5 ด้าน และแผนพัฒนาตัวเอง 30 วัน เปิดให้ทำฟรีในช่วงร่วมพัฒนาเกณฑ์มาตรฐาน จาก HUMANgo">
 <meta property="og:image" content="https://humango.co/assets/img/og-home.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,17 +34,75 @@
   html,body{margin:0}
   img{max-width:100%}
   [hidden]{display:none!important}
-  /* กล่องขอรับรายงานทางอีเมล */
-  .report-box{margin-top:22px}
-  .report-form{display:flex;flex-direction:column;gap:14px;margin-top:6px}
-  .report-row{display:flex;gap:10px;flex-wrap:wrap}
-  .report-row input[type=email]{flex:1 1 240px;min-width:0;font:inherit;font-size:.95rem;color:var(--ink);background:var(--paper);border:1px solid var(--line);padding-block:11px;padding-inline:14px;border-radius:2px}
-  .report-row input[type=email]:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
-  .report-row .btn{flex:none}
-  .report-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
-  .report-status{margin:0;font-size:.88rem;line-height:1.7;color:var(--accent-ink)}
-  .report-status.is-error{color:#B3261E}
-  @media print{ #report-box{display:none!important} }
+  /* ===== รายงานฉบับเต็มบนหน้าผล ===== */
+  .rep{color:var(--ink-2)}
+  .rep p{margin:0 0 12px;font-size:.95rem;line-height:1.8}
+  .rep b{font-weight:500;color:var(--ink)}
+  .rep-title{margin-top:0}
+  .rep-date,.rep-small{font-size:.82rem;color:var(--muted);margin:0 0 6px}
+  .rep-print-logo,.rep-print-foot{display:none}
+  .rep-card{border:1px solid var(--accent);background:var(--surface);padding-block:22px;padding-inline:24px;margin-top:22px}
+  .rep-card-top{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--line)}
+  .rep-card .rep-small{margin:0 0 2px}
+  .rep-overall{margin:0!important;font-size:1.3rem!important;font-weight:500;color:var(--ink);line-height:1.4!important}
+  .rep-total{margin:0!important;text-align:right}
+  .rep-total strong{font-family:"Familjen Grotesk",sans-serif;font-size:2.6rem;font-weight:600;line-height:1;color:var(--accent-ink)}
+  .rep-total span{display:block;font-size:.78rem;color:var(--muted)}
+  .rep-dimlist{list-style:none;margin:6px 0 0;padding:0}
+  .rep-dimlist li{padding-top:14px}
+  .rep-dimrow{display:flex;justify-content:space-between;gap:14px;font-size:.9rem;color:var(--ink);margin-bottom:6px}
+  .rep-dimscore{white-space:nowrap;color:var(--muted)}
+  .rep-dimscore b{color:var(--ink)}
+  .rep-bar{display:block;height:5px;background:var(--line);border-radius:99px;overflow:hidden}
+  .rep-bar span{display:block;height:100%;background:var(--accent)}
+  .rep-tag{display:inline-block;margin-inline-start:6px;font-size:.7rem;color:#fff;background:var(--accent);padding-block:1px;padding-inline:7px;text-decoration:none;white-space:nowrap;vertical-align:1px}
+  .rep-toolbar{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+  .rep-sec{margin-top:52px;padding-top:26px;border-top:1px solid var(--line)}
+  .rep-sec h2{font-family:"IBM Plex Sans Thai",sans-serif;font-size:clamp(1.2rem,2.6vw,1.45rem);font-weight:500;color:var(--ink);margin:0 0 16px;line-height:1.4}
+  .rep-sec .eyebrow{margin-bottom:8px}
+  .rep-sub{color:var(--muted)!important;margin-top:-10px!important}
+  .rep-h3{font-family:"IBM Plex Sans Thai",sans-serif;font-size:1.08rem;font-weight:500;color:var(--ink);margin:22px 0 4px;line-height:1.45}
+  .rep-h4{font-family:"IBM Plex Sans Thai",sans-serif;font-size:.97rem;font-weight:500;color:var(--ink);margin:20px 0 8px;line-height:1.5}
+  .rep-dim{margin-top:34px;padding-top:4px;border-top:2px solid var(--accent)}
+  .rep-dim:first-of-type{margin-top:8px}
+  .rep-levelbox{background:var(--surface);border:1px solid var(--line);padding-block:16px 6px;padding-inline:18px;margin:10px 0 6px}
+  .rep-levelhead{font-weight:500;color:var(--accent-ink)!important;font-size:.9rem!important}
+  .rep-label{margin:20px 0 8px!important;font-size:.88rem!important;font-weight:500;color:var(--accent-ink)!important}
+  .rep-quote{margin:6px 0 14px;background:var(--accent-soft);border-left:3px solid var(--accent);padding-block:14px;padding-inline:18px;font-size:.95rem;line-height:1.75;color:var(--ink)}
+  .rep-plan{scroll-margin-top:96px}
+  .rep-focus{background:var(--accent-soft);padding-block:16px 6px;padding-inline:20px;margin:6px 0 16px}
+  .rep-focus p{margin:0 0 8px}
+  .rep-plan-dim{margin-top:26px;padding-top:4px;border-top:2px solid var(--accent)}
+  .rep-ol{margin:0 0 12px;padding-inline-start:22px;font-size:.95rem;line-height:1.8}
+  .rep-ol li{margin-bottom:6px}
+  .rep-note{font-size:.85rem!important;color:var(--muted)!important}
+  .rep-write{background:repeating-linear-gradient(to bottom,transparent 0,transparent calc(2.1em - 1px),var(--line) calc(2.1em - 1px),var(--line) 2.1em);line-height:2.1em;font-size:.95rem;color:var(--ink);padding-inline:4px;outline:none;margin-bottom:6px}
+  .rep-write:focus{background-color:var(--accent-soft)}
+  .rep-notes{margin-top:44px;border:1px solid var(--line);padding-block:18px 8px;padding-inline:20px}
+  .rep-notes h3{font-size:.97rem;font-weight:500;color:var(--ink);margin:0 0 10px}
+  .rep-notes p{font-size:.85rem;color:var(--muted)}
+  @media (max-width:560px){ .rep-card{padding-inline:16px} .rep-dimrow{flex-direction:column;gap:2px} .rep-total{text-align:left} }
+
+  /* ----- พิมพ์ / บันทึกเป็น PDF ----- */
+  @media print{
+    :root{--paper:#fff!important;--surface:#fff!important;--ink:#151E1A!important;--ink-2:#3A4741!important;--muted:#5d6a63!important;--line:#d9e0d8!important;--accent:#33804E!important;--accent-soft:#E8F0EA!important;--accent-ink:#27633C!important}
+    @page{margin:14mm 14mm 16mm}
+    html{font-size:13px}
+    body{background:#fff}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    #intro,#quiz,.rep-toolbar,.rep-note,.result-actions,.next-step,.site-foot,.masthead,#cta,section>.quiz-wrap>.back-link{display:none!important}
+    .pad{padding-block:0!important}
+    .quiz-wrap{max-width:none;padding-inline:0}
+    .screen{animation:none}
+    .rep-print-logo{display:block;height:34px;width:auto;margin-bottom:18px}
+    .rep-print-foot{display:block;margin-top:24px!important;font-size:.8rem!important;color:var(--muted)!important;border-top:1px solid var(--line);padding-top:10px}
+    .rep-tag{color:#fff!important}
+    .rep-card,.rep-levelbox,.rep-quote,.rep-focus,.rep-notes,.rep-h3,.rep-h4,.rep-sec h2{break-inside:avoid}
+    .rep-h3,.rep-h4,.rep-sec h2,.rep-label{break-after:avoid}
+    .rep-plan{break-before:page;border-top:none;margin-top:0}
+    .rep-write{background:repeating-linear-gradient(to bottom,transparent 0,transparent calc(2.1em - 1px),#cfd6ce calc(2.1em - 1px),#cfd6ce 2.1em)!important}
+    a{color:inherit;text-decoration:none}
+  }
 </style>
 </head>
 <body>
@@ -165,6 +223,8 @@
 
     <!-- ===== results ===== -->
     <div id="results" class="screen" hidden>
+      <div id="full-report" class="rep" hidden></div>
+
       <div id="overall-block">
         <div class="result-head">
           <div>
@@ -185,28 +245,13 @@
         <h1 id="profile-title" class="result-title"></h1>
       </div>
 
-      <div class="head-row" style="margin-top:52px">
+      <div id="dims-head" class="head-row" style="margin-top:52px">
         <div>
           <p class="eyebrow">Dimension Results</p>
           <h2 class="section-title">ผลการประเมินรายมิติ</h2>
         </div>
       </div>
       <div id="dimension-list" class="dims"></div>
-
-      <div id="report-box" class="survey report-box" hidden>
-        <h2>รับรายงานฉบับละเอียดทางอีเมล</h2>
-        <p class="consent-text">ไม่บังคับ — รายงานอธิบายผลของคุณครบทั้ง 5 ด้าน พร้อมแนวทางพัฒนา และแผนพัฒนา 30 วันสำหรับด้านที่คุณอาจให้ความสำคัญเป็นอันดับแรก ระบบใช้อีเมลและคำตอบของคุณเพื่อสร้างและส่งรายงานครั้งนี้เท่านั้น ไม่บันทึกอีเมลรวมกับคำตอบ และไม่ใช้ส่งข่าวสารอื่น</p>
-        <form id="report-form" class="report-form" novalidate>
-          <label class="consent-check"><input type="checkbox" id="report-consent"><span>ยินยอมให้ HUMANgo ใช้อีเมลนี้เพื่อส่งรายงานผลแบบวัดครั้งนี้</span></label>
-          <div class="report-row">
-            <label for="report-email" class="report-hp">อีเมล</label>
-            <input type="email" id="report-email" autocomplete="email" inputmode="email" placeholder="อีเมลของคุณ" aria-label="อีเมลสำหรับรับรายงาน">
-            <button id="report-btn" class="btn btn-primary" type="submit">ส่งรายงานทางอีเมล</button>
-          </div>
-          <div class="report-hp" aria-hidden="true"><input type="text" id="report-website" tabindex="-1" autocomplete="off"></div>
-          <p id="report-status" class="report-status" role="status" aria-live="polite"></p>
-        </form>
-      </div>
 
       <div id="guidance" class="guidance">
         <h2 id="guidance-title"></h2>
@@ -224,7 +269,7 @@
 
       <div class="result-actions">
         <button id="restart-btn" class="btn btn-ghost" type="button">ทำแบบประเมินอีกครั้ง</button>
-        <button id="print-btn" class="btn btn-ghost" type="button">บันทึกผลเป็น PDF</button>
+        <button id="print-btn" class="btn btn-ghost" type="button">บันทึกรายงานเป็น PDF</button>
       </div>
     </div>
 
@@ -253,6 +298,8 @@
 <noscript><p style="padding:24px">กรุณาเปิดใช้งาน JavaScript เพื่อทำแบบประเมินและดูผลลัพธ์</p></noscript>
 
 <script src="assets/js/quiz.js"></script>
+<script src="assets/js/gm-report-content.js"></script>
+<script src="assets/js/gm-report.js"></script>
 <script>
 /* ===== ตั้งค่าแคมเปญ =====
    ENDPOINT     = URL ของ Google Apps Script (Deploy > Web app) — เว้นว่าง = ไม่ส่งข้อมูล
@@ -263,7 +310,7 @@ const INSTRUMENT = "growth_mindset_v2";
 
 const QUIZ = {
   title: "แบบวัดแนวโน้ม Growth Mindset",
-  lead: "สำรวจกรอบความคิดแบบเติบโต 5 ด้าน ได้แก่ การยอมรับความท้าทาย การฟันฝ่าอุปสรรค ทัศนคติต่อความพยายาม การยอมรับคำวิจารณ์ และการเรียนรู้จากผู้อื่น ผ่านข้อความ 25 ข้อ — เปิดให้ทำฟรีในช่วงร่วมพัฒนาเกณฑ์มาตรฐานของแบบประเมินนี้",
+  lead: "สำรวจกรอบความคิดแบบเติบโต 5 ด้าน ได้แก่ การยอมรับความท้าทาย การฟันฝ่าอุปสรรค ทัศนคติต่อความพยายาม การยอมรับคำวิจารณ์ และการเรียนรู้จากผู้อื่น ผ่านข้อความ 25 ข้อ ทำเสร็จแล้วอ่านรายงานฉบับเต็มพร้อมแผนพัฒนาตัวเอง 30 วันได้ทันที — เปิดให้ทำฟรีในช่วงร่วมพัฒนาเกณฑ์มาตรฐานของแบบประเมินนี้",
   minutes: 10,
   perPage: 5,
   showScores: false,
@@ -399,7 +446,7 @@ const QUIZ = {
 
   disclaimer: "แบบประเมินนี้ใช้เพื่อการสำรวจและสะท้อนตนเองเบื้องต้น ไม่ใช่เครื่องมือวินิจฉัยทางจิตวิทยา และไม่ควรใช้ตัดสิน คัดออก หรือประเมินบุคคลเพียงลำพัง แบบวัดนี้อยู่ระหว่างพัฒนา ผลที่ได้เป็นผลเบื้องต้นตามเกณฑ์ที่กำหนดจากทฤษฎีกรอบความคิด (Mindset Theory) ของ Carol S. Dweck และจะปรับปรุงเมื่อวิเคราะห์ข้อมูลเสร็จ",
 
-  onComplete: function (r) { prepareReport(r); sendResponse(r); }
+  onComplete: function (r) { showFullReport(r); sendResponse(r); }
 };
 
 /* ===== ขอความยินยอม + ข้อมูลพื้นฐาน ===== */
@@ -456,38 +503,16 @@ function sendResponse(r) {
 
 HUMANgoQuiz.mount(QUIZ);
 
-/* ===== ขอรับรายงานฉบับละเอียดทางอีเมล (ไม่บังคับ) =====
-   ส่งเฉพาะอีเมล + คำตอบดิบไปให้ Apps Script สร้างรายงานและส่งอีเมล ไม่เขียนลงชีต */
-let lastAnswers = null;
-function prepareReport(r) {
-  lastAnswers = r.answers.slice();
-  const box = document.getElementById("report-box");
-  box.hidden = !ENDPOINT;
-  document.getElementById("report-btn").disabled = false;
-  const st = document.getElementById("report-status");
-  st.textContent = ""; st.classList.remove("is-error");
+/* ===== รายงานฉบับเต็มบนหน้าผล (แทนการส่งทางอีเมล) =====
+   แสดงรายงานจาก gm-report-content.js แล้วซ่อนผลแบบย่อของ quiz.js */
+function showFullReport(r) {
+  const el = document.getElementById("full-report");
+  if (!window.HUMANgoReport || !window.GM_REPORT) { el.hidden = true; return; }   // โหลดไฟล์รายงานไม่ได้ → ใช้ผลแบบย่อเดิม
+  HUMANgoReport.render(r.answers, el);
+  ["overall-block", "profile-head", "dims-head", "dimension-list", "guidance"].forEach(function (id) {
+    const x = document.getElementById(id); if (x) x.hidden = true;
+  });
 }
-document.getElementById("report-form").addEventListener("submit", function (e) {
-  e.preventDefault();
-  const st = document.getElementById("report-status");
-  const btn = document.getElementById("report-btn");
-  const email = document.getElementById("report-email").value.trim();
-  const fail = function (msg) { st.textContent = msg; st.classList.add("is-error"); };
-  st.classList.remove("is-error");
-  if (!/^[^\s@<>,;]+@[^\s@<>,;]+\.[A-Za-z]{2,}$/.test(email)) return fail("กรุณากรอกอีเมลให้ถูกต้อง");
-  if (!document.getElementById("report-consent").checked) return fail("กรุณาติ๊กยินยอมให้ใช้อีเมลเพื่อส่งรายงาน");
-  if (!ENDPOINT || !lastAnswers) return fail("ยังส่งรายงานไม่ได้ในขณะนี้ กรุณาลองใหม่ภายหลัง");
-  btn.disabled = true;
-  try {
-    fetch(ENDPOINT, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify({ instrument: INSTRUMENT, report: { email: email, answers: lastAnswers, website: document.getElementById("report-website").value } }) })
-      .then(function () {
-        st.textContent = "ส่งคำขอแล้ว รายงานจะถึงอีเมล " + email + " ภายในไม่กี่นาที หากไม่พบ ลองดูในโฟลเดอร์จดหมายขยะ (Spam) หรือ Promotions";
-      })
-      .catch(function () { btn.disabled = false; fail("ส่งไม่สำเร็จ กรุณาตรวจการเชื่อมต่ออินเทอร์เน็ตแล้วลองอีกครั้ง"); });
-    if (typeof gtag === "function") gtag("event", "report_request", { assessment: INSTRUMENT });
-  } catch (err) { btn.disabled = false; fail("ส่งไม่สำเร็จ กรุณาลองอีกครั้ง"); }
-});
 
 /* นับว่าผู้เริ่มทำกดยินยอมกี่คน (Google Analytics) — ไม่ส่งคำตอบ */
 document.getElementById("start-btn").addEventListener("click", function () {
