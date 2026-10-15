@@ -76,8 +76,11 @@
   .rep-ol{margin:0 0 12px;padding-inline-start:22px;font-size:.95rem;line-height:1.8}
   .rep-ol li{margin-bottom:6px}
   .rep-note{font-size:.85rem!important;color:var(--muted)!important}
-  .rep-write{background:repeating-linear-gradient(to bottom,transparent 0,transparent calc(2.1em - 1px),var(--line) calc(2.1em - 1px),var(--line) 2.1em);line-height:2.1em;font-size:.95rem;color:var(--ink);padding-inline:4px;outline:none;margin-bottom:6px}
-  .rep-write:focus{background-color:var(--accent-soft)}
+  .rep-write-wrap{position:relative;margin-bottom:6px;font-size:.95rem}
+  .rep-lines{position:absolute;inset:0;pointer-events:none}
+  .rep-lines span{display:block;height:2.1em;box-sizing:border-box;border-bottom:1px solid var(--line)}
+  .rep-write{position:relative;line-height:2.1em;color:var(--ink);padding-inline:4px;outline:none}
+  .rep-write:focus{background:var(--accent-soft)}
   .rep-notes{margin-top:44px;border:1px solid var(--line);padding-block:18px 8px;padding-inline:20px}
   .rep-notes h3{font-size:.97rem;font-weight:500;color:var(--ink);margin:0 0 10px}
   .rep-notes p{font-size:.85rem;color:var(--muted)}
@@ -100,7 +103,8 @@
     .rep-card,.rep-levelbox,.rep-quote,.rep-focus,.rep-notes,.rep-h3,.rep-h4,.rep-sec h2{break-inside:avoid}
     .rep-h3,.rep-h4,.rep-sec h2,.rep-label{break-after:avoid}
     .rep-plan{break-before:page;border-top:none;margin-top:0}
-    .rep-write{background:repeating-linear-gradient(to bottom,transparent 0,transparent calc(2.1em - 1px),#cfd6ce calc(2.1em - 1px),#cfd6ce 2.1em)!important}
+    .rep-write{background:none!important}
+    .rep-lines span{border-bottom-color:#cfd6ce!important}
     a{color:inherit;text-decoration:none}
   }
 </style>
