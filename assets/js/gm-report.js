@@ -30,9 +30,11 @@
     return "<p>" + inline(s) + "</p>";
   };
   const paras = (arr) => (arr || []).map(para).join("");
+  // เส้นบรรทัดวาดเป็น div แยก (ไม่ใช้ gradient — โปรแกรมอ่าน PDF บางตัวแสดง gradient เป็นแถบสี)
   const write = (lines, label) =>
+    '<div class="rep-write-wrap"><div class="rep-lines" aria-hidden="true">' + "<span></span>".repeat(lines) + "</div>" +
     '<div class="rep-write" contenteditable="true" role="textbox" aria-multiline="true" aria-label="' + label +
-    '" style="min-height:' + (lines * 2.1) + 'em"></div>';
+    '" style="min-height:' + (lines * 2.1) + 'em"></div></div>';
   const bar = (s, max) => '<span class="rep-bar"><span style="width:' + Math.round((s / max) * 100) + '%"></span></span>';
 
   function build(answers) {
