@@ -822,3 +822,24 @@
 .pain-link{display:block;margin-top:8px;font-size:.86rem;color:var(--accent-ink);text-decoration:underline;text-underline-offset:3px}
 .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin:40px 0 0}
 .course[id]{scroll-margin-top:90px}
+
+/* ===== ขั้นตอนการพัฒนาแบบวัด + สถานะ + พันธมิตร (assessment.html, 19 ต.ค. 2569) ===== */
+.dev-block{margin-top:64px}
+.dev-title{font-family:"IBM Plex Sans Thai",sans-serif;font-size:1.15rem;font-weight:500;color:var(--ink);margin:0 0 10px;line-height:1.45}
+.dev-steps{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--line)}
+.dev-step{display:grid;grid-template-columns:44px minmax(0,1fr);gap:4px;padding-block:24px;padding-inline:0 24px;border-bottom:1px solid var(--line-soft)}
+.dev-no{font-family:"IBM Plex Mono",monospace;font-size:.82rem;color:var(--accent);padding-top:3px}
+.dev-step h4{font-family:"IBM Plex Sans Thai",sans-serif;font-size:.98rem;font-weight:500;color:var(--ink);margin:0 0 6px;line-height:1.5}
+.dev-step p{margin:0;font-size:.86rem;color:var(--muted);line-height:1.7}
+.dev-round{display:inline-block;font-size:.7rem;font-weight:500;color:var(--accent-ink);background:var(--accent-soft);padding-block:1px;padding-inline:8px;margin-bottom:8px}
+.soon-tag.is-open{background:var(--accent);color:#fff;border-color:var(--accent)}
+.soon-row p a{color:var(--accent-ink)}
+.partner-list{list-style:none;margin:6px 0 0;padding:0}
+.partner-list li{position:relative;padding-block:12px;padding-inline:22px 0;border-bottom:1px solid var(--line-soft);font-size:.9rem;line-height:1.7;color:var(--muted)}
+.partner-list li::before{content:"";position:absolute;left:2px;top:22px;width:8px;height:8px;background:var(--accent)}
+.partner-list li b{display:block;color:var(--ink);font-weight:500}
+.assess-links{margin-top:14px;font-size:.88rem}
+.assess-links a{display:inline-block;color:var(--accent-ink);margin-inline-end:18px;margin-top:4px}
+.soon-row .soon-tag{justify-self:start;align-self:start}
+@media (max-width:860px){ .dev-steps{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:560px){ .dev-steps{grid-template-columns:1fr} .dev-step{padding-inline:0} }
