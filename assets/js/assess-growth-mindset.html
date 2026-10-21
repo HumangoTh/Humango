@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="th">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V6K5R92F90"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-V6K5R92F90');
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>แบบวัดแนวโน้ม Growth Mindset — HUMANgo</title>
+<meta name="description" content="แบบวัดแนวโน้ม Growth Mindset 25 ข้อ ใช้เวลาประมาณ 10 นาที รู้ผลทันที พร้อมรายงานฉบับเต็ม 5 ด้าน และแผนพัฒนาตัวเอง 30 วัน เปิดให้ทำฟรีในช่วงร่วมพัฒนาเกณฑ์มาตรฐาน จาก HUMANgo">
+<link rel="canonical" href="https://humango.co/assess-growth-mindset.html">
+<meta name="theme-color" content="#F6F8F5">
+<link rel="icon" href="assets/img/logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HUMANgo">
+<meta property="og:locale" content="th_TH">
+<meta property="og:url" content="https://humango.co/assess-growth-mindset.html">
+<meta property="og:title" content="แบบวัดแนวโน้ม Growth Mindset — HUMANgo">
+<meta property="og:description" content="แบบวัดแนวโน้ม Growth Mindset 25 ข้อ ใช้เวลาประมาณ 10 นาที รู้ผลทันที พร้อมรายงานฉบับเต็ม 5 ด้าน และแผนพัฒนาตัวเอง 30 วัน เปิดให้ทำฟรีในช่วงร่วมพัฒนาเกณฑ์มาตรฐาน จาก HUMANgo">
+<meta property="og:image" content="https://humango.co/assets/img/og-home.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Thai:wght@200;300;400;500;600&display=swap">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  :root{color-scheme:light dark}
+  html,body{margin:0}
+  img{max-width:100%}
+  [hidden]{display:none!important}
+  /* ===== รายงานฉบับเต็มบนหน้าผล ===== */
+  .rep{color:var(--ink-2)}
+  .rep p{margin:0 0 12px;font-size:.95rem;line-height:1.8}
+  .rep b{font-weight:500;color:var(--ink)}
+  .consent-why{margin:0 0 14px!important;font-size:.95rem!important;font-weight:500;color:var(--accent-ink)!important;line-height:1.6}
+  .survey .consent-text{margin:0 0 6px}
+  .consent-list{margin:0 0 20px;padding-inline-start:20px;font-size:.85rem;line-height:1.75;color:var(--ink-2)}
+  .consent-choice{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .consent-btn{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;font:inherit;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);padding-block:14px;padding-inline:18px;cursor:pointer;transition:border-color .15s,background .15s}
+  .consent-btn b{font-size:1rem;font-weight:600}
+  .consent-btn span{font-size:.85rem;color:var(--muted)}
+  .consent-btn:hover{border-color:var(--accent)}
+  .consent-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .consent-btn[aria-checked="true"]{border-color:var(--accent);background:var(--accent-soft)}
+  .consent-btn[aria-checked="true"] b::before{content:"✓ ";color:var(--accent-ink)}
+  .start-hint{margin:10px 0 0;font-size:.82rem;color:var(--muted)}
+  #start-btn:disabled{opacity:.45;cursor:not-allowed}
+  @media (max-width:560px){ .consent-choice{grid-template-columns:1fr} }
+  .rep-title{margin-top:0}
+  .rep-date,.rep-small{font-size:.82rem;color:var(--muted);margin:0 0 6px}
+  .rep-print-logo,.rep-print-foot{display:none}
+  .rep-card{border:1px solid var(--accent);background:var(--surface);padding-block:22px;padding-inline:24px;margin-top:22px}
+  .rep-card-top{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--line)}
+  .rep-card .rep-small{margin:0 0 2px}
+  .rep-overall{margin:0!important;font-size:1.3rem!important;font-weight:500;color:var(--ink);line-height:1.4!important}
+  .rep-total{margin:0!important;text-align:right}
+  .rep-total strong{font-family:"Familjen Grotesk",sans-serif;font-size:2.6rem;font-weight:600;line-height:1;color:var(--accent-ink)}
+  .rep-total span{display:block;font-size:.78rem;color:var(--muted)}
+  .rep-dimlist{list-style:none;margin:6px 0 0;padding:0}
+  .rep-dimlist li{padding-top:14px}
+  .rep-dimrow{display:flex;justify-content:space-between;gap:14px;font-size:.9rem;color:var(--ink);margin-bottom:6px}
+  .rep-dimscore{white-space:nowrap;color:var(--muted)}
+  .rep-dimscore b{color:var(--ink)}
+  .rep-bar{display:block;height:5px;background:var(--line);border-radius:99px;overflow:hidden}
+  .rep-bar span{display:block;height:100%;background:var(--accent)}
+  .rep-tag{display:inline-block;margin-inline-start:6px;font-size:.7rem;color:#fff;background:var(--accent);padding-block:1px;padding-inline:7px;text-decoration:none;white-space:nowrap;vertical-align:1px}
+  .rep-toolbar{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+  .rep-sec{margin-top:52px;padding-top:26px;border-top:1px solid var(--line)}
+  .rep-sec h2{font-family:"IBM Plex Sans Thai",sans-serif;font-size:clamp(1.2rem,2.6vw,1.45rem);font-weight:500;color:var(--ink);margin:0 0 16px;line-height:1.4}
+  .rep-sec .eyebrow{margin-bottom:8px}
+  .rep-sub{color:var(--muted)!important;margin-top:-10px!important}
+  .rep-h3{font-family:"IBM Plex Sans Thai",sans-serif;font-size:1.08rem;font-weight:500;color:var(--ink);margin:22px 0 4px;line-height:1.45}
+  .rep-h4{font-family:"IBM Plex Sans Thai",sans-serif;font-size:.97rem;font-weight:500;color:var(--ink);margin:20px 0 8px;line-height:1.5}
+  .rep-dim{margin-top:34px;padding-top:4px;border-top:2px solid var(--accent)}
+  .rep-dim:first-of-type{margin-top:8px}
+  .rep-levelbox{background:var(--surface);border:1px solid var(--line);padding-block:16px 6px;padding-inline:18px;margin:10px 0 6px}
+  .rep-levelhead{font-weight:500;color:var(--accent-ink)!important;font-size:.9rem!important}
+  .rep-label{margin:20px 0 8px!important;font-size:.88rem!important;font-weight:500;color:var(--accent-ink)!important}
+  .rep-quote{margin:6px 0 14px;background:var(--accent-soft);border-left:3px solid var(--accent);padding-block:14px;padding-inline:18px;font-size:.95rem;line-height:1.75;color:var(--ink)}
+  .rep-plan{scroll-margin-top:96px}
+  .rep-focus{background:var(--accent-soft);padding-block:16px 6px;padding-inline:20px;margin:6px 0 16px}
+  .rep-focus p{margin:0 0 8px}
+  .rep-plan-dim{margin-top:26px;padding-top:4px;border-top:2px solid var(--accent)}
+  .rep-ol{margin:0 0 12px;padding-inline-start:22px;font-size:.95rem;line-height:1.8}
+  .rep-ol li{margin-bottom:6px}
+  .rep-note{font-size:.85rem!important;color:var(--muted)!important}
+  .rep-write-wrap{position:relative;margin-bottom:6px;font-size:.95rem}
+  .rep-lines{position:absolute;inset:0;pointer-events:none}
+  .rep-lines span{display:block;height:2.1em;box-sizing:border-box;border-bottom:1px solid var(--line)}
+  .rep-write{position:relative;line-height:2.1em;color:var(--ink);padding-inline:4px;outline:none}
+  .rep-write:focus{background:var(--accent-soft)}
+  .rep-notes{margin-top:44px;border:1px solid var(--line);padding-block:18px 8px;padding-inline:20px}
+  .rep-notes h3{font-size:.97rem;font-weight:500;color:var(--ink);margin:0 0 10px}
+  .rep-notes p{font-size:.85rem;color:var(--muted)}
+  @media (max-width:560px){ .rep-card{padding-inline:16px} .rep-dimrow{flex-direction:column;gap:2px} .rep-total{text-align:left} }
+
+  /* ----- พิมพ์ / บันทึกเป็น PDF ----- */
+  @media print{
+    :root{--paper:#fff!important;--surface:#fff!important;--ink:#151E1A!important;--ink-2:#3A4741!important;--muted:#5d6a63!important;--line:#d9e0d8!important;--accent:#33804E!important;--accent-soft:#E8F0EA!important;--accent-ink:#27633C!important}
+    @page{margin:14mm 14mm 16mm}
+    html{font-size:13px}
+    body{background:#fff}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    #intro,#quiz,.rep-toolbar,.rep-note,.result-actions,.next-step,.site-foot,.masthead,#cta,section>.quiz-wrap>.back-link{display:none!important}
+    .pad{padding-block:0!important}
+    .quiz-wrap{max-width:none;padding-inline:0}
+    .screen{animation:none}
+    .rep-print-logo{display:block;height:34px;width:auto;margin-bottom:18px}
+    .rep-print-foot{display:block;margin-top:24px!important;font-size:.8rem!important;color:var(--muted)!important;border-top:1px solid var(--line);padding-top:10px}
+    .rep-tag{color:#fff!important}
+    .rep-card,.rep-levelbox,.rep-quote,.rep-focus,.rep-notes,.rep-h3,.rep-h4,.rep-sec h2{break-inside:avoid}
+    .rep-h3,.rep-h4,.rep-sec h2,.rep-label{break-after:avoid}
+    .rep-plan{break-before:auto}
+    .rep-write{background:none!important}
+    .rep-lines span{border-bottom-color:#cfd6ce!important}
+    a{color:inherit;text-decoration:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-inner">
+      <a class="logo" href="index.html" aria-label="HUMANgo">
+        <img class="logo-img" src="assets/img/logo.png" alt="HUMANgo" width="499" height="150">
+      </a>
+      <nav>
+        <a href="assessment.html">แบบประเมิน</a>
+        <a href="courses.html">หลักสูตร</a>
+        <a href="schools.html">สำหรับสถานศึกษา</a>
+        <a href="index.html#speakers">ทีมวิทยากร</a>
+        <a href="articles.html">บทความ</a>
+        <a href="index.html#contact">ติดต่อเรา</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main>
+<section style="border-top:none">
+  <div class="quiz-wrap pad">
+
+    <!-- ===== intro ===== -->
+    <div id="intro" class="screen">
+      <a class="back-link" href="assessment.html">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H6M11 6l-6 6 6 6"/></svg>
+        แบบประเมินทั้งหมด
+      </a>
+      <p class="eyebrow">ร่วมพัฒนาเกณฑ์มาตรฐาน · ไม่มีค่าใช้จ่าย</p>
+      <h1 id="quiz-title" class="section-title" style="margin-bottom:22px"></h1>
+      <p id="quiz-lead" class="intro-lead"></p>
+      <p id="campaign-end" class="intro-lead" style="margin-top:-6px;color:var(--accent-ink);font-weight:500" hidden></p>
+
+      <div class="facts">
+        <span><i aria-hidden="true"></i><span id="fact-count"></span></span>
+        <span><i aria-hidden="true"></i><span id="fact-time"></span></span>
+        <span><i aria-hidden="true"></i>ไม่ระบุตัวตน</span>
+      </div>
+
+      <div class="scale-box">
+        <h2 id="scale-title"></h2>
+        <div id="scale-list" class="scale-list"></div>
+      </div>
+
+      <div class="disclaimer" role="note">
+        <p id="disclaimer-text"></p>
+        
+      </div>
+
+
+      <div class="survey">
+        <h2>ร่วมพัฒนาเกณฑ์มาตรฐาน</h2>
+        <p class="consent-why">คำตอบของท่านช่วยให้เกณฑ์การแปลผลแม่นยำขึ้น</p>
+        <p class="consent-text">HUMANgo ขอเก็บข้อมูลพื้นฐานและคำตอบของท่าน เพื่อใช้พัฒนาเกณฑ์การแปลผลของแบบประเมินนี้</p>
+        <ul class="consent-list">
+          <li>ข้อมูลไม่ระบุตัวตน</li>
+          <li>เก็บไว้ไม่เกิน 3 ปีนับจากวันที่ตอบ</li>
+        </ul>
+        <!-- ช่องติ๊กซ่อนไว้ ให้โค้ดส่งข้อมูลเดิมอ่านค่าได้เหมือนเดิม · ปุ่มด้านล่างเป็นตัวตั้งค่า -->
+        <input type="checkbox" id="consent" hidden>
+        <div class="consent-choice" role="radiogroup" aria-label="การยินยอมให้ใช้ข้อมูล">
+          <button type="button" class="consent-btn" role="radio" aria-checked="false" data-consent="yes"><b>ยินยอม</b><span>ร่วมพัฒนาแบบวัด</span></button>
+          <button type="button" class="consent-btn" role="radio" aria-checked="false" data-consent="no"><b>ไม่ยินยอม</b><span>ทำแบบวัดอย่างเดียว</span></button>
+        </div>
+        <div id="demo" class="demo" hidden>
+          <p class="demo-note">ข้อมูลพื้นฐาน (ไม่บังคับ ข้ามข้อที่ไม่ต้องการตอบได้)</p>
+        <fieldset data-q="age">
+          <legend>1. อายุ</legend>
+          <div class="opts"><label><input type="radio" name="age" value="ต่ำกว่า 25 ปี"><span>ต่ำกว่า 25 ปี</span></label><label><input type="radio" name="age" value="25–34 ปี"><span>25–34 ปี</span></label><label><input type="radio" name="age" value="35–44 ปี"><span>35–44 ปี</span></label><label><input type="radio" name="age" value="45–54 ปี"><span>45–54 ปี</span></label><label><input type="radio" name="age" value="55 ปีขึ้นไป"><span>55 ปีขึ้นไป</span></label></div>
+        </fieldset>
+        <fieldset data-q="gender">
+          <legend>2. เพศ</legend>
+          <div class="opts"><label><input type="radio" name="gender" value="ชาย"><span>ชาย</span></label><label><input type="radio" name="gender" value="หญิง"><span>หญิง</span></label><label><input type="radio" name="gender" value="อื่นๆ"><span>อื่นๆ</span></label><label><input type="radio" name="gender" value="ไม่ระบุ"><span>ไม่ระบุ</span></label></div>
+        </fieldset>
+        <fieldset data-q="position">
+          <legend>3. ระดับตำแหน่งงาน</legend>
+          <div class="opts"><label><input type="radio" name="position" value="ระดับปฏิบัติการ"><span>ระดับปฏิบัติการ</span></label><label><input type="radio" name="position" value="ผู้บริหารระดับต้น (หัวหน้างาน)"><span>ผู้บริหารระดับต้น (หัวหน้างาน)</span></label><label><input type="radio" name="position" value="ผู้บริหารระดับกลาง"><span>ผู้บริหารระดับกลาง</span></label><label><input type="radio" name="position" value="ผู้บริหารระดับสูง"><span>ผู้บริหารระดับสูง</span></label><label><input type="radio" name="position" value="เจ้าของกิจการ"><span>เจ้าของกิจการ</span></label><label><input type="radio" name="position" value="ยังไม่ได้ทำงาน"><span>ยังไม่ได้ทำงาน</span></label></div>
+        </fieldset>
+        <fieldset data-q="org_type">
+          <legend>4. ประเภทองค์กร</legend>
+          <div class="opts"><label><input type="radio" name="org_type" value="หน่วยงานภาครัฐ"><span>หน่วยงานภาครัฐ</span></label><label><input type="radio" name="org_type" value="รัฐวิสาหกิจ"><span>รัฐวิสาหกิจ</span></label><label><input type="radio" name="org_type" value="บริษัทเอกชน"><span>บริษัทเอกชน</span></label><label><input type="radio" name="org_type" value="องค์กรไม่แสวงหากำไร"><span>องค์กรไม่แสวงหากำไร</span></label><label><input type="radio" name="org_type" value="ธุรกิจส่วนตัว"><span>ธุรกิจส่วนตัว</span></label><label><input type="radio" name="org_type" value="อื่นๆ"><span>อื่นๆ</span></label></div>
+        </fieldset>
+        <fieldset data-q="tenure">
+          <legend>5. อายุงานรวมทั้งหมด</legend>
+          <div class="opts"><label><input type="radio" name="tenure" value="น้อยกว่า 1 ปี"><span>น้อยกว่า 1 ปี</span></label><label><input type="radio" name="tenure" value="1–3 ปี"><span>1–3 ปี</span></label><label><input type="radio" name="tenure" value="4–10 ปี"><span>4–10 ปี</span></label><label><input type="radio" name="tenure" value="มากกว่า 10 ปี"><span>มากกว่า 10 ปี</span></label></div>
+        </fieldset>
+        <fieldset data-q="reason">
+          <legend>6. ท่านทำแบบประเมินนี้เพราะ</legend>
+          <div class="opts"><label><input type="radio" name="reason" value="สนใจอยากรู้เอง"><span>สนใจอยากรู้เอง</span></label><label><input type="radio" name="reason" value="องค์กรหรือหัวหน้าให้ทำ"><span>องค์กรหรือหัวหน้าให้ทำ</span></label><label><input type="radio" name="reason" value="เป็นส่วนหนึ่งของการอบรม"><span>เป็นส่วนหนึ่งของการอบรม</span></label><label><input type="radio" name="reason" value="อื่นๆ"><span>อื่นๆ</span></label></div>
+        </fieldset>
+        <fieldset data-q="job_sat">
+          <legend>7. โดยรวมแล้ว ท่านพึงพอใจกับงานปัจจุบันเพียงใด</legend>
+          <div class="opts"><label><input type="radio" name="job_sat" value="ไม่พึงพอใจเลย"><span>ไม่พึงพอใจเลย</span></label><label><input type="radio" name="job_sat" value="ค่อนข้างไม่พึงพอใจ"><span>ค่อนข้างไม่พึงพอใจ</span></label><label><input type="radio" name="job_sat" value="ค่อนข้างพึงพอใจ"><span>ค่อนข้างพึงพอใจ</span></label><label><input type="radio" name="job_sat" value="พึงพอใจมาก"><span>พึงพอใจมาก</span></label><label><input type="radio" name="job_sat" value="ยังไม่ได้ทำงาน"><span>ยังไม่ได้ทำงาน</span></label></div>
+        </fieldset>
+        </div>
+      </div>
+      <div style="margin-top:38px">
+        <button id="start-btn" class="btn btn-primary" type="button" disabled>เริ่มทำแบบประเมิน &nbsp;→</button>
+        <p id="start-hint" class="start-hint">กรุณาเลือก “ยินยอม” หรือ “ไม่ยินยอม” ด้านบนก่อนเริ่มทำแบบประเมิน</p>
+      </div>
+    </div>
+
+    <!-- ===== quiz ===== -->
+    <div id="quiz" class="screen" hidden>
+      <div class="quiz-top">
+        <button id="back-btn" class="icon-btn" type="button" aria-label="ย้อนกลับ">←</button>
+        <div class="progress-wrap">
+          <div class="progress-labels">
+            <span id="progress-label"></span>
+            <span id="progress-percent"></span>
+          </div>
+          <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <span id="progress-fill" class="progress-fill"></span>
+          </div>
+        </div>
+      </div>
+
+      <div id="question-area"></div>
+
+      <div class="quiz-foot">
+        <button id="next-btn" class="btn btn-primary" type="button" hidden>ถัดไป →</button>
+        <p id="kbd-hint" class="kbd-hint">กดปุ่มตัวเลขบนแป้นพิมพ์เพื่อตอบเร็วขึ้น</p>
+      </div>
+    </div>
+
+    <!-- ===== results ===== -->
+    <div id="results" class="screen" hidden>
+      <div id="full-report" class="rep" hidden></div>
+
+      <div id="overall-block">
+        <div class="result-head">
+          <div>
+            <p class="eyebrow">ผลประเมินภาพรวม</p>
+            <h1 id="result-title" class="result-title"></h1>
+            <p id="result-summary" class="result-summary"></p>
+          </div>
+          <div class="score-box">
+            <strong id="total-score">0</strong>
+            <span id="total-max"></span>
+          </div>
+        </div>
+        <p id="score-note" class="score-note"></p>
+      </div>
+
+      <div id="profile-head" hidden>
+        <p class="eyebrow">ผลประเมิน</p>
+        <h1 id="profile-title" class="result-title"></h1>
+      </div>
+
+      <div id="dims-head" class="head-row" style="margin-top:52px">
+        <div>
+          <p class="eyebrow">Dimension Results</p>
+          <h2 class="section-title">ผลการประเมินรายมิติ</h2>
+        </div>
+      </div>
+      <div id="dimension-list" class="dims"></div>
+
+      <div id="guidance" class="guidance">
+        <h2 id="guidance-title"></h2>
+        <p id="guidance-text"></p>
+      </div>
+
+      <div id="cta" class="next-step">
+        <h2 id="cta-title"></h2>
+        <p id="cta-text"></p>
+        <div class="btn-row">
+          <a id="cta-primary" class="btn btn-primary" href="#"></a>
+          <a id="cta-secondary" class="btn btn-ghost" href="#"></a>
+        </div>
+      </div>
+
+      <div class="result-actions">
+        <button id="restart-btn" class="btn btn-ghost" type="button">ทำแบบประเมินอีกครั้ง</button>
+        <button id="print-btn" class="btn btn-ghost" type="button">บันทึกรายงานเป็น PDF</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div>
+      <img src="assets/img/logo.png" alt="HUMANgo">
+      <p>Human Insight. Organizational Growth.<br>People Assessment · Training · HR Consulting</p>
+    </div>
+    <div>
+      <p class="lbl">ติดต่อ</p>
+      <p><a href="tel:0873032305">087-303-2305</a><br><a href="mailto:humangothailand@gmail.com">humangothailand@gmail.com</a></p>
+    </div>
+    <div>
+      <p class="lbl">ช่องทางออนไลน์</p>
+      <p><a href="https://lin.ee/w5Gh5uiA" target="_blank" rel="noopener">LINE Official Account</a><br>
+         <a href="https://www.facebook.com/profile.php?id=61590830550104" target="_blank" rel="noopener">Facebook</a></p>
+    </div>
+  </div>
+</footer>
+
+<noscript><p style="padding:24px">กรุณาเปิดใช้งาน JavaScript เพื่อทำแบบประเมินและดูผลลัพธ์</p></noscript>
+
+<script src="assets/js/quiz.js"></script>
+<script src="assets/js/gm-report-content.js"></script>
+<script src="assets/js/gm-report.js"></script>
+<script>
+/* ===== ตั้งค่าแคมเปญ =====
+   ENDPOINT     = URL ของ Google Apps Script (Deploy > Web app) — เว้นว่าง = ไม่ส่งข้อมูล
+   CAMPAIGN_END = วันสิ้นสุดแคมเปญ เช่น "31 ธันวาคม 2569" — เว้นว่าง = ไม่แสดง */
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbzQkEI4XGfdR-OMXW8OQuwc5yU0AVkRvGqqi6vIkPrmLl9ffc7VRAWm6U7DaSXH2MVMxg/exec";
+const CAMPAIGN_END = "31 ธันวาคม 2569";
+const INSTRUMENT = "growth_mindset_v3";
+
+const QUIZ = {
+  title: "แบบวัดแนวโน้ม Growth Mindset",
+  lead: "สำรวจกรอบความคิดแบบเติบโต 5 ด้าน ได้แก่ การยอมรับความท้าทาย การฟันฝ่าอุปสรรค ทัศนคติต่อความพยายาม การยอมรับคำวิจารณ์ และการเรียนรู้จากผู้อื่น ผ่านข้อความ 25 ข้อ ทำเสร็จแล้วอ่านรายงานฉบับเต็มพร้อมแผนพัฒนาตัวเอง 30 วันได้ทันที — เปิดให้ทำฟรีในช่วงร่วมพัฒนาเกณฑ์มาตรฐานของแบบประเมินนี้",
+  minutes: 10,
+  perPage: 5,
+  showScores: false,
+
+  scaleTitle: "พิจารณาข้อความต่อไปนี้ ว่าท่านเห็นด้วยมากน้อยเพียงใด",
+  scale: [
+    { value: 0, label: "ไม่เห็นด้วยเลย" },
+    { value: 1, label: "ค่อนข้างไม่เห็นด้วย" },
+    { value: 2, label: "ค่อนข้างเห็นด้วย" },
+    { value: 3, label: "เห็นด้วยอย่างยิ่ง" }
+  ],
+
+  questions: [
+    { text: "ฉันชอบทำงานที่ท้าทายความสามารถ", dim: "challenge" },
+    { text: "ถึงแม้ว่าจะเป็นงานที่ไม่เคยทำมาก่อน ฉันก็พร้อมจะรับอาสาทำงานนั้น", dim: "challenge" },
+    { text: "ถ้าไม่แน่ใจว่าจะสามารถทำงานให้สำเร็จตามเป้าหมาย ฉันจะไม่เสี่ยงรับทำงานนั้น", dim: "challenge", reverse: true },
+    { text: "ฉันพร้อมจะเผชิญหน้ากับงานที่ยาก และจะมุ่งมั่นให้บรรลุผลสำเร็จให้ได้", dim: "challenge" },
+    { text: "ฉันรู้สึกสนุกกับงานที่มีความยาก และต้องเรียนรู้สิ่งใหม่ๆ", dim: "challenge" },
+    { text: "เมื่อทำงานไม่สำเร็จตามเป้าหมาย ฉันรู้สึกว่าตนเองไม่มีความสามารถที่จะพัฒนาให้ดีขึ้นได้", dim: "obstacles", reverse: true },
+    { text: "แม้จะมีปัญหามากมาย ฉันยังเชื่อว่าจะสามารถฟันฝ่าอุปสรรคได้", dim: "obstacles" },
+    { text: "ฉันเรียนรู้จากความล้มเหลว เพื่อเอาชนะอุปสรรค", dim: "obstacles" },
+    { text: "เมื่อเผชิญอุปสรรคในการทำงาน ฉันมักคิดว่าความสามารถของตนเองคงพัฒนาไปได้ไม่มากกว่านี้", dim: "obstacles", reverse: true },
+    { text: "อุปสรรคในการทำงาน ช่วยให้ฉันได้พัฒนาตนเอง", dim: "obstacles" },
+    { text: "ฉันเชื่อมั่นว่า ความพยายามจะนำไปสู่ความสำเร็จ", dim: "effort" },
+    { text: "คนที่มีศักยภาพ ไม่จำเป็นต้องใช้ความพยายามในการทำงาน", dim: "effort", reverse: true },
+    { text: "หากพยายามหลายครั้งแล้วยังไม่สำเร็จ ฉันจะหาข้อมูลเพิ่มเติมหรือปรับเปลี่ยนแนวทาง", dim: "effort" },
+    { text: "ฉันสามารถเพิ่มประสิทธิภาพในการทำงานของตนเองได้", dim: "effort" },
+    { text: "ฉันมีความสามารถเพียงพอที่จะทำงานส่วนใหญ่ให้สำเร็จ โดยไม่ต้องใช้ความพยายาม", dim: "effort", reverse: true },
+    { text: "ฉันปฏิเสธที่จะรับฟังคำวิจารณ์เชิงลบ", dim: "feedback", reverse: true },
+    { text: "ฉันชอบฟังคำชมมากกว่าข้อเสนอแนะที่ให้ฉันปรับปรุงผลงาน", dim: "feedback", reverse: true },
+    { text: "ฉันไม่พอใจเมื่อถูกผู้อื่นวิจารณ์ผลงานในแง่ลบ", dim: "feedback", reverse: true },
+    { text: "ฉันนำข้อเสนอแนะเกี่ยวกับข้อผิดพลาดในการทำงานมาใช้ปรับปรุงผลงานของตนเอง", dim: "feedback" },
+    { text: "เมื่อได้รับข้อเสนอแนะเกี่ยวกับผลงาน ฉันพยายามค้นหาว่าตนเองควรปรับปรุงเรื่องใด", dim: "feedback" },
+    { text: "ฉันเชื่อว่าตนเองยังสามารถเรียนรู้ทักษะใหม่ ๆ จากเพื่อนร่วมงานที่มีประสบการณ์แตกต่างจากฉันได้", dim: "others" },
+    { text: "การเปรียบเทียบผลงานกับผู้อื่นที่ทำได้ดีกว่า ทำให้เสียกำลังใจ", dim: "others", reverse: true },
+    { text: "ฉันได้แรงบันดาลใจจากผู้ที่ประสบความสำเร็จในการทำงาน", dim: "others" },
+    { text: "ฉันได้เรียนรู้มากมายจากเพื่อนร่วมงานที่มีประสบการณ์", dim: "others" },
+    { text: "ฉันรู้สึกว่าตนเองล้มเหลว เมื่อมีเพื่อนร่วมงานที่ทำงานได้ดีกว่าฉัน", dim: "others", reverse: true }
+  ],
+
+  dimensions: [
+    { key: "challenge", name: "การยอมรับความท้าทาย (Challenge Acceptance)", direction: "high",
+      desc: "สะท้อนแนวโน้มในการเปิดรับงานหรือสถานการณ์ที่ยาก ใหม่ หรือยังไม่แน่ใจว่าจะทำได้สำเร็จหรือไม่",
+      descMore: "คนที่มี Growth Mindset ในมิตินี้มักมองความท้าทายเป็นพื้นที่สำหรับการเรียนรู้และพัฒนาความสามารถ ไม่ได้หมายความว่าจะไม่รู้สึกกลัวหรือกังวล แต่ยังพร้อมที่จะลองและเรียนรู้จากประสบการณ์นั้น",
+      levels: [
+        { min: 11, max: 15, label: "ระดับสูง",
+          text: "คุณมีแนวโน้มเปิดรับความท้าทายและพร้อมทดลองทำสิ่งที่ยังไม่คุ้นเคย แม้ยังไม่แน่ใจว่าจะทำได้สำเร็จ คุณมักมองงานยากเป็นโอกาสในการเรียนรู้และพัฒนาตนเอง มากกว่าจะใช้ความสำเร็จหรือความล้มเหลวเป็นตัวตัดสินความสามารถของตนเอง" },
+        { min: 6, max: 10, label: "ระดับปานกลาง",
+          text: "คุณสามารถเปิดรับความท้าทายได้ในหลายสถานการณ์ โดยเฉพาะเมื่อรู้สึกว่ามีโอกาสทำสำเร็จหรือมีทรัพยากรเพียงพอ แต่ในสถานการณ์ที่ยากมากหรือมีความไม่แน่นอนสูง คุณอาจลังเลหรือเลือกสิ่งที่คุ้นเคยมากกว่า การค่อย ๆ ทดลองทำสิ่งที่ยากขึ้นทีละน้อยจะช่วยเพิ่มความมั่นใจในการเผชิญความท้าทายได้" },
+        { min: 0, max: 5, label: "ระดับควรพัฒนา",
+          text: "คุณอาจมีแนวโน้มหลีกเลี่ยงงานหรือสถานการณ์ที่รู้สึกว่ายากเกินไป หรือไม่แน่ใจว่าจะทำสำเร็จหรือไม่ ซึ่งอาจทำให้พลาดโอกาสบางอย่างในการเรียนรู้ ลองเริ่มจากความท้าทายที่สูงกว่าระดับเดิมเล็กน้อย และเปลี่ยนเป้าหมายจาก “ต้องทำให้สำเร็จ” เป็น “ฉันจะได้เรียนรู้อะไรจากการลองครั้งนี้”" }
+      ] },
+    { key: "obstacles", name: "การฟันฝ่าอุปสรรค (Persistence Through Obstacles)", direction: "high",
+      desc: "สะท้อนวิธีที่คุณตอบสนองเมื่อพบปัญหา ความผิดพลาด หรืออุปสรรคระหว่างการทำงาน",
+      descMore: "Growth Mindset ไม่ได้หมายถึงการพยายามทำสิ่งเดิมซ้ำ ๆ โดยไม่หยุด แต่คือความสามารถในการเดินหน้าต่อ พร้อมเรียนรู้และปรับวิธีการเมื่อแนวทางเดิมไม่ได้ผล",
+      levels: [
+        { min: 11, max: 15, label: "ระดับสูง",
+          text: "เมื่อพบอุปสรรค คุณมีแนวโน้มที่จะยังคงเดินหน้าต่อ และมองหาวิธีรับมือหรือแนวทางใหม่แทนการรีบสรุปว่าตนเองทำไม่ได้ คุณสามารถมองความผิดพลาดและความล้มเหลวเป็นข้อมูลที่ช่วยให้เข้าใจว่าควรปรับอะไรในการพยายามครั้งต่อไป" },
+        { min: 6, max: 10, label: "ระดับปานกลาง",
+          text: "คุณสามารถรับมือกับอุปสรรคได้ในหลายสถานการณ์ แต่เมื่อเผชิญความผิดหวังซ้ำ ๆ หรือปัญหาที่แก้ได้ยาก คุณอาจเริ่มลดความพยายามหรือสงสัยในความสามารถของตนเอง การฝึกแยกคำถามว่า “ฉันทำไม่ได้” ออกจาก “วิธีที่ฉันใช้อยู่ยังไม่ได้ผล” อาจช่วยให้มองเห็นทางเลือกใหม่ได้มากขึ้น" },
+        { min: 0, max: 5, label: "ระดับควรพัฒนา",
+          text: "เมื่อเจออุปสรรคหรือความล้มเหลว คุณอาจรู้สึกหมดกำลังใจและมีแนวโน้มที่จะลดเป้าหมายหรือหยุดพยายามค่อนข้างเร็ว ลองมองอุปสรรคเป็นข้อมูลย้อนกลับว่า “ตรงไหนยังไม่เวิร์ก” แล้วทดลองเปลี่ยนวิธี ขอความช่วยเหลือ หรือแบ่งปัญหาออกเป็นส่วนเล็ก ๆ แทนการตีความว่าอุปสรรคเป็นหลักฐานว่าตนเองไม่มีความสามารถ" }
+      ] },
+    { key: "effort", name: "ทัศนคติต่อความพยายาม (Attitude Toward Effort)", direction: "high",
+      desc: "สะท้อนความเชื่อเกี่ยวกับบทบาทของความพยายามต่อการพัฒนาความสามารถ",
+      descMore: "คนที่มี Growth Mindset มักมองว่าความสามารถสามารถพัฒนาได้ผ่านการฝึกฝน การเรียนรู้ และการใช้วิธีที่เหมาะสม อย่างไรก็ตาม “พยายามมากขึ้น” เพียงอย่างเดียวไม่ใช่ Growth Mindset หากวิธีเดิมไม่ได้ผล การปรับกลยุทธ์ก็เป็นส่วนสำคัญของการเรียนรู้เช่นกัน",
+      levels: [
+        { min: 11, max: 15, label: "ระดับสูง",
+          text: "คุณมีแนวโน้มมองความพยายาม การฝึกฝน และการปรับวิธีการเป็นส่วนหนึ่งของกระบวนการพัฒนาความสามารถ เมื่อยังทำบางอย่างไม่ได้ คุณไม่ได้รีบสรุปว่าตนเองไม่มีความสามารถ แต่พร้อมเรียนรู้ ทดลอง และค้นหาวิธีที่เหมาะสมกว่าเดิม" },
+        { min: 6, max: 10, label: "ระดับปานกลาง",
+          text: "คุณเห็นคุณค่าของความพยายามและเชื่อว่าการฝึกฝนช่วยให้พัฒนาได้ แต่ในบางสถานการณ์ โดยเฉพาะเมื่อพยายามแล้วยังไม่เห็นผล คุณอาจเริ่มตั้งคำถามว่าความพยายามนั้นคุ้มค่าหรือไม่ ลองให้ความสำคัญไม่เพียงกับ “พยายามให้มากขึ้น” แต่รวมถึง “พยายามให้ต่างออกไป” ด้วย" },
+        { min: 0, max: 5, label: "ระดับควรพัฒนา",
+          text: "คุณอาจมีแนวโน้มมองว่าหากต้องใช้ความพยายามมาก หรือพยายามแล้วยังทำไม่ได้ แสดงว่าสิ่งนั้นอาจไม่ใช่ความถนัดของตนเอง ความเชื่อนี้อาจทำให้หยุดการเรียนรู้ก่อนที่จะมีโอกาสพัฒนา ลองสังเกตความก้าวหน้าเล็ก ๆ ที่เกิดจากการฝึกฝน และให้ความสำคัญกับการค้นหากลยุทธ์ใหม่ควบคู่กับความพยายาม" }
+      ] },
+    { key: "feedback", name: "การยอมรับคำวิจารณ์ (Openness to Feedback)", direction: "high",
+      desc: "สะท้อนวิธีที่คุณรับและใช้ข้อมูลย้อนกลับหรือคำวิจารณ์เพื่อการพัฒนา",
+      descMore: "คนที่มี Growth Mindset ไม่จำเป็นต้องรู้สึกดีทุกครั้งที่ถูกวิจารณ์ แต่สามารถแยก “ข้อมูลเกี่ยวกับผลงานหรือพฤติกรรม” ออกจาก “คุณค่าของตนเอง” และนำข้อมูลที่เป็นประโยชน์ไปใช้ปรับปรุงต่อได้",
+      levels: [
+        { min: 11, max: 15, label: "ระดับสูง",
+          text: "คุณมีแนวโน้มเปิดรับความคิดเห็นและคำวิจารณ์ และสามารถมอง Feedback เป็นข้อมูลที่ช่วยให้เห็นสิ่งที่ตนเองอาจมองไม่เห็น แม้คำวิจารณ์บางอย่างอาจทำให้รู้สึกไม่สบายใจ คุณยังสามารถพิจารณาเนื้อหาของ Feedback และเลือกนำส่วนที่เป็นประโยชน์ไปพัฒนาตนเองได้" },
+        { min: 6, max: 10, label: "ระดับปานกลาง",
+          text: "โดยทั่วไปคุณสามารถรับฟัง Feedback ได้ แต่การเปิดรับอาจขึ้นอยู่กับวิธีการพูด ผู้ให้ Feedback หรือความสำคัญของเรื่องนั้น หากเป็นเรื่องที่คุณให้คุณค่ามาก คุณอาจรู้สึกปกป้องตนเองหรือไม่สบายใจได้ง่ายขึ้น ลองแยก “วิธีที่เขาพูด” ออกจาก “ข้อมูลอะไรที่อาจเป็นประโยชน์กับเรา” จะช่วยให้ใช้ Feedback ได้มากขึ้น" },
+        { min: 0, max: 5, label: "ระดับควรพัฒนา",
+          text: "คำวิจารณ์หรือ Feedback อาจทำให้คุณรู้สึกถูกตัดสิน ถูกลดคุณค่า หรืออยากปฏิเสธความคิดเห็นนั้นค่อนข้างเร็ว ซึ่งเป็นปฏิกิริยาที่เกิดขึ้นได้กับทุกคน แต่หากเกิดบ่อย อาจทำให้เสียโอกาสในการมองเห็นจุดที่สามารถพัฒนาได้ ลองให้เวลาตัวเองก่อนตอบสนอง และถามว่า “ใน Feedback นี้ มีข้อมูลอะไรอย่างน้อยหนึ่งอย่างที่ฉันนำไปใช้ได้บ้าง”" }
+      ] },
+    { key: "others", name: "การเรียนรู้และรับแรงบันดาลใจจากผู้อื่น (Learning & Inspiration from Others)", direction: "high",
+      desc: "สะท้อนวิธีที่คุณตอบสนองเมื่อพบคนที่มีความสามารถ ทำได้ดีกว่า หรือประสบความสำเร็จมากกว่า",
+      descMore: "Growth Mindset ช่วยให้เรามองความสามารถของผู้อื่นเป็นแหล่งเรียนรู้ ไม่ใช่หลักฐานว่าตนเองด้อยกว่า และเชื่อว่าสิ่งที่คนอื่นทำได้อาจให้ข้อมูลหรือแนวทางสำหรับการพัฒนาของเราเอง",
+      levels: [
+        { min: 11, max: 15, label: "ระดับสูง",
+          text: "คุณมีแนวโน้มมองความสำเร็จและความสามารถของผู้อื่นเป็นโอกาสในการเรียนรู้ คุณสามารถสังเกตวิธีคิด วิธีทำงาน หรือประสบการณ์ของคนอื่น และนำสิ่งเหล่านั้นมาปรับใช้กับการพัฒนาตนเอง มากกว่ามองความสำเร็จของคนอื่นเป็นสิ่งที่ลดคุณค่าของตนเอง" },
+        { min: 6, max: 10, label: "ระดับปานกลาง",
+          text: "คุณสามารถเรียนรู้และรับแรงบันดาลใจจากผู้อื่นได้ แต่ในบางครั้ง โดยเฉพาะเมื่อเปรียบเทียบกับคนที่ทำได้ดีกว่าในเรื่องที่คุณให้ความสำคัญ คุณอาจรู้สึกกดดันหรือสงสัยในความสามารถของตนเอง ลองเปลี่ยนจากคำถามว่า “ทำไมเขาถึงเก่งกว่าเรา” เป็น “เขาทำอะไรที่เราสามารถเรียนรู้ได้บ้าง”" },
+        { min: 0, max: 5, label: "ระดับควรพัฒนา",
+          text: "เมื่อพบคนที่เก่งกว่าหรือประสบความสำเร็จมากกว่า คุณอาจมีแนวโน้มรู้สึกด้อยกว่า ท้อ หรือมองความสำเร็จของคนอื่นเป็นการเปรียบเทียบกับความสามารถของตนเอง ความรู้สึกเหล่านี้เป็นเรื่องธรรมชาติ แต่คุณสามารถฝึกเปลี่ยนการเปรียบเทียบเป็นการเรียนรู้ได้ โดยสังเกตว่าอีกฝ่ายใช้วิธีคิด ทักษะ หรือกระบวนการอะไรที่คุณสามารถนำมาทดลองกับตัวเองได้" }
+      ] }
+  ],
+
+  overall: {
+    direction: "high",
+    note: "",
+    levels: [
+      { min: 57, max: 75, title: "Growth Mindset ระดับสูงมาก", summary: [
+        "ผลคะแนนของคุณสะท้อนว่า โดยภาพรวมคุณมีแนวโน้มใช้กรอบความคิดแบบเติบโตค่อนข้างชัดเจน คุณมักเชื่อว่าความสามารถสามารถพัฒนาได้ผ่านการเรียนรู้ การฝึกฝน การรับฟังข้อมูลย้อนกลับ และการปรับวิธีการเมื่อพบอุปสรรค",
+        "เมื่อเผชิญงานยาก ความผิดพลาด หรือพบคนที่มีความสามารถมากกว่า คุณมีแนวโน้มมองสถานการณ์เหล่านี้เป็นโอกาสในการเรียนรู้ มากกว่าจะใช้เป็นหลักฐานตัดสินว่าตนเอง “เก่ง” หรือ “ไม่เก่ง”",
+        "อย่างไรก็ตาม Growth Mindset ไม่ได้หมายถึงการต้องคิดบวกหรือพยายามต่อไปในทุกสถานการณ์ สิ่งสำคัญคือการรู้จักประเมินสิ่งที่เกิดขึ้น เรียนรู้จากข้อมูล และเลือกปรับกลยุทธ์ให้เหมาะสมต่อไป" ] },
+      { min: 38, max: 56, title: "Growth Mindset ระดับสูง", summary: [
+        "ผลคะแนนของคุณสะท้อนว่า คุณมีแนวโน้มใช้กรอบความคิดแบบเติบโตในหลายสถานการณ์ คุณสามารถมองความท้าทาย ความพยายาม และข้อผิดพลาดเป็นส่วนหนึ่งของกระบวนการเรียนรู้ และโดยทั่วไปเปิดรับโอกาสในการพัฒนาตนเอง",
+        "อย่างไรก็ตาม ในบางสถานการณ์ เช่น งานที่มีความกดดันสูง ความล้มเหลวซ้ำ ๆ หรือเรื่องที่เกี่ยวข้องกับความมั่นใจในตนเอง คุณอาจยังมีช่วงเวลาที่ลังเล ท้อ หรือกลับไปตีความความสามารถของตนเองแบบค่อนข้างตายตัวได้",
+        "การสังเกตว่าคุณมักติดขัดในมิติใด และฝึกเปลี่ยนจากคำถามว่า “ฉันทำได้หรือไม่ได้” ไปเป็น “ฉันยังเรียนรู้อะไรได้อีก” จะช่วยให้ Growth Mindset ของคุณแข็งแรงขึ้น" ] },
+      { min: 19, max: 37, title: "Growth Mindset ระดับปานกลาง", summary: [
+        "ผลคะแนนของคุณสะท้อนว่า คุณมีทั้งแนวโน้มแบบ Growth Mindset และ Fixed Mindset ขึ้นอยู่กับสถานการณ์ ในบางเรื่องคุณสามารถเปิดรับความท้าทาย พยายามต่อ และเรียนรู้จาก Feedback ได้ดี แต่ในบางเรื่อง โดยเฉพาะเมื่อรู้สึกกดดัน ล้มเหลว หรือถูกเปรียบเทียบ คุณอาจเริ่มสงสัยในความสามารถของตนเองได้ง่ายขึ้น",
+        "ระดับนี้ไม่ได้หมายความว่าคุณขาด Growth Mindset แต่สะท้อนว่ากรอบความคิดของคุณอาจยังเปลี่ยนแปลงตามบริบทค่อนข้างมาก",
+        "ลองพิจารณาคะแนนรายมิติว่าด้านใดเป็นจุดแข็ง และด้านใดเป็นพื้นที่ที่คุณสามารถพัฒนาต่อได้ การปรับวิธีคิดทีละเล็กน้อย เช่น มองข้อผิดพลาดเป็นข้อมูล หรือเปลี่ยนวิธีเมื่อแนวทางเดิมไม่ได้ผล สามารถช่วยเสริม Growth Mindset ได้อย่างต่อเนื่อง" ] },
+      { min: 0, max: 18, title: "Growth Mindset ระดับควรพัฒนา", summary: [
+        "ผลคะแนนของคุณสะท้อนว่า ในหลายสถานการณ์ คุณอาจมีแนวโน้มตีความความสามารถของตนเองค่อนข้างตายตัว เช่น รู้สึกว่างานที่ยากเป็นสิ่งที่ควรหลีกเลี่ยง ท้อได้ง่ายเมื่อพยายามแล้วไม่สำเร็จ หรือรู้สึกไม่สบายใจเมื่อได้รับคำวิจารณ์หรือเปรียบเทียบตนเองกับผู้อื่น",
+        "ผลนี้ไม่ได้หมายความว่าคุณไม่สามารถพัฒนาได้ และไม่ได้เป็นการตัดสินศักยภาพของคุณ แต่สะท้อนรูปแบบความคิดที่เกิดขึ้นในช่วงเวลาปัจจุบัน",
+        "Growth Mindset เป็นสิ่งที่สามารถฝึกและพัฒนาได้ คุณอาจเริ่มจากการเลือกเพียงหนึ่งมิติที่ต้องการพัฒนา เช่น ทดลองรับความท้าทายเล็ก ๆ มากขึ้น มองความผิดพลาดเป็นข้อมูล หรือถามตัวเองว่า “ครั้งหน้าฉันจะลองทำอะไรต่างออกไปได้บ้าง” การเปลี่ยนแปลงเล็ก ๆ อย่างต่อเนื่องสามารถสร้างความแตกต่างได้ในระยะยาว" ] }
+    ]
+  },
+
+  guidance: {
+    title: "หมายเหตุในการอ่านผล",
+    text: "ผลคะแนนนี้สะท้อนแนวโน้มของคุณในปัจจุบัน ไม่ใช่การตัดสินความสามารถหรือบุคลิกภาพแบบตายตัว เราอาจมี Growth Mindset สูงในบางด้านและยังมีพื้นที่พัฒนาในอีกบางด้านได้ อีกทั้งแนวคิดและพฤติกรรมเหล่านี้สามารถเปลี่ยนแปลงและพัฒนาได้จากประสบการณ์ การฝึกฝน และสภาพแวดล้อมที่เหมาะสม"
+  },
+
+  cta: {
+    title: "อยากพัฒนา Growth Mindset ทั้งทีม?",
+    text: "HUMANgo มีหลักสูตร Growth Mindset: Building a Culture of Continuous Growth ที่พัฒนากรอบความคิดแบบเติบโตทั้ง 5 ด้าน ผ่านกิจกรรมและกรณีศึกษาที่ปรับให้ตรงกับบริบทองค์กรของคุณ",
+    primary: { label: "ดูหลักสูตร Growth Mindset", href: "courses.html#c06" },
+    secondary: { label: "ปรึกษาทีม HUMANgo", href: "index.html#contact" }
+  },
+
+  disclaimer: "แบบประเมินนี้ใช้เพื่อการสำรวจและสะท้อนตนเองเบื้องต้น ไม่ใช่เครื่องมือวินิจฉัยทางจิตวิทยา และไม่ควรใช้ตัดสิน คัดออก หรือประเมินบุคคลเพียงลำพัง แบบวัดนี้อยู่ระหว่างพัฒนา ผลที่ได้เป็นผลเบื้องต้นตามเกณฑ์ที่กำหนดจากทฤษฎีกรอบความคิด (Mindset Theory) ของ Carol S. Dweck และจะปรับปรุงเมื่อวิเคราะห์ข้อมูลเสร็จ",
+
+  onComplete: function (r) { showFullReport(r); sendResponse(r); }
+};
+
+/* ===== ขอความยินยอม + ข้อมูลพื้นฐาน ===== */
+(function () {
+  const consent = document.getElementById("consent");
+  const demo = document.getElementById("demo");
+  const notWorking = ["position", "org_type", "tenure", "job_sat"].filter((n) => n !== "position");
+  const startBtn = document.getElementById("start-btn");
+  const startHint = document.getElementById("start-hint");
+  const choiceBtns = document.querySelectorAll(".consent-btn");
+  choiceBtns.forEach((b) => b.addEventListener("click", () => {
+    const yes = b.dataset.consent === "yes";
+    consent.checked = yes;
+    choiceBtns.forEach((x) => x.setAttribute("aria-checked", x === b ? "true" : "false"));
+    demo.hidden = !yes;
+    startBtn.disabled = false;
+    startHint.hidden = true;
+  }));
+  demo.hidden = true;
+  demo.addEventListener("change", (e) => {
+    if (e.target.name !== "position") return;
+    const skip = e.target.value === "ยังไม่ได้ทำงาน";
+    notWorking.forEach((n) => {
+      const fs = document.querySelector('fieldset[data-q="' + n + '"]');
+      fs.hidden = skip;
+      if (skip) fs.querySelectorAll("input").forEach((i) => { i.checked = false; });
+    });
+  });
+  if (CAMPAIGN_END) {
+    const p = document.getElementById("campaign-end");
+    p.textContent = "เปิดให้ทำฟรีถึง " + CAMPAIGN_END;
+    p.hidden = false;
+  }
+})();
+
+function demoValue(name) {
+  const el = document.querySelector('input[name="' + name + '"]:checked');
+  return el ? el.value : "";
+}
+
+function sendResponse(r) {
+  if (!ENDPOINT || !document.getElementById("consent").checked) return;
+  let repeat = 0;
+  try { repeat = localStorage.getItem("hg_sent_" + INSTRUMENT) ? 1 : 0; } catch (e) {}
+  const row = {
+    client_time: new Date().toISOString(),
+    duration_sec: r.durationSec,
+    device: window.matchMedia("(max-width: 700px)").matches ? "mobile" : "desktop",
+    repeat: repeat,
+    age: demoValue("age"), gender: demoValue("gender"), position: demoValue("position"),
+    org_type: demoValue("org_type"), tenure: demoValue("tenure"), reason: demoValue("reason"),
+    job_sat: demoValue("job_sat")
+  };
+  r.answers.forEach((v, i) => { row["q" + (i + 1)] = v; });              // คำตอบดิบ (ยังไม่กลับคะแนน)
+  r.dimensions.forEach((d) => { row["dim_" + d.key] = d.score; });       // คะแนนรายด้าน (กลับคะแนนแล้ว)
+  row.total = r.total;
+  row.overall_level = r.overallTitle;
+  try {
+    fetch(ENDPOINT, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({ instrument: INSTRUMENT, row: row }) });
+    localStorage.setItem("hg_sent_" + INSTRUMENT, "1");
+  } catch (e) { /* ส่งไม่สำเร็จก็ไม่กระทบหน้าผล */ }
+}
+
+HUMANgoQuiz.mount(QUIZ);
+
+/* ===== รายงานฉบับเต็มบนหน้าผล (แทนการส่งทางอีเมล) =====
+   แสดงรายงานจาก gm-report-content.js แล้วซ่อนผลแบบย่อของ quiz.js */
+function showFullReport(r) {
+  const el = document.getElementById("full-report");
+  if (!window.HUMANgoReport || !window.GM_REPORT) { el.hidden = true; return; }   // โหลดไฟล์รายงานไม่ได้ → ใช้ผลแบบย่อเดิม
+  HUMANgoReport.render(r.answers, el);
+  ["overall-block", "profile-head", "dims-head", "dimension-list", "guidance"].forEach(function (id) {
+    const x = document.getElementById(id); if (x) x.hidden = true;
+  });
+}
+
+/* นับว่าผู้เริ่มทำกดยินยอมกี่คน (Google Analytics) — ไม่ส่งคำตอบ */
+document.getElementById("start-btn").addEventListener("click", function () {
+  try {
+    if (typeof gtag === "function") gtag("event", "research_consent", { assessment: INSTRUMENT, consent: document.getElementById("consent").checked ? "yes" : "no" });
+  } catch (e) {}
+});
+</script>
+</body>
+</html>
