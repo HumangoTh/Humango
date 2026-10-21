@@ -147,11 +147,11 @@
       el.innerHTML = out.html;
       el.hidden = false;
       el.querySelectorAll('[data-rep="print"]').forEach((b) =>
-        b.addEventListener("click", () => { track("report_print", { assessment: "growth_mindset_v2" }); window.print(); }));
+        b.addEventListener("click", () => { track("report_print", { assessment: "growth_mindset_v3" }); window.print(); }));
       el.querySelectorAll('a[href="#plan30"]').forEach((a) =>
         a.addEventListener("click", (e) => {
           e.preventDefault();
-          track("report_plan_click", { assessment: "growth_mindset_v2" });
+          track("report_plan_click", { assessment: "growth_mindset_v3" });
           const head = document.querySelector(".masthead");
           const off = (head ? head.getBoundingClientRect().height : 0) + 16;
           const top = document.getElementById("plan30").getBoundingClientRect().top + window.scrollY - off;
