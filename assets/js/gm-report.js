@@ -72,7 +72,7 @@
 
     /* ---------- ทำความเข้าใจ + วิธีอ่านผล ---------- */
     h += '<section class="rep-sec"><h2>ทำความเข้าใจกรอบความคิดแบบเติบโต (Growth Mindset)</h2>' + paras(R.understanding) + "</section>";
-    h += '<section class="rep-sec"><h2>วิธีอ่านผลการประเมิน</h2>' + paras(R.reading) + "</section>";
+    if (R.reading && R.reading.length) h += '<section class="rep-sec"><h2>วิธีอ่านผลการประเมิน</h2>' + paras(R.reading) + "</section>";
 
     /* ---------- ผลรวม ---------- */
     h += '<section class="rep-sec"><h2>การแปลผลคะแนนรวม</h2>' +
@@ -87,7 +87,6 @@
         paras(d.intro) +
         '<div class="rep-levelbox"><p class="rep-levelhead">คะแนนของท่าน ' + s + "/15 — " + lv.label + " (" + lv.min + "–" + lv.max + " คะแนน)</p>" +
         paras(lv.body) + "</div>" +
-        '<p class="rep-label">แนวทางพัฒนา</p>' + paras(d.guide) +
         '<p class="rep-label">คำถามชวนคิด</p>' + quote(d.reflect) + "</div>";
     });
     h += "</section>";
