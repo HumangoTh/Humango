@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>รายงานแบบวัดทดลอง — HUMANgo</title>
+<link rel="icon" href="assets/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Thai:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/pilot.css">
+<style>
+  html,body{margin:0} body{background:var(--paper);color:var(--ink);font-family:"IBM Plex Sans Thai",sans-serif} [hidden]{display:none!important}
+  .r-wrap{max-width:1040px;margin:0 auto;padding-block:28px 80px;padding-inline:16px}
+  .r-key{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin-top:18px}
+  .r-key label{flex:1;min-width:220px}
+  .r-msg{font-size:.88rem;color:var(--muted);margin:12px 0 0}
+  .r-msg.err{color:#a33}
+  .r-tabs{display:flex;gap:0;border-bottom:1px solid var(--line);margin-top:30px;overflow-x:auto}
+  .r-tab{font:inherit;font-size:.92rem;background:none;border:none;border-bottom:2px solid transparent;padding-block:12px;padding-inline:16px;cursor:pointer;color:var(--muted);white-space:nowrap}
+  .r-tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent);font-weight:500}
+  .r-banner{background:var(--accent-soft);border-left:3px solid var(--accent);padding-block:12px;padding-inline:16px;font-size:.86rem;line-height:1.7;color:var(--ink-2);margin-top:22px}
+  .r-sec{margin-top:34px}
+  .r-sec h2{font-size:1.15rem;font-weight:500;margin:0 0 4px;color:var(--ink)}
+  .r-sub{font-size:.85rem;color:var(--muted);margin:0 0 16px}
+  .r-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:16px}
+  .r-tile{background:var(--surface);border:1px solid var(--line);padding-block:14px;padding-inline:16px}
+  .r-tile b{display:block;font-family:"IBM Plex Mono",monospace;font-size:1.6rem;font-weight:500;color:var(--accent-ink);line-height:1.3}
+  .r-tile b.txt{font-family:"IBM Plex Sans Thai",sans-serif;font-size:1.05rem;line-height:1.5}
+  .r-tile span{font-size:.82rem;color:var(--muted)}
+  .r-card{background:var(--surface);border:1px solid var(--line);padding-block:18px;padding-inline:20px;margin-top:14px}
+  .r-bars{display:grid;gap:8px}
+  .r-bar{display:grid;grid-template-columns:minmax(120px,240px) minmax(0,1fr) 52px;gap:12px;align-items:center;font-size:.86rem}
+  .r-bar .lab{color:var(--ink-2);line-height:1.35}
+  .r-bar .lab small{display:block;color:var(--muted);font-size:.74rem}
+  .r-bar .trk{position:relative;height:14px;background:var(--line-soft);border-radius:0 4px 4px 0}
+  .r-bar .fill{position:absolute;left:0;top:0;bottom:0;background:var(--accent);border-radius:0 4px 4px 0}
+  .r-bar .rng{position:absolute;top:50%;height:2px;background:var(--ink-2);opacity:.45;transform:translateY(-50%)}
+  .r-bar .val{font-family:"IBM Plex Mono",monospace;font-size:.82rem;color:var(--ink);text-align:right}
+  .r-bar:hover .fill{filter:brightness(1.12)}
+  .r-note{font-size:.82rem;color:var(--muted);line-height:1.7;margin:12px 0 0}
+  .r-tblwrap{overflow-x:auto;border:1px solid var(--line);background:var(--surface);margin-top:14px}
+  table.r-tbl{border-collapse:collapse;width:100%;font-size:.82rem;min-width:520px}
+  .r-tbl th,.r-tbl td{padding-block:8px;padding-inline:10px;border-bottom:1px solid var(--line-soft);text-align:left;white-space:nowrap;vertical-align:top}
+  .r-tbl th{font-weight:500;color:var(--muted);background:var(--paper);position:sticky;top:0}
+  .r-tbl td.n{font-family:"IBM Plex Mono",monospace;text-align:right}
+  .r-private{border-top:2px dashed var(--line);margin-top:44px;padding-top:6px}
+  .r-tag{display:inline-block;font-size:.72rem;font-weight:500;color:#fff;background:#8a5a1c;padding-block:1px;padding-inline:8px;margin-bottom:8px}
+  .r-dl{font:inherit;font-size:.82rem;margin-top:12px;background:none;border:1px solid var(--line);padding-block:6px;padding-inline:12px;cursor:pointer;color:var(--ink)}
+  @media (max-width:560px){ .r-bar{grid-template-columns:1fr 44px} .r-bar .trk{grid-column:1 / -1;grid-row:2} }
+</style>
+</head>
+<body>
+<main class="r-wrap">
+  <img class="p-logo" src="assets/img/logo.png" alt="HUMANgo">
+  <p class="p-eyebrow">สำหรับทีมผู้พัฒนาเท่านั้น</p>
+  <h1 class="p-title">รายงานแบบวัดทดลอง</h1>
+  <p class="p-lead">หน้านี้ดึงคำตอบจาก Google Sheet มาแสดง ต้องใส่รหัสผ่านก่อนจึงจะเห็นข้อมูล อาสาสมัครที่ไม่มีรหัสจะไม่เห็นอะไรเลย</p>
+  <div class="r-key">
+    <label class="p-field" style="margin-top:0"><span>รหัสดูรายงาน</span><input id="r-key" type="password" autocomplete="off"></label>
+    <button id="r-load" class="p-btn" type="button">ดูรายงาน</button>
+    <button id="r-demo" class="p-btn ghost" type="button">ดูตัวอย่างด้วยข้อมูลสมมติ</button>
+  </div>
+  <p id="r-msg" class="r-msg"></p>
+
+  <div id="r-out" hidden>
+    <div class="r-tabs" role="tablist">
+      <button class="r-tab" role="tab" data-tab="strengths">แบบวัดจุดแข็ง</button>
+      <button class="r-tab" role="tab" data-tab="career">บุคลิกภาพด้านอาชีพ</button>
+      <button class="r-tab" role="tab" data-tab="personality">บุคลิกภาพ 5 องค์ประกอบ</button>
+    </div>
+    <div id="r-body"></div>
+  </div>
+</main>
+<script src="assets/js/pilot-config.js"></script>
+<script src="assets/js/pilot-items.js"></script>
+<script src="assets/js/pilot.js"></script>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const num = (v) => (v === "" || v == null ? NaN : Number(v));
+  const mean = (a) => a.reduce((x, y) => x + y, 0) / a.length;
+  const fmt = (v) => (Math.round(v * 10) / 10).toFixed(1);
+  const fmtDate = (s) => { const d = new Date(s); return isNaN(d) ? "" : d.toLocaleDateString("th-TH", { day: "numeric", month: "short", year: "2-digit" }); };
+  const ST = PILOT_ITEMS.strengths.strengths;
+  const RIASEC = [["R", "นักปฏิบัติ", "Realistic"], ["I", "นักคิดวิเคราะห์", "Investigative"], ["A", "นักสร้างสรรค์", "Artistic"],
+    ["S", "นักช่วยเหลือ", "Social"], ["E", "ผู้นำและผู้ประกอบการ", "Enterprising"], ["C", "นักจัดระเบียบ", "Conventional"]];
+  const B5 = [["O", "การเปิดรับประสบการณ์", "Openness"], ["C", "ความรับผิดชอบและความมีระเบียบ", "Conscientiousness"],
+    ["E", "การแสดงออกและการเข้าสังคม", "Extraversion"], ["A", "ความเป็นมิตรและการประนีประนอม", "Agreeableness"],
+    ["ES", "ความมั่นคงทางอารมณ์", "Emotional Stability"]];
+  let DATA = null, TAB = "strengths";
+  try { $("r-key").value = localStorage.getItem("hg_pilot_key") || ""; } catch (e) {}
+
+  /* ---------- โหลดข้อมูล ---------- */
+  $("r-load").addEventListener("click", function () {
+    const key = $("r-key").value.trim();
+    if (!window.PILOT_ENDPOINT) return msg("ยังไม่ได้ใส่ URL ของ Apps Script ในไฟล์ assets/js/pilot-config.js", true);
+    if (!key) return msg("กรุณาใส่รหัสดูรายงาน", true);
+    msg("กำลังโหลดข้อมูล…");
+    fetch(window.PILOT_ENDPOINT + "?key=" + encodeURIComponent(key))
+      .then((r) => r.json())
+      .then((j) => {
+        if (!j.ok) return msg("รหัสไม่ถูกต้อง", true);
+        try { localStorage.setItem("hg_pilot_key", key); } catch (e) {}
+        DATA = j.data; msg("โหลดข้อมูลแล้ว · " + new Date().toLocaleString("th-TH")); show();
+      })
+      .catch(() => msg("โหลดข้อมูลไม่สำเร็จ ตรวจสอบอินเทอร์เน็ตหรือ URL ของ Apps Script", true));
+  });
+  $("r-demo").addEventListener("click", function () { DATA = demo(); msg("กำลังแสดงข้อมูลสมมติ 12 คน — ไม่ใช่ข้อมูลจริง"); show(); });
+  function msg(t, err) { $("r-msg").textContent = t; $("r-msg").className = "r-msg" + (err ? " err" : ""); }
+  document.querySelectorAll(".r-tab").forEach((b) => b.addEventListener("click", () => { TAB = b.dataset.tab; show(); }));
+
+  function show() {
+    $("r-out").hidden = false;
+    document.querySelectorAll(".r-tab").forEach((b) => b.setAttribute("aria-selected", b.dataset.tab === TAB ? "true" : "false"));
+    const rows = (DATA && DATA["pilot_" + TAB]) || [];
+    $("r-body").innerHTML = rows.length ? ({ strengths: rStrengths, career: rCareer, personality: rPersonality })[TAB](rows)
+      : '<p class="r-msg">ยังไม่มีคำตอบของแบบวัดนี้</p>';
+    const dl = document.querySelector("[data-dl]");
+    if (dl) dl.addEventListener("click", () => csv(rows, "pilot_" + TAB));
+  }
+
+  /* ---------- ส่วนประกอบ ---------- */
+  const banner = (n) => '<div class="r-banner"><b>ตัวอย่างรายงานภาพรวมองค์กร</b> · ข้อมูลจากการทดลอง ' + n +
+    ' คน ตัวเลขใช้ดูรูปแบบรายงานเท่านั้น ยังไม่ใช่เกณฑ์การแปลผลจริง และไม่ควรใช้ตัดสินหรือคัดเลือกบุคคล</div>';
+  const tiles = (arr) => '<div class="r-tiles">' + arr.map((t) => '<div class="r-tile"><b' + (String(t[0]).length > 8 ? ' class="txt"' : "") + ">" + esc(t[0]) + "</b><span>" + esc(t[1]) + "</span></div>").join("") + "</div>";
+  function bars(list, max, unit) { // list: [{label, sub, v, lo, hi}]
+    return '<div class="r-card"><div class="r-bars">' + list.map((d) => {
+      const tip = d.label + (unit === " คน" ? " · " + d.v + " คน" : " · เฉลี่ย " + fmt(d.v)) + (d.lo != null ? " (ต่ำสุด " + d.lo + " – สูงสุด " + d.hi + ")" : "") + " จาก " + max + (unit || "");
+      return '<div class="r-bar" title="' + esc(tip) + '"><div class="lab">' + esc(d.label) + (d.sub ? "<small>" + esc(d.sub) + "</small>" : "") +
+        '</div><div class="trk"><div class="fill" style="width:' + (d.v / max * 100).toFixed(1) + '%"></div>' +
+        (d.lo != null ? '<div class="rng" style="left:' + (d.lo / max * 100) + "%;width:" + ((d.hi - d.lo) / max * 100) + '%"></div>' : "") +
+        '</div><div class="val">' + (unit === " คน" ? d.v : fmt(d.v)) + "</div></div>";
+    }).join("") + "</div></div>";
+  }
+  function table(head, body) {
+    return '<div class="r-tblwrap"><table class="r-tbl"><thead><tr>' + head.map((h) => "<th>" + esc(h) + "</th>").join("") +
+      "</tr></thead><tbody>" + body.map((r) => "<tr>" + r.map((c) => (typeof c === "number" ? '<td class="n">' + c + "</td>" : "<td>" + esc(c) + "</td>")).join("") + "</tr>").join("") + "</tbody></table></div>";
+  }
+  const privateHead = (sub) => '<div class="r-private"><span class="r-tag">เฉพาะทีมผู้พัฒนา · ไม่แสดงต่อองค์กร</span><div class="r-sec" style="margin-top:6px"><h2>ข้อมูลรายบุคคล</h2><p class="r-sub">' + sub + "</p>";
+  const dlBtn = '<button class="r-dl" type="button" data-dl>ดาวน์โหลดคำตอบดิบ (CSV)</button>';
+  const stats = (vals) => ({ v: mean(vals), lo: Math.min.apply(null, vals), hi: Math.max.apply(null, vals) });
+
+  /* ---------- แบบวัดจุดแข็ง ---------- */
+  function rStrengths(rows) {
+    const keys = Object.keys(rows[0]).filter((k) => /^s\d\d_/.test(k)).sort();
+    const per = rows.map((r) => keys.map((k) => num(r[k])));
+    const list = ST.map((s, i) => Object.assign({ label: s.th, sub: s.en }, stats(per.map((p) => p[i]))));
+    const sorted = list.map((d, i) => Object.assign({ i: i }, d)).sort((a, b) => b.v - a.v);
+    const top5 = per.map((p) => { const cut = p.slice().sort((a, b) => b - a)[4]; return p.map((v, i) => (v >= cut ? i : -1)).filter((i) => i >= 0); });
+    const freq = ST.map((s, i) => ({ label: s.th, sub: s.en, v: top5.filter((t) => t.indexOf(i) >= 0).length }))
+      .sort((a, b) => b.v - a.v).slice(0, 8);
+    const avgTime = mean(rows.map((r) => num(r.duration_sec)).filter((x) => !isNaN(x)));
+    return banner(rows.length) +
+      tiles([[rows.length, "ผู้ร่วมทำแบบวัด"], [sorted[0].label, "จุดแข็งเฉลี่ยสูงสุดของกลุ่ม"], [Math.round(avgTime / 60) + " นาที", "เวลาทำเฉลี่ย"]]) +
+      '<div class="r-sec"><h2>คะแนนเฉลี่ยจุดแข็ง 24 ด้านของกลุ่ม</h2><p class="r-sub">เรียงจากมากไปน้อย · คะแนนแต่ละด้าน 2–10 · เส้นเทาคือช่วงคะแนนต่ำสุด–สูงสุดในกลุ่ม</p>' +
+      bars(sorted, 10) + "</div>" +
+      '<div class="r-sec"><h2>จุดแข็งที่พบบ่อยใน 5 อันดับแรกของสมาชิก</h2><p class="r-sub">จำนวนคนที่มีจุดแข็งด้านนี้อยู่ใน 5 อันดับแรกของตนเอง (นับรวมกรณีคะแนนเท่ากัน)</p>' +
+      bars(freq, rows.length, " คน") + "</div>" +
+      privateHead("ชื่อ จุดแข็ง 5 อันดับแรก และคะแนนทั้ง 24 ด้าน") +
+      table(["ชื่อ", "วันที่", "เวลา (นาที)", "จุดแข็ง 5 อันดับแรก"].concat(ST.map((s) => s.en)),
+        rows.map((r, j) => [r.name, fmtDate(r.client_time), Math.round(num(r.duration_sec) / 60),
+          top5[j].sort((a, b) => per[j][b] - per[j][a]).map((i) => ST[i].th + " " + per[j][i]).join(", ")].concat(per[j]))) + dlBtn + "</div></div>";
+  }
+
+  /* ---------- บุคลิกภาพด้านอาชีพ ---------- */
+  function rCareer(rows) {
+    const list = RIASEC.map((t) => Object.assign({ label: t[0] + " – " + t[1], sub: t[2] }, stats(rows.map((r) => num(r[t[0]])))));
+    const first = RIASEC.map((t) => ({ label: t[0] + " – " + t[1], sub: t[2], v: rows.filter((r) => String(r.code3 || "")[0] === t[0]).length }));
+    const codes = {}; rows.forEach((r) => { codes[r.code3] = (codes[r.code3] || 0) + 1; });
+    const topCode = Object.keys(codes).sort((a, b) => codes[b] - codes[a])[0];
+    return banner(rows.length) +
+      tiles([[rows.length, "ผู้ร่วมทำแบบวัด"], [topCode, "รหัสอาชีพที่พบบ่อยที่สุด"], [list.slice().sort((a, b) => b.v - a.v)[0].label.split(" – ")[1], "ความสนใจเฉลี่ยสูงสุดของกลุ่ม"]]) +
+      '<div class="r-sec"><h2>คะแนนเฉลี่ยความสนใจ 6 ด้าน (RIASEC)</h2><p class="r-sub">คะแนนแต่ละด้าน 0–15 · คะแนน 6 ด้านของแต่ละคนรวมกันได้ 45 เสมอ จึงบอกว่าชอบด้านใด<b>มากกว่า</b>ด้านใด · เส้นเทาคือช่วงต่ำสุด–สูงสุด</p>' +
+      bars(list, 15) + "</div>" +
+      '<div class="r-sec"><h2>ความสนใจหลักของสมาชิก</h2><p class="r-sub">จำนวนคนตามตัวอักษรตัวแรกของรหัสอาชีพ</p>' + bars(first, rows.length, " คน") + "</div>" +
+      privateHead("ชื่อ รหัสอาชีพ 3 ตัว และคะแนน 6 ด้าน") +
+      table(["ชื่อ", "วันที่", "เวลา (นาที)", "รหัสอาชีพ"].concat(RIASEC.map((t) => t[0])),
+        rows.map((r) => [r.name, fmtDate(r.client_time), Math.round(num(r.duration_sec) / 60), r.code3].concat(RIASEC.map((t) => num(r[t[0]]))))) + dlBtn + "</div></div>";
+  }
+
+  /* ---------- บุคลิกภาพ 5 องค์ประกอบ ---------- */
+  function rPersonality(rows) {
+    const list = B5.map((t) => Object.assign({ label: t[1], sub: t[2] + " (" + t[0] + ")" }, stats(rows.map((r) => num(r[t[0]])))));
+    const hi = list.slice().sort((a, b) => b.v - a.v)[0];
+    return banner(rows.length) +
+      tiles([[rows.length, "ผู้ร่วมทำแบบวัด"], [hi.label, "องค์ประกอบเฉลี่ยสูงสุดของกลุ่ม"]]) +
+      '<div class="r-sec"><h2>คะแนนเฉลี่ย 5 องค์ประกอบ</h2><p class="r-sub">คะแนนแต่ละองค์ประกอบ 0–36 · แบบวัดให้เลือกเรียงลำดับในแต่ละชุด คะแนนรวมของทุกคนเท่ากัน (90) จึงบอกว่าลักษณะใดเด่น<b>กว่า</b>ลักษณะใดในตัวคนเดียวกัน · เส้นเทาคือช่วงต่ำสุด–สูงสุด</p>' +
+      bars(list, 36) + "</div>" +
+      privateHead("ชื่อ และคะแนน 5 องค์ประกอบ") +
+      table(["ชื่อ", "วันที่", "เวลา (นาที)"].concat(B5.map((t) => t[0] + " " + t[2])),
+        rows.map((r) => [r.name, fmtDate(r.client_time), Math.round(num(r.duration_sec) / 60)].concat(B5.map((t) => num(r[t[0]]))))) + dlBtn + "</div></div>";
+  }
+
+  /* ---------- CSV ---------- */
+  function csv(rows, name) {
+    const keys = Object.keys(rows[0]);
+    const q = (v) => '"' + String(v == null ? "" : v).replace(/"/g, '""') + '"';
+    const text = "﻿" + [keys.map(q).join(",")].concat(rows.map((r) => keys.map((k) => q(r[k])).join(","))).join("\n");
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([text], { type: "text/csv;charset=utf-8" }));
+    a.download = name + ".csv"; a.click();
+  }
+
+  /* ---------- ข้อมูลสมมติ (ปุ่ม "ดูตัวอย่าง") ---------- */
+  function demo() {
+    const names = ["สมชาย ใจดี", "สุดา รักงาน", "วิชัย มั่นคง", "อรุณี แสงทอง", "ประเสริฐ ก้าวหน้า", "นภา สดใส", "กิตติ พากเพียร", "มาลี ใฝ่รู้", "ธนา รุ่งเรือง", "พิมพ์ใจ อ่อนโยน", "ชัยวัฒน์ กล้าหาญ", "ศิริพร ละเอียด"];
+    let seed = 7; const rnd = () => { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };
+    const base = (i) => ({ name: names[i], client_time: new Date(Date.now() - i * 36e5 * 7).toISOString(), duration_sec: 420 + Math.round(rnd() * 480), device: i % 3 ? "mobile" : "desktop" });
+    const out = { pilot_strengths: [], pilot_career: [], pilot_personality: [] };
+    names.forEach((n, i) => {
+      const a1 = PILOT_ITEMS.strengths.items.map((it) => Math.max(1, Math.min(5, Math.round(3.2 + (it.s % 5) * 0.25 + (rnd() - 0.5) * 2.4))));
+      const r1 = base(i); a1.forEach((v, k) => { r1["q" + (k + 1)] = v; });
+      PILOT_SCORE.strengths(a1).forEach((v, k) => { r1["s" + String(k + 1).padStart(2, "0") + "_" + ST[k].en.replace(/[^A-Za-z]+/g, "_")] = v; });
+      out.pilot_strengths.push(r1);
+      const lean = ["S", "E", "C", "I", "A", "R"][i % 6];
+      const a2 = PILOT_ITEMS.career.items.map((it) => (it.A.t === lean ? "A" : it.B.t === lean ? "B" : rnd() < 0.5 ? "A" : "B"));
+      const t2 = PILOT_SCORE.career(a2), r2 = base(i); a2.forEach((v, k) => { r2["q" + (k + 1)] = v; });
+      Object.assign(r2, t2, { code3: PILOT_CODE3(t2) }); out.pilot_career.push(r2);
+      const a3 = PILOT_ITEMS.personality.blocks.map(() => { const o = [0, 1, 2].sort(() => rnd() - 0.5); return { most: o[0], second: o[1] }; });
+      const t3 = PILOT_SCORE.personality(a3), r3 = base(i);
+      a3.forEach((a, k) => { const b = PILOT_ITEMS.personality.blocks[k]; r3["b" + (k + 1) + "_most"] = b[a.most].f; r3["b" + (k + 1) + "_second"] = b[a.second].f; });
+      Object.assign(r3, t3); out.pilot_personality.push(r3);
+    });
+    return out;
+  }
+})();
+</script>
+</body>
+</html>

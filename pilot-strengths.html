@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>แบบวัดจุดแข็ง</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Thai:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/pilot.css">
+<style>html,body{margin:0} body{background:var(--paper);color:var(--ink);font-family:"IBM Plex Sans Thai",sans-serif} [hidden]{display:none!important}</style>
+</head>
+<body>
+<main class="p-wrap p-top">
+
+<section id="p-intro">
+  <p class="p-eyebrow">ทดลองแบบวัด · สำหรับอาสาสมัคร</p>
+  <h1 class="p-title">แบบวัดจุดแข็ง</h1>
+  <p class="p-lead">แบบวัดนี้มีข้อความ 48 ข้อ ใช้เวลาประมาณ 10 นาที</p>
+  <p class="p-lead">ขอให้ท่านพิจารณาข้อความแต่ละข้อ แล้วประเมินว่าท่านมีประสบการณ์ตรงกับระดับใดมากที่สุด ตั้งแต่ 1 = แทบไม่เคยเป็นเช่นนี้เลย ถึง 5 = เป็นเช่นนี้สม่ำเสมอ</p>
+  <p class="p-lead">ไม่มีคำตอบถูกหรือผิด ขอให้ตอบตามความเป็นจริงของท่าน</p>
+  <label class="p-field"><span>ชื่อ-นามสกุล</span><input id="p-name" type="text" autocomplete="name" maxlength="80"></label>
+  <div class="p-actions"><span></span><button id="p-start" class="p-btn" type="button" disabled>เริ่มทำแบบวัด →</button></div>
+</section>
+
+<section id="p-quiz" hidden>
+  <div class="p-progress"><div class="p-track"><div id="p-bar"></div></div><p id="p-count" class="p-count"></p></div>
+  <div id="p-items"></div>
+  <p id="p-err" class="p-err" hidden>ส่งคำตอบไม่สำเร็จ กรุณาตรวจสอบอินเทอร์เน็ตแล้วกด "ส่งคำตอบ" อีกครั้ง</p>
+  <div class="p-actions">
+    <button id="p-back" class="p-btn ghost" type="button">← ย้อนกลับ</button>
+    <button id="p-next" class="p-btn" type="button" disabled>ถัดไป →</button>
+  </div>
+</section>
+
+<section id="p-done" class="p-done" hidden>
+  <h1 class="p-title">เสร็จแล้ว ขอบคุณมาก</h1>
+  <p class="p-lead">ได้รับคำตอบของท่านเรียบร้อยแล้ว ท่านปิดหน้านี้ได้เลย</p>
+</section>
+</main>
+<script src="assets/js/pilot-config.js"></script>
+<script src="assets/js/pilot-items.js"></script>
+<script src="assets/js/pilot.js"></script>
+<script>
+const SCALE = [
+  { v: 1, label: "แทบไม่เคยเป็นเช่นนี้เลย / ไม่ตรงกับตัวฉันเลย" },
+  { v: 2, label: "เป็นเช่นนี้ไม่บ่อยนัก / ตรงกับตัวฉันเล็กน้อย" },
+  { v: 3, label: "เป็นเช่นนี้เป็นครั้งคราว / ตรงกับตัวฉันปานกลาง" },
+  { v: 4, label: "เป็นเช่นนี้บ่อยครั้ง / ตรงกับตัวฉันมาก" },
+  { v: 5, label: "เป็นเช่นนี้สม่ำเสมอ / เป็นตัวฉันอย่างแท้จริง" }
+];
+PilotQuiz.mount(Object.assign(PilotQuiz.likert(SCALE), {
+  form: "pilot_strengths", endpoint: window.PILOT_ENDPOINT, perPage: 8,
+  getItems: () => PILOT_ITEMS.strengths.items,
+  toRow: function (ans, row) {
+    ans.forEach((v, i) => { row["q" + (i + 1)] = v; });
+    const s = PILOT_SCORE.strengths(ans);
+    PILOT_ITEMS.strengths.strengths.forEach((st, k) => { row["s" + String(k + 1).padStart(2, "0") + "_" + st.en.replace(/[^A-Za-z]+/g, "_")] = s[k]; });
+  }
+}));
+</script>
+</body>
+</html>
