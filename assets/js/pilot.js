@@ -55,6 +55,8 @@
       show("p-quiz"); render(); window.scrollTo(0, 0);
     });
     $("p-next").addEventListener("click", () => {
+      const miss = pages[page].filter((i) => !done(i));
+      if (miss.length) { warn(miss); return; }
       if (page < pages.length - 1) { page += 1; render(); scrollTop(); }
       else submit();
     });
@@ -66,7 +68,8 @@
 
     function render() {
       const box = $("p-items"); box.innerHTML = "";
-      pages[page].forEach((i) => box.appendChild(cfg.renderItem(items[i], i, answers[i], (v) => { answers[i] = v; update(); })));
+      pages[page].forEach((i) => { const el = cfg.renderItem(items[i], i, answers[i], (v) => { answers[i] = v; if (done(i)) el.classList.remove("p-miss"); update(); }); el.dataset.idx = i; box.appendChild(el); });
+      $("p-hint").hidden = true;
       $("p-back").hidden = page === 0;
       update();
     }
@@ -75,8 +78,17 @@
       $("p-bar").style.width = Math.round((answered / N) * 100) + "%";
       $("p-count").textContent = "ตอบแล้ว " + answered + " / " + N + " ข้อ · หน้า " + (page + 1) + " / " + pages.length;
       const ok = pages[page].every(done);
-      $("p-next").disabled = !ok;
+      $("p-next").classList.toggle("p-wait", !ok);
+      if (ok) $("p-hint").hidden = true;
       $("p-next").textContent = page === pages.length - 1 ? "ส่งคำตอบ" : "ถัดไป →";
+    }
+
+    function warn(miss) {
+      document.querySelectorAll("#p-items .p-item").forEach((el) => el.classList.toggle("p-miss", miss.indexOf(Number(el.dataset.idx)) >= 0));
+      $("p-hint").textContent = "ยังตอบไม่ครบ ข้อ " + miss.map((i) => i + 1).join(", ") + (cfg.missText ? " · " + cfg.missText : "");
+      $("p-hint").hidden = false;
+      const first = document.querySelector("#p-items .p-miss");
+      if (first) window.scrollTo({ top: first.getBoundingClientRect().top + window.scrollY - 90, behavior: "smooth" });
     }
 
     function submit() {
@@ -142,6 +154,7 @@
   }
   function triad() {
     return {
+      missText: "แต่ละชุดต้องเลือก 2 ข้อความ: ตรงที่สุด และตรงรองลงมา",
       isAnswered: (a) => a && a.most != null && a.second != null,
       renderItem: function (blk, i, cur, set) {
         let st = cur ? { most: cur.most, second: cur.second } : { most: null, second: null };
@@ -151,10 +164,10 @@
         const reset = document.createElement("button"); reset.type = "button"; reset.className = "p-reset"; reset.textContent = "เลือกใหม่";
         function hint() {
           return st.most == null ? "แตะข้อความที่ <b>ตรงกับตัวท่านมากที่สุด</b>"
-            : st.second == null ? "จากที่เหลือ แตะข้อความที่ <b>ตรงกับตัวท่านมากกว่า</b>" : "เรียบร้อย";
+            : st.second == null ? "ขั้นที่ 2: จากอีกสองข้อความที่เหลือ แตะข้อความที่ <b>ตรงกับตัวท่านมากกว่า</b>" : "เรียบร้อย";
         }
         function draw() {
-          head.innerHTML = '<span class="p-no">' + (i + 1) + "</span>" + hint();
+          head.innerHTML = '<span class="p-no">' + (i + 1) + "</span><span" + (st.most != null && st.second == null ? ' class="p-next-step"' : "") + ">" + hint() + "</span>";
           list.innerHTML = "";
           blk.forEach((s, k) => {
             const b = document.createElement("button"); b.type = "button"; b.className = "p-card";
