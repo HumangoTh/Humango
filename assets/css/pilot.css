@@ -42,6 +42,10 @@
 .p-reset{font:inherit;font-size:.82rem;margin-top:10px;background:none;border:none;color:var(--accent-ink);text-decoration:underline;cursor:pointer;padding:0}
 .p-done{text-align:center;padding-block:80px}
 .p-done .p-title{font-size:2rem}
+.p-btn.p-wait{opacity:.55}
+.p-item.p-miss{background:#fbeeee;box-shadow:-12px 0 0 #fbeeee,12px 0 0 #fbeeee}
+.p-next-step{color:var(--accent-ink);font-weight:500}
+.p-hint{margin-top:14px;font-size:.88rem;line-height:1.6;color:#a33}
 .p-err{margin-top:14px;font-size:.88rem;color:#a33}
 .p-opt:focus-visible,.p-card:focus-visible,.p-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 @media (max-width:560px){
