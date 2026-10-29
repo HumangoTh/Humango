@@ -49,6 +49,18 @@
   .r-private{border-top:2px dashed var(--line);margin-top:44px;padding-top:6px}
   .r-tag{display:inline-block;font-size:.72rem;font-weight:500;color:#fff;background:#8a5a1c;padding-block:1px;padding-inline:8px;margin-bottom:8px}
   .r-dl{font:inherit;font-size:.82rem;margin-top:12px;background:none;border:1px solid var(--line);padding-block:6px;padding-inline:12px;cursor:pointer;color:var(--ink)}
+  .r-bar .mk{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ink);opacity:.7}
+  .r-bar.r-dim .fill{background:var(--line)}
+  .r-bar.r-dim .lab{color:var(--muted)}
+  .r-pick{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin-top:22px}
+  .r-pick label{flex:1;min-width:220px}
+  .r-pick select{width:100%;box-sizing:border-box;font:inherit;font-size:1rem;padding-block:11px;padding-inline:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+  .r-person h2.r-name{font-size:1.6rem;font-weight:500;margin:28px 0 2px}
+  .r-legend{display:flex;gap:18px;flex-wrap:wrap;font-size:.8rem;color:var(--muted);margin-top:10px}
+  .r-legend i{display:inline-block;vertical-align:middle;margin-inline-end:6px}
+  .r-code{font-family:"IBM Plex Mono",monospace;font-size:2.2rem;letter-spacing:.12em;color:var(--accent-ink)}
+  .r-linkname{font:inherit;background:none;border:none;padding:0;color:var(--accent-ink);text-decoration:underline;cursor:pointer;text-align:left}
+  @media print{ .p-logo,.p-eyebrow,.r-wrap>.p-title,.r-wrap>.p-lead,.r-key,.r-msg,.r-tabs,.r-pick{display:none!important} .r-wrap{padding:0;max-width:none} .r-person h2.r-name{margin-top:0} .r-tiles,.r-bar,.r-sec>h2{break-inside:avoid;break-after:auto} .r-sec>h2{break-after:avoid} body{background:#fff} }
   @media (max-width:560px){ .r-bar{grid-template-columns:1fr 44px} .r-bar .trk{grid-column:1 / -1;grid-row:2} }
 </style>
 </head>
@@ -70,6 +82,7 @@
       <button class="r-tab" role="tab" data-tab="strengths">แบบวัดจุดแข็ง</button>
       <button class="r-tab" role="tab" data-tab="career">บุคลิกภาพด้านอาชีพ</button>
       <button class="r-tab" role="tab" data-tab="personality">บุคลิกภาพ 5 องค์ประกอบ</button>
+      <button class="r-tab" role="tab" data-tab="person">รายงานรายบุคคล</button>
     </div>
     <div id="r-body"></div>
   </div>
@@ -91,7 +104,7 @@
   const B5 = [["O", "การเปิดรับประสบการณ์", "Openness"], ["C", "ความรับผิดชอบและความมีระเบียบ", "Conscientiousness"],
     ["E", "การแสดงออกและการเข้าสังคม", "Extraversion"], ["A", "ความเป็นมิตรและการประนีประนอม", "Agreeableness"],
     ["ES", "ความมั่นคงทางอารมณ์", "Emotional Stability"]];
-  let DATA = null, TAB = "strengths";
+  let DATA = null, TAB = "strengths", PERSON = "";
   try { $("r-key").value = localStorage.getItem("hg_pilot_key") || ""; } catch (e) {}
 
   /* ---------- โหลดข้อมูล ---------- */
@@ -116,11 +129,13 @@
   function show() {
     $("r-out").hidden = false;
     document.querySelectorAll(".r-tab").forEach((b) => b.setAttribute("aria-selected", b.dataset.tab === TAB ? "true" : "false"));
+    if (TAB === "person") { rPerson(); return; }
     const rows = (DATA && DATA["pilot_" + TAB]) || [];
     $("r-body").innerHTML = rows.length ? ({ strengths: rStrengths, career: rCareer, personality: rPersonality })[TAB](rows)
       : '<p class="r-msg">ยังไม่มีคำตอบของแบบวัดนี้</p>';
     const dl = document.querySelector("[data-dl]");
     if (dl) dl.addEventListener("click", () => csv(rows, "pilot_" + TAB));
+    $("r-body").querySelectorAll("[data-person]").forEach((b) => b.addEventListener("click", () => { PERSON = b.dataset.person; TAB = "person"; show(); window.scrollTo(0, $("r-out").offsetTop); }));
   }
 
   /* ---------- ส่วนประกอบ ---------- */
@@ -129,18 +144,20 @@
   const tiles = (arr) => '<div class="r-tiles">' + arr.map((t) => '<div class="r-tile"><b' + (String(t[0]).length > 8 ? ' class="txt"' : "") + ">" + esc(t[0]) + "</b><span>" + esc(t[1]) + "</span></div>").join("") + "</div>";
   function bars(list, max, unit) { // list: [{label, sub, v, lo, hi}]
     return '<div class="r-card"><div class="r-bars">' + list.map((d) => {
-      const tip = d.label + (unit === " คน" ? " · " + d.v + " คน" : " · เฉลี่ย " + fmt(d.v)) + (d.lo != null ? " (ต่ำสุด " + d.lo + " – สูงสุด " + d.hi + ")" : "") + " จาก " + max + (unit || "");
-      return '<div class="r-bar" title="' + esc(tip) + '"><div class="lab">' + esc(d.label) + (d.sub ? "<small>" + esc(d.sub) + "</small>" : "") +
+      let tip = d.label + (unit === " คน" ? " · " + d.v + " คน" : " · เฉลี่ย " + fmt(d.v)) + (d.lo != null ? " (ต่ำสุด " + d.lo + " – สูงสุด " + d.hi + ")" : "") + " จาก " + max + (unit || "");
+      if (d.mk != null) tip = d.label + " · " + d.v + " · ค่าเฉลี่ยกลุ่ม " + fmt(d.mk) + " จาก " + max;
+      return '<div class="r-bar' + (d.dim ? " r-dim" : "") + '" title="' + esc(tip) + '"><div class="lab">' + esc(d.label) + (d.sub ? "<small>" + esc(d.sub) + "</small>" : "") +
         '</div><div class="trk"><div class="fill" style="width:' + (d.v / max * 100).toFixed(1) + '%"></div>' +
+        (d.mk != null ? '<div class="mk" style="left:calc(' + (d.mk / max * 100).toFixed(1) + '% - 1px)"></div>' : "") +
         (d.lo != null ? '<div class="rng" style="left:' + (d.lo / max * 100) + "%;width:" + ((d.hi - d.lo) / max * 100) + '%"></div>' : "") +
-        '</div><div class="val">' + (unit === " คน" ? d.v : fmt(d.v)) + "</div></div>";
+        '</div><div class="val">' + (unit === " คน" || d.mk != null ? d.v : fmt(d.v)) + "</div></div>";
     }).join("") + "</div></div>";
   }
   function table(head, body) {
     return '<div class="r-tblwrap"><table class="r-tbl"><thead><tr>' + head.map((h) => "<th>" + esc(h) + "</th>").join("") +
-      "</tr></thead><tbody>" + body.map((r) => "<tr>" + r.map((c) => (typeof c === "number" ? '<td class="n">' + c + "</td>" : "<td>" + esc(c) + "</td>")).join("") + "</tr>").join("") + "</tbody></table></div>";
+      "</tr></thead><tbody>" + body.map((r) => "<tr>" + r.map((c, ci) => (ci === 0 && c ? '<td><button class="r-linkname" type="button" data-person="' + esc(String(c).trim()) + '">' + esc(c) + "</button></td>" : typeof c === "number" ? '<td class="n">' + c + "</td>" : "<td>" + esc(c) + "</td>")).join("") + "</tr>").join("") + "</tbody></table></div>";
   }
-  const privateHead = (sub) => '<div class="r-private"><span class="r-tag">เฉพาะทีมผู้พัฒนา · ไม่แสดงต่อองค์กร</span><div class="r-sec" style="margin-top:6px"><h2>ข้อมูลรายบุคคล</h2><p class="r-sub">' + sub + "</p>";
+  const privateHead = (sub) => '<div class="r-private"><span class="r-tag">เฉพาะทีมผู้พัฒนา · ไม่แสดงต่อองค์กร</span><div class="r-sec" style="margin-top:6px"><h2>ข้อมูลรายบุคคล</h2><p class="r-sub">' + sub + " · กดชื่อเพื่อดูรายงานของคนนั้น</p>";
   const dlBtn = '<button class="r-dl" type="button" data-dl>ดาวน์โหลดคำตอบดิบ (CSV)</button>';
   const stats = (vals) => ({ v: mean(vals), lo: Math.min.apply(null, vals), hi: Math.max.apply(null, vals) });
 
@@ -193,6 +210,64 @@
       privateHead("ชื่อ และคะแนน 5 องค์ประกอบ") +
       table(["ชื่อ", "วันที่", "เวลา (นาที)"].concat(B5.map((t) => t[0] + " " + t[2])),
         rows.map((r) => [r.name, fmtDate(r.client_time), Math.round(num(r.duration_sec) / 60)].concat(B5.map((t) => num(r[t[0]]))))) + dlBtn + "</div></div>";
+  }
+
+  /* ---------- รายงานรายบุคคล ---------- */
+  function latestBy(rows) { // ชื่อเดียวกันส่งหลายครั้ง ใช้ครั้งล่าสุด
+    const m = {}; (rows || []).forEach((r) => { const n = String(r.name || "").trim(); if (!n) return;
+      if (!m[n] || String(r.client_time) > String(m[n].client_time)) m[n] = r; }); return m;
+  }
+  function rPerson() {
+    const S = latestBy(DATA.pilot_strengths), C = latestBy(DATA.pilot_career), P = latestBy(DATA.pilot_personality);
+    const names = Object.keys(Object.assign({}, S, C, P)).sort((a, b) => a.localeCompare(b, "th"));
+    if (!names.length) { $("r-body").innerHTML = '<p class="r-msg">ยังไม่มีคำตอบ</p>'; return; }
+    if (names.indexOf(PERSON) < 0) PERSON = names[0];
+    const done = (n) => [S[n] ? "จุดแข็ง" : "", C[n] ? "อาชีพ" : "", P[n] ? "บุคลิกภาพ" : ""].filter(Boolean).join(" · ");
+    let h = '<div class="r-pick"><label class="p-field" style="margin-top:0"><span>เลือกผู้ตอบ (' + names.length + ' คน)</span><select id="r-who">' +
+      names.map((n) => '<option value="' + esc(n) + '"' + (n === PERSON ? " selected" : "") + ">" + esc(n) + " — " + done(n) + "</option>").join("") +
+      '</select></label><button id="r-print" class="p-btn ghost" type="button">พิมพ์ / บันทึกเป็น PDF</button></div>';
+    h += '<div class="r-person"><h2 class="r-name">' + esc(PERSON) + '</h2><p class="r-sub">รายงานรายบุคคล · ข้อมูลจากการทดลอง ใช้ดูรูปแบบรายงานเท่านั้น ยังไม่ใช่เกณฑ์การแปลผลจริง</p>' +
+      '<div class="r-legend"><span><i style="width:18px;height:10px;background:var(--accent)"></i>คะแนนของผู้ตอบ</span><span><i style="width:2px;height:14px;background:var(--ink);opacity:.7"></i>ค่าเฉลี่ยของผู้ร่วมทดลองทั้งหมด</span></div>';
+    const avg = (rows, k) => mean(rows.map((r) => num(r[k])).filter((x) => !isNaN(x)));
+    const when = (r) => '<p class="r-sub">ทำเมื่อ ' + fmtDate(r.client_time) + " · ใช้เวลา " + Math.round(num(r.duration_sec) / 60) + " นาที</p>";
+
+    const s = S[PERSON];
+    if (s) {
+      const keys = Object.keys(s).filter((k) => /^s\d\d_/.test(k)).sort();
+      const all = DATA.pilot_strengths;
+      const v = keys.map((k) => num(s[k]));
+      const cut = v.slice().sort((a, b) => b - a)[4];
+      const list = ST.map((st, i) => ({ label: st.th, sub: st.en, v: v[i], mk: avg(all, keys[i]), dim: v[i] < cut })).sort((a, b) => b.v - a.v);
+      const top = list.filter((d) => !d.dim);
+      h += '<div class="r-sec"><h2>แบบวัดจุดแข็ง</h2>' + when(s) +
+        tiles(top.slice(0, 5).map((d, i) => [d.label, "อันดับ " + (i + 1) + " · " + d.v + "/10"])) +
+        (top.length > 5 ? '<p class="r-note">มีจุดแข็งคะแนนเท่ากันที่อันดับ 5 รวม ' + top.length + " ด้าน (ไฮไลต์ในกราฟ)</p>" : "") +
+        '<p class="r-sub" style="margin-top:18px">คะแนน 24 ด้าน เรียงจากมากไปน้อย · คะแนนแต่ละด้าน 2–10 · แถบสีคือ 5 อันดับแรก</p>' + bars(list, 10) + "</div>";
+    }
+    const c = C[PERSON];
+    if (c) {
+      const all = DATA.pilot_career;
+      const list = RIASEC.map((t) => ({ label: t[0] + " – " + t[1], sub: t[2], v: num(c[t[0]]), mk: avg(all, t[0]), dim: String(c.code3 || "").indexOf(t[0]) < 0 }));
+      h += '<div class="r-sec"><h2>บุคลิกภาพด้านอาชีพ</h2>' + when(c) +
+        '<div class="r-card"><span class="r-sub" style="display:block;margin:0">รหัสอาชีพ 3 ตัว</span><div class="r-code">' + esc(c.code3 || "") + '</div><p class="r-note" style="margin-top:4px">' +
+        String(c.code3 || "").split("").map((k) => { const t = RIASEC.filter((x) => x[0] === k)[0]; return t ? t[0] + " = " + t[1] : ""; }).join(" · ") + "</p></div>" +
+        '<p class="r-sub" style="margin-top:18px">คะแนน 6 ด้าน · แต่ละด้าน 0–15 รวมกันได้ 45 · แถบสีคือ 3 ด้านในรหัสอาชีพ</p>' + bars(list, 15) + "</div>";
+    }
+    const pz = P[PERSON];
+    if (pz) {
+      const all = DATA.pilot_personality;
+      const list = B5.map((t) => ({ label: t[1], sub: t[2] + " (" + t[0] + ")", v: num(pz[t[0]]), mk: avg(all, t[0]) }));
+      const hi = list.slice().sort((a, b) => b.v - a.v);
+      h += '<div class="r-sec"><h2>บุคลิกภาพ 5 องค์ประกอบ</h2>' + when(pz) +
+        tiles([[hi[0].label, "ลักษณะที่เด่นที่สุดในตัวผู้ตอบ"], [hi[1].label, "เด่นรองลงมา"]]) +
+        '<p class="r-sub" style="margin-top:18px">คะแนน 5 องค์ประกอบ · แต่ละองค์ประกอบ 0–36 รวมกันได้ 90 · บอกว่าลักษณะใดเด่นกว่าลักษณะใดในตัวคนเดียวกัน</p>' + bars(list, 36) + "</div>";
+    }
+    const miss = [s ? "" : "แบบวัดจุดแข็ง", c ? "" : "บุคลิกภาพด้านอาชีพ", pz ? "" : "บุคลิกภาพ 5 องค์ประกอบ"].filter(Boolean);
+    if (miss.length) h += '<p class="r-note">ยังไม่ได้ทำ: ' + miss.join(", ") + "</p>";
+    h += "</div>";
+    $("r-body").innerHTML = h;
+    $("r-who").addEventListener("change", (e) => { PERSON = e.target.value; rPerson(); });
+    $("r-print").addEventListener("click", () => window.print());
   }
 
   /* ---------- CSV ---------- */
