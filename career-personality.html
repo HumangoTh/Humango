@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>แบบประเมิน</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Thai:wght@300;400;500;600&display=swap">
+<style>
+:root{--paper:#F6F8F5;--surface:#FFFFFF;--ink:#151E1A;--ink-2:#3A4741;--muted:#6C7A73;--line:#E1E7E0;--line-soft:#EDF1EB;--accent:#33804E;--accent-soft:#E8F0EA;--accent-ink:#27633C;--warn:#A33A3A;--warn-soft:#FBEEEE}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--paper:#0F1411;--surface:#151B17;--ink:#EEF2EC;--ink-2:#C3CDC5;--muted:#8D9A92;--line:#242C27;--line-soft:#1C2320;--accent:#84C4A2;--accent-soft:#1B2A22;--accent-ink:#A8D8BE;--warn:#F0A0A0;--warn-soft:#2E1B1B}}
+:root[data-theme="dark"]{--paper:#0F1411;--surface:#151B17;--ink:#EEF2EC;--ink-2:#C3CDC5;--muted:#8D9A92;--line:#242C27;--line-soft:#1C2320;--accent:#84C4A2;--accent-soft:#1B2A22;--accent-ink:#A8D8BE;--warn:#F0A0A0;--warn-soft:#2E1B1B}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);font-family:"IBM Plex Sans Thai",sans-serif;-webkit-text-size-adjust:100%}
+[hidden]{display:none!important}
+.wrap{max-width:760px;margin:0 auto;padding-block:44px 80px;padding-inline:16px}
+.title{font-size:clamp(1.5rem,4vw,2rem);font-weight:500;line-height:1.35;margin:0 0 16px}
+.lead{font-size:.98rem;line-height:1.8;color:var(--ink-2);margin:0 0 12px}
+.parts{display:grid;gap:12px;margin-block:22px}
+.part{background:var(--surface);border:1px solid var(--line);padding-block:18px;padding-inline:20px}
+.part h2{font-size:1rem;font-weight:600;margin:0 0 6px;color:var(--accent-ink)}
+.part p{margin:0;font-size:.93rem;line-height:1.75;color:var(--ink-2)}
+.field{display:block;margin-top:22px}
+.field span{display:block;font-size:.92rem;font-weight:500;margin-bottom:8px}
+.field input{width:100%;font:inherit;font-size:1rem;padding-block:12px;padding-inline:14px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.field input:focus{outline:2px solid var(--accent);outline-offset:1px}
+.btn{font:inherit;font-size:.95rem;font-weight:500;padding-block:13px;padding-inline:26px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+:root[data-theme="dark"] .btn{color:#0F1411}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn{color:#0F1411}}
+.btn.ghost{background:transparent;color:var(--accent-ink)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.actions{display:flex;gap:12px;justify-content:space-between;align-items:center;margin-top:30px;flex-wrap:wrap}
+.progress{position:sticky;top:0;z-index:5;background:var(--paper);padding-block:12px 10px}
+.track{height:5px;background:var(--line);border-radius:99px;overflow:hidden}
+.track div{height:100%;width:0;background:var(--accent);transition:width .2s}
+.count{font-size:.8rem;color:var(--muted);margin:8px 0 0}
+.sect{background:var(--accent-soft);padding-block:14px;padding-inline:16px;margin-block:10px 4px}
+.sect h2{font-size:1rem;font-weight:600;margin:0 0 4px;color:var(--accent-ink)}
+.sect p{margin:0;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.item{padding-block:22px;border-bottom:1px solid var(--line-soft)}
+.item.miss{background:var(--warn-soft);box-shadow:-12px 0 0 var(--warn-soft),12px 0 0 var(--warn-soft)}
+.q{display:flex;gap:12px;font-size:.95rem;line-height:1.7;color:var(--muted);margin:0 0 12px}
+.no{font-family:"IBM Plex Mono",monospace;font-size:.82rem;color:var(--accent);min-width:26px;padding-top:2px}
+.opts{display:grid;gap:10px}
+.card{font:inherit;display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;padding-block:14px;padding-inline:16px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;font-size:.97rem;line-height:1.65}
+.card:hover{border-color:var(--accent)}
+.card[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.key{font-family:"IBM Plex Mono",monospace;font-size:.85rem;color:var(--accent-ink);padding-top:2px;flex:none}
+.card .txt{flex:1}
+.rank{display:block;font-size:.74rem;font-weight:500;color:#fff;background:var(--accent);padding-block:1px;padding-inline:8px;margin-bottom:6px;max-width:max-content}
+.card[data-rank="2"] .rank{background:var(--accent-ink)}
+:root[data-theme="dark"] .rank{color:#0F1411}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .rank{color:#0F1411}}
+.step{font-size:.86rem;margin:10px 0 0;color:var(--accent-ink);font-weight:500}
+.reset{font:inherit;font-size:.82rem;margin-top:8px;background:none;border:none;color:var(--muted);text-decoration:underline;cursor:pointer;padding:0}
+.alert{margin-top:18px;padding-block:12px;padding-inline:14px;border-left:3px solid var(--warn);background:var(--warn-soft);color:var(--warn);font-size:.9rem;line-height:1.6}
+.done{text-align:center;padding-block:90px}
+.done .title{font-size:2rem}
+.card:focus-visible,.btn:focus-visible,.reset:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+<section id="intro">
+  <h1 class="title">แบบประเมิน</h1>
+  <p class="lead">ชุดนี้มี 2 แบบประเมิน ทำต่อกันจนจบแล้วกดส่งครั้งเดียว ไม่มีคำตอบถูกหรือผิด ขอให้ตอบตามความเป็นจริงของท่าน</p>
+  <div class="parts">
+    <div class="part">
+      <h2>แบบประเมินที่ 1 · 45 ข้อ</h2>
+      <p>แต่ละข้อมี 2 ข้อความ (A และ B) ให้คลิกเลือก <b>1 ข้อความ</b> ที่ท่านชอบหรือตรงกับตัวท่านมากกว่า</p>
+    </div>
+    <div class="part">
+      <h2>แบบประเมินที่ 2 · 30 ชุด</h2>
+      <p>แต่ละชุดมี 3 ข้อความ ให้คลิก <b>2 ครั้ง</b> — ครั้งแรกเลือกข้อความที่ตรงกับตัวท่านมากที่สุด ครั้งที่สองเลือกข้อความที่ตรงกับตัวท่านมากกว่าจากสองข้อความที่เหลือ</p>
+    </div>
+  </div>
+  <label class="field"><span>ชื่อ-นามสกุล</span><input id="name" type="text" autocomplete="name" maxlength="80"></label>
+  <div id="intro-alert" class="alert" hidden>กรุณากรอกชื่อ-นามสกุลก่อนเริ่มทำ</div>
+  <div class="actions"><span></span><button id="start" class="btn" type="button">เริ่มทำ →</button></div>
+</section>
+
+<section id="quiz" hidden>
+  <div class="progress"><div class="track"><div id="bar"></div></div><p id="count" class="count"></p></div>
+  <div id="sect" class="sect"></div>
+  <div id="items"></div>
+  <div id="alert" class="alert" hidden></div>
+  <div class="actions">
+    <button id="back" class="btn ghost" type="button">← ย้อนกลับ</button>
+    <button id="next" class="btn" type="button">ถัดไป →</button>
+  </div>
+</section>
+
+<section id="done" class="done" hidden>
+  <h1 class="title">ขอบคุณค่ะ</h1>
+  <p class="lead">ได้รับคำตอบของท่านเรียบร้อยแล้ว ท่านปิดหน้านี้ได้เลย</p>
+</section>
+
+</main>
+<script>
+/* ใส่ URL ของ Apps Script (Deploy → เว็บแอป) ระหว่างเครื่องหมายคำพูด */
+var ENDPOINT = "https://script.google.com/macros/s/AKfycbwicHo3pLz_sS0alIRbMvMv1kEKWpWvHj4LblEdO4kQHiG3B7LBlT_dFuyZjpM6jo7JwQ/exec";
+
+/* ข้อคำถามเท่านั้น — วิธีคิดคะแนนอยู่ใน Apps Script */
+var CAREER = [
+[
+"ซ่อมแซมหรือประกอบสิ่งของเครื่องใช้ด้วยตนเอง",
+"ค้นคว้าข้อมูลเพื่อทำความเข้าใจสาเหตุของปัญหา"
+],
+[
+"ลงมือประกอบหรือสร้างชิ้นงานตามแบบที่กำหนด",
+"สร้างสรรค์ผลงานศิลปะตามความคิดของตนเอง"
+],
+[
+"ใช้เครื่องมือช่างเพื่อซ่อมแซมหรือประกอบอุปกรณ์",
+"รับฟังและช่วยเหลือผู้ที่กำลังประสบปัญหา"
+],
+[
+"ลงมือติดตั้งหรือประกอบอุปกรณ์ให้ใช้งานได้",
+"นำเสนอแนวคิดเพื่อโน้มน้าวให้ผู้อื่นเห็นด้วย"
+],
+[
+"แก้ปัญหาเครื่องยนต์หรือเครื่องจักรที่ชำรุด",
+"ตรวจสอบและจัดระเบียบข้อมูลตามเกณฑ์ที่กำหนด"
+],
+[
+"ศึกษาค้นคว้าเพื่อค้นหาคำอธิบายของปรากฏการณ์ต่าง ๆ",
+"ถ่ายทอดความคิดและจินตนาการผ่านผลงานสร้างสรรค์"
+],
+[
+"สังเกตและรวบรวมข้อมูล เพื่อหาข้อสรุปอย่างมีเหตุผล",
+"สอนหรือแนะนำผู้อื่นให้เรียนรู้ทักษะใหม่"
+],
+[
+"ทำความเข้าใจความสัมพันธ์ของปัจจัยต่าง ๆ",
+"กำหนดทิศทาง และผลักดันโครงการให้บรรลุผลสำเร็จ"
+],
+[
+"วิเคราะห์ข้อมูลเพื่อค้นหาสาเหตุของปัญหา",
+"จัดทำและตรวจสอบงานให้เป็นไปตามขั้นตอนที่กำหนด"
+],
+[
+"สร้างสรรค์ผลงานโดยใช้ความคิดและรูปแบบที่ตนเองเลือก",
+"จัดกิจกรรมเพื่อช่วยพัฒนาคุณภาพชีวิตของผู้อื่น"
+],
+[
+"สร้างสรรค์ผลงานที่ถ่ายทอดความคิดและเอกลักษณ์ของตนเอง",
+"มองหาโอกาสทางธุรกิจ และโน้มน้าวผู้อื่นให้ร่วมลงมือ"
+],
+[
+"ทดลองสร้างสรรค์ผลงานศิลปะด้วยวิธีการใหม่ ๆ",
+"ตรวจสอบความถูกต้องของงานตามขั้นตอนที่กำหนด"
+],
+[
+"ช่วยไกล่เกลี่ยความขัดแย้งระหว่างบุคคล",
+"ตัดสินใจและกำหนดแนวทางการทำงานของทีม"
+],
+[
+"จัดกิจกรรมเพื่อดูแลผู้ที่ต้องการความช่วยเหลือ",
+"ตรวจสอบความถูกต้องของข้อมูลและเอกสาร"
+],
+[
+"เจรจาและสร้างความร่วมมือเพื่อขยายโอกาสทางธุรกิจ",
+"จัดเก็บและปรับปรุงข้อมูลในระบบฐานข้อมูลให้ถูกต้อง"
+],
+[
+"วิเคราะห์ข้อมูลโดยใช้หลักคณิตศาสตร์เพื่อค้นหาคำตอบ",
+"ควบคุมเครื่องจักรหรืออุปกรณ์ในการปฏิบัติงาน"
+],
+[
+"วาดภาพประกอบเพื่อสื่อสารความคิดสร้างสรรค์",
+"ติดตั้งหรือซ่อมแซมอุปกรณ์ภายในอาคาร"
+],
+[
+"จัดกิจกรรมเพื่อส่งเสริมความเข้าใจและความสัมพันธ์ระหว่างผู้คน",
+"ซ่อมบำรุงเครื่องมือและเครื่องใช้ไฟฟ้า"
+],
+[
+"เจรจาต่อรองเพื่อให้ลูกค้าตัดสินใจซื้อสินค้าหรือบริการ",
+"ใช้เครื่องมือช่างเพื่อผลิตหรือประกอบชิ้นส่วน"
+],
+[
+"จัดทำตารางข้อมูลให้ถูกต้อง เป็นระบบ และค้นหาง่าย",
+"ลงมือปลูกพืชผักผลไม้ และดูแลให้เจริญเติบโต"
+],
+[
+"สร้างสรรค์ผลงานที่สื่อถึงอารมณ์และความรู้สึก",
+"อ่าน ค้นคว้า และหาหลักฐานเพื่อพิสูจน์ความจริง"
+],
+[
+"รับฟังและให้คำแนะนำแก่ผู้ที่ประสบปัญหาในการทำงาน",
+"วิเคราะห์รูปแบบและตรรกะเพื่อแก้ปัญหาที่ซับซ้อน"
+],
+[
+"นำเสนอแผนธุรกิจเพื่อหาผู้ร่วมลงทุน",
+"ออกแบบและดำเนินการทดลองเพื่อค้นหาความรู้ใหม่"
+],
+[
+"ตรวจสอบความถูกต้องของเอกสารทางการเงิน",
+"วิเคราะห์แนวคิดและเหตุผลเพื่อทำความเข้าใจประเด็นที่ซับซ้อน"
+],
+[
+"สอนและแนะนำเยาวชนให้พัฒนาความรู้หรือทักษะ",
+"สร้างสรรค์การแสดงเพื่อถ่ายทอดความคิดและจินตนาการ"
+],
+[
+"วางกลยุทธ์และเจรจาเพื่อสร้างโอกาสทางธุรกิจ",
+"ออกแบบและจัดองค์ประกอบพื้นที่จัดแสดงผลงานศิลปะ"
+],
+[
+"จัดหมวดหมู่เอกสารให้เป็นระบบ ค้นหาได้ง่าย",
+"สร้างสรรค์ผลงานที่ถ่ายทอดความคิดเห็นของตนเอง"
+],
+[
+"เป็นผู้นำ กำหนดแนวทาง และพาทีมไปให้ถึงเป้าหมาย",
+"จัดกิจกรรมช่วยเหลือผู้คนที่ต้องการการสนับสนุน"
+],
+[
+"บันทึกและตรวจสอบข้อมูลสินค้าให้ถูกต้องเป็นระบบ",
+"ดูแลและให้กำลังใจผู้สูงอายุที่ต้องการความช่วยเหลือ"
+],
+[
+"ตรวจสอบกระบวนการทำงานให้เป็นไปตามมาตรฐานที่กำหนด",
+"มองหาโอกาสทางธุรกิจใหม่ ๆ และตัดสินใจลงมือทำ"
+],
+[
+"ซ่อมบำรุงเครื่องจักรและอุปกรณ์ด้วยเครื่องมือช่าง",
+"ออกแบบการทดลองเพื่อทดสอบสมมติฐานทางวิทยาศาสตร์"
+],
+[
+"ลงมือก่อสร้างหรือติดตั้งส่วนประกอบของอาคาร",
+"ประพันธ์ดนตรีเพื่อถ่ายทอดความคิดสร้างสรรค์"
+],
+[
+"ขับหรือควบคุมยานพาหนะขนาดใหญ่ในการปฏิบัติงาน",
+"ให้คำแนะนำแก่ครอบครัวที่กำลังประสบปัญหา"
+],
+[
+"ลงมือประกอบชิ้นส่วนอุปกรณ์อิเล็กทรอนิกส์",
+"เจรจาเพื่อสร้างความร่วมมือทางธุรกิจ"
+],
+[
+"ลงมือตรวจสอบและบำรุงรักษาเครื่องจักรในโรงงาน",
+"สรุปยอดขาย และจัดเก็บใบเสร็จให้เป็นระบบ"
+],
+[
+"ศึกษาการทำงานด้านร่างกายของมนุษย์และสัตว์อย่างลึกซึ้ง",
+"ออกแบบผลิตภัณฑ์ให้สวยงามและสร้างสรรค์"
+],
+[
+"สร้างรูปแบบการพยากรณ์ จากการวิเคราะห์ข้อมูลจำนวนมาก",
+"แนะแนวและช่วยผู้อื่นค้นหาความถนัดของตนเอง"
+],
+[
+"ค้นคว้าและตรวจสอบหลักฐานเพื่อหาคำตอบทางวิชาการ",
+"ก่อตั้งธุรกิจของตัวเอง และวางกลยุทธ์ให้ธุรกิจเติบโต"
+],
+[
+"วิเคราะห์ข้อมูลเพื่อค้นหาสาเหตุของความผิดพลาดในระบบ",
+"ตรวจสอบเอกสารให้มีข้อมูลครบถ้วนตามข้อกำหนด"
+],
+[
+"เขียนเรื่องราวสร้างสรรค์สำหรับสื่อภาพยนตร์",
+"ทำงานบริการเพื่อพัฒนาคุณภาพชีวิตของคนในชุมชน"
+],
+[
+"สร้างสรรค์ภาพถ่ายเพื่อถ่ายทอดมุมมองของตนเอง",
+"นำทีมขายเพื่อส่งเสริมยอดขายสินค้าหรือบริการ"
+],
+[
+"ระดมสมองหาไอเดียใหม่ ๆ ในการสร้างสรรค์งาน",
+"ดูแลทะเบียนพัสดุให้ครบถ้วน ถูกต้อง และตรวจสอบได้"
+],
+[
+"ช่วยเหลือเพื่อนร่วมงานในการหาทางออกจากความขัดแย้ง",
+"นำทีมและตัดสินใจเพื่อให้งานบรรลุเป้าหมาย"
+],
+[
+"ดูแลและช่วยเหลือผู้ที่ต้องการการดูแลด้านสุขภาพ",
+"บันทึกและตรวจสอบรายการบัญชีรายรับรายจ่าย"
+],
+[
+"นำเสนอข้อเสนอทางธุรกิจเพื่อโน้มน้าวให้ลูกค้าตัดสินใจ",
+"ตรวจสอบเอกสารการเบิกจ่ายเงินให้ถูกต้องตามระเบียบ"
+]
+];
+var PERS = [
+[
+"จัดหมวดหมู่ไฟล์ ข้อมูล และตารางนัดหมายไว้อย่างเป็นระบบพร้อมใช้งานทันที",
+"มีสมาธิและรักษาความนิ่งได้ดีเมื่อต้องรับมือกับงานด่วนที่ไม่คาดคิด",
+"แสดงความคิดเห็นและเสนอแนวทางการดำเนินงานในที่ประชุมอย่างมั่นใจ"
+],
+[
+"รายงานข้อเท็จจริงในการทำงานอย่างโปร่งใส ตรงไปตรงมา",
+"ทดลองใช้เครื่องมือ เทคโนโลยี หรือซอฟต์แวร์ใหม่ ๆ เพื่อเพิ่มประสิทธิภาพงาน",
+"ตั้งเป้าหมายไว้สูงกว่าเกณฑ์ และทุ่มเทเต็มที่เพื่อผลงานที่เป็นเลิศ"
+],
+[
+"รับฟังคำวิจารณ์และนำมาปรับปรุงอย่างมืออาชีพโดยไม่ใช้อารมณ์",
+"สร้างบรรยากาศที่เป็นมิตรและเชื่อมสัมพันธ์กับเพื่อนร่วมงานใหม่ได้อย่างรวดเร็ว",
+"ช่วยเหลือเพื่อนร่วมงานที่กำลังติดขัดปัญหาในงาน แม้ไม่ใช่หน้าที่ของตน"
+],
+[
+"ชอบอ่านบทความวิเคราะห์ หรือแนวคิดทางวิชาการเพื่อนำมาพัฒนาผลงาน",
+"จดจ่ออยู่กับงานตรงหน้าได้อย่างต่อเนื่องจนเสร็จสมบูรณ์โดยไม่วอกแวก",
+"ปรับอารมณ์และฟื้นตัวได้อย่างรวดเร็วเมื่องานที่ตั้งใจทำไม่ประสบผลสำเร็จ"
+],
+[
+"มีพลังและกระตือรือร้น เมื่อระดมสมองแลกเปลี่ยนความเห็นกับทีมงาน",
+"เชื่อมั่นว่าเพื่อนร่วมงานส่วนใหญ่มีความจริงใจและมีเจตนาดีต่อองค์กร",
+"คิดค้นและจินตนาการถึงโมเดลหรือแนวทางการทำงานรูปแบบใหม่"
+],
+[
+"ตรวจงานอย่างละเอียดรอบคอบก่อนส่งมอบงานเพื่อป้องกันข้อผิดพลาด",
+"มั่นใจในการนำเสนองานต่อหน้าผู้บริหารระดับสูงหรือลูกค้าสำคัญ",
+"ชอบการทำงานที่รวดเร็ว คล่องแคล่ว และสามารถจัดการหลายเรื่องพร้อมกันได้"
+],
+[
+"พยายาม หาจุดร่วมที่ทุกฝ่ายยอมรับได้เพื่อรักษาสัมพันธภาพที่ดีของทีมงาน",
+"ให้ความสำคัญกับการออกแบบ การจัดวาง และความประณีตของสื่อนำเสนอ",
+"รักษาระเบียบและมาตรฐานการทำงานอย่างเคร่งครัด โดยไม่ต้องมีผู้ตรวจสอบ"
+],
+[
+"พิจารณาถึงผลลัพธ์อย่างรอบคอบก่อนตอบโต้ เมื่ออยู่ในสถานการณ์ที่มีความขัดแย้ง",
+"แบ่งปันพลังบวก อารมณ์ขัน และสร้างบรรยากาศการทำงานที่มีชีวิตชีวาในทีมงาน",
+"ยกย่องความสำเร็จและผลงานของเพื่อนร่วมทีมมากกว่าการยกย่องเชิดชูตนเอง"
+],
+[
+"พร้อมเปิดรับและปรับแนวทางการทำงานตามคำแนะนำของคนรุ่นใหม่หรือคนต่างวัฒนธรรม",
+"มั่นใจในทักษะและความสามารถของตนเอง พร้อมรับมือกับงานที่ยากให้สำเร็จลุล่วง",
+"จัดลำดับความสำคัญและตัดสินใจแก้ปัญหาได้อย่างมีประสิทธิภาพในภาวะวิกฤต"
+],
+[
+"ตื่นเต้นและพร้อมเข้าร่วมงานในโครงการใหญ่ที่มีความเสี่ยง แต่ผลตอบแทนสูง",
+"ใส่ใจความรู้สึกและเข้าใจเพื่อนร่วมงานเมื่อพวกเขาเจอปัญหาชีวิต",
+"ตระหนักรู้และเข้าใจผลกระทบทางอารมณ์ของบุคลากรเมื่อมีการเปลี่ยนแปลงนโยบาย"
+],
+[
+"วางแผนการทำงานล่วงหน้าและจัดทำขั้นตอนตรวจสอบอย่างเป็นลายลักษณ์อักษร",
+"ปฏิบัติต่อเพื่อนร่วมงานทุกคนด้วยความจริงใจและยึดมั่นในจริยธรรมวิชาชีพ",
+"ไม่ตื่นตระหนกและคุมสติได้ดีแม้เผชิญแรงกดดันเรื่องเส้นตายที่กระชั้นชิด"
+],
+[
+"เป็นแกนนำในการขับเคลื่อนทีมและกล้าตัดสินใจในประเด็นที่คลุมเครือ",
+"กระตือรือร้นที่จะเรียนรู้เทคนิคการทำงานใหม่ ๆ นอกเหนือจากสายงานเดิม",
+"ทุ่มเท และพยายามอย่างต่อเนื่องเพื่อส่งมอบผลงานที่เหนือความคาดหมาย"
+],
+[
+"แยกแยะเรื่องงานออกจากอารมณ์ส่วนตัวและสื่อสารด้วยความสุภาพแม้ถูกกดดัน",
+"ยินดีอาสาช่วยเหลืองานส่วนรวมเพื่อผลักดันให้โครงการของทีมงานบรรลุเป้าหมาย",
+"สร้างสัมพันธภาพอันดีกับผู้คนรอบข้างและทำให้คู่สนทนารู้สึกเป็นกันเอง"
+],
+[
+"ควบคุมตนเองให้จดจ่อกับงานสำคัญจนเสร็จสิ้น โดยไม่ถูกเบี่ยงเบนความสนใจ",
+"ค้นคว้าหาความรู้เชิงทฤษฎีและกรณีศึกษาเพื่อนำมาประยุกต์แก้โจทย์ทางธุรกิจ",
+"ดึงพลังใจกลับคืนมาได้อย่างรวดเร็วและมองความล้มเหลวเป็นโอกาสในการเรียนรู้"
+],
+[
+"ให้เกียรติและเชื่อใจในความสามารถรวมถึงความรับผิดชอบของทีมงานทุกคน",
+"มีชีวิตชีวาเมื่อได้มีปฏิสัมพันธ์ ประสานงาน และแลกเปลี่ยนความคิดกับผู้คน",
+"มองเห็นภาพรวมและคาดการณ์ถึงความเป็นไปได้ใหม่ ๆ ในระยะยาวขององค์กร"
+],
+[
+"ควบคุมความประหม่าได้ดีและพูดจาได้อย่างน่าเชื่อถือเมื่ออยู่ท่ามกลางคนหมู่มาก",
+"ชั่งน้ำหนักความเสี่ยงและตรวจสอบความถูกต้องของข้อมูลก่อนตัดสินใจสรุปงาน",
+"บริหารงานอย่างคล่องตัว รวดเร็ว และกระตุ้นให้ทีมทำงานด้วยพลังขับเคลื่อนสูง"
+],
+[
+"พิถีพิถันในการออกแบบการนำเสนอผลงานให้น่าสนใจและสื่อสารได้อย่างมีศิลปะ",
+"ประนีประนอมและเคารพมติของที่ประชุมเพื่อรักษาเอกภาพและความร่วมมือในทีม",
+"ปฏิบัติตามมาตรฐานและขั้นตอนการทำงานอย่างซื่อตรงแม้ไม่มีการสอดส่องดูแล"
+],
+[
+"เติมเต็มพลังบวกและสร้างเสียงหัวเราะเพื่อลดความตึงเครียดในทีมงาน",
+"ยับยั้งชั่งใจได้ดี ไม่ด่วนสรุปหรือตัดสินใจด้วยอารมณ์ชั่ววูบเมื่อเกิดปัญหา",
+"ไม่โอ้อวดความสำเร็จของตนเองและให้ความสำคัญกับการสนับสนุนความสำเร็จของผู้อื่น"
+],
+[
+"จัดการปัญหาเฉพาะหน้าที่มีความซับซ้อนได้อย่างมีประสิทธิภาพด้วยความชำนาญ",
+"นิ่ง มั่นคง และเป็นที่พึ่งพาให้กับทีมได้เสมอในยามที่เกิดสถานการณ์วิกฤต",
+"ยินดีรับฟังมุมมองที่แตกต่างและพร้อมปรับวิธีคิดตามข้อมูลเชิงประจักษ์ใหม่ ๆ"
+],
+[
+"เข้าใจข้อจำกัดทางอารมณ์และให้ความเห็นอกเห็นใจเพื่อนร่วมงานอย่างแท้จริง",
+"ชื่นชอบความท้าทายในโครงการที่ต้องบุกเบิกและมีโอกาสสร้างผลงานที่โดดเด่น",
+"ไวต่อความรู้สึกของทีมงานและลูกค้า และคำนึงถึงผลกระทบเชิงจิตใจในการทำงาน"
+],
+[
+"รักษาระดับสมาธิและความสงบนิ่งในการทำงานได้ดี แม้รอบตัวจะมีความวุ่นวาย",
+"มีระบบจัดเก็บเอกสารและฐานข้อมูลที่ชัดเจนทำให้ผู้อื่นเข้ามาทำงานต่อได้ทันที",
+"มีความเด็ดขาดในการนำทีมและกล้าผลักดันประเด็นสำคัญในที่ประชุม"
+],
+[
+"มุ่งมั่นพัฒนาตนเองอย่างต่อเนื่องเพื่อยกระดับผลงานให้เป็นที่ยอมรับในระดับสูง",
+"ยึดมั่นในความซื่อสัตย์สุจริตและรายงานผลงานตามความเป็นจริงเสมอ",
+"เปิดกว้างต่อการทดลองใช้แนวทางปฏิบัติใหม่ ๆ เพื่อค้นหาวิธีการทำงานที่ดียิ่งขึ้น"
+],
+[
+"สานสัมพันธ์กับบุคคลหลากหลายสายงานได้อย่างราบรื่นและเป็นธรรมชาติ",
+"อดทนต่อคำติชมและนำข้อเสนอแนะมาพัฒนาตนเองโดยไม่ถือโทษโกรธเคือง",
+"มีจิตสาธารณะ พร้อมแบ่งปันทรัพยากรและความรู้เพื่อช่วยเหลือเพื่อนร่วมงาน"
+],
+[
+"รักษาทัศนคติเชิงบวกและกลับมาทำงานต่อได้อย่างรวดเร็วแม้เพิ่งเผชิญกับความผิดหวัง",
+"จัดการเวลาได้ดี รักษาวินัยในการส่งมอบงานให้เสร็จตามกำหนดโดยไม่ต้องมีคนเตือน",
+"สนุกกับการวิเคราะห์และทำความเข้าใจแนวคิดเชิงนามธรรมที่ช่วยพัฒนาองค์กร"
+],
+[
+"คิดค้นไอเดียที่สร้างสรรค์และไม่ยึดติดกับกรอบความคิดแบบเดิม ๆ ในการแก้ปัญหา",
+"รู้สึกกระฉับกระเฉงและทำงานได้ดีขึ้นเมื่อได้มีส่วนร่วมในการทำงานเป็นทีม",
+"มองคนในแง่ดีและให้ความไว้วางใจในการทำงานร่วมกับผู้อื่นอย่างจริงใจ"
+],
+[
+"มีพลังในการทำงานสูง จัดการหลายภารกิจได้อย่างรวดเร็วและมีประสิทธิภาพ",
+"ประเมินผลกระทบอย่างรอบด้านและตรวจเช็กความเรียบร้อยก่อนส่งต่องานสำคัญ",
+"มั่นใจในตนเองเมื่อต้องสื่อสารหรือเจรจาต่อรองกับผู้มีอำนาจตัดสินใจระดับสูง"
+],
+[
+"ปฏิบัติตามข้อตกลงและคำมั่นสัญญาในการทำงานอย่างเคร่งครัดและไว้ใจได้",
+"เอาใจใส่ในความประณีตและความสมบูรณ์แบบของการนำเสนอผลงาน",
+"ยืดหยุ่นและยอมรับฟังความคิดเห็นของเสียงส่วนใหญ่เพื่อขับเคลื่อนทีมไปข้างหน้า"
+],
+[
+"รับฟังความเห็นผู้อื่นด้วยความถ่อมตนและไม่ถือว่าตนเองรู้ดีกว่าผู้อื่น",
+"ควบคุมปฏิกิริยาตอบสนองได้ดีและมีวิจารณญาณรอบคอบก่อนตัดสินใจในภาวะกดดัน",
+"แสดงความกระตือรือร้นและสร้างแรงบันดาลใจให้เพื่อนร่วมงานรู้สึกมีพลัง"
+],
+[
+"เคารพในความหลากหลายทางความคิดและพร้อมเรียนรู้วัฒนธรรมการทำงานใหม่ ๆ",
+"เชื่อมั่นในทักษะการทำงานของตนเองและสามารถรับมือกับโจทย์งานที่ท้าทายได้",
+"มีความหนักแน่นและตัดสินใจแก้ปัญหาเฉพาะหน้าได้อย่างมีสติในยามวิกฤต"
+],
+[
+"ให้คำปรึกษาและพร้อมรับฟังปัญหาของเพื่อนร่วมงานด้วยความเห็นอกเห็นใจ",
+"กล้าเสี่ยงและกล้าทดลองแนวทางใหม่ ๆ เพื่อสร้างการเติบโตแบบก้าวกระโดด",
+"เข้าใจและใส่ใจผลกระทบด้านความรู้สึกของผู้คนในการทำงานร่วมกัน"
+]
+];
+
+(function () {
+  "use strict";
+  var STORE = "assess_cp_v1";
+  var PER = { c: 15, p: 10 };
+  var pages = [];
+  var i;
+  for (i = 0; i < CAREER.length; i += PER.c) pages.push({ part: 1, from: i, to: Math.min(i + PER.c, CAREER.length) });
+  for (i = 0; i < PERS.length; i += PER.p) pages.push({ part: 2, from: i, to: Math.min(i + PER.p, PERS.length) });
+
+  var st = load() || { name: "", c: [], p: [], page: 0, startedAt: 0, sid: "" };
+  while (st.c.length < CAREER.length) st.c.push(null);
+  while (st.p.length < PERS.length) st.p.push({ m: null, s: null });
+
+  var $ = function (id) { return document.getElementById(id); };
+  var nameEl = $("name");
+  nameEl.value = st.name || "";
+  var sending = false;
+
+  function save() { try { localStorage.setItem(STORE, JSON.stringify(st)); } catch (e) {} }
+  function load() { try { return JSON.parse(localStorage.getItem(STORE)); } catch (e) { return null; } }
+  function clear() { try { localStorage.removeItem(STORE); } catch (e) {} }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (ch) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[ch]; }); }
+  function show(id) { ["intro", "quiz", "done"].forEach(function (x) { $(x).hidden = x !== id; }); window.scrollTo(0, 0); }
+
+  function cDone(k) { return st.c[k] === "A" || st.c[k] === "B"; }
+  function pDone(k) { return st.p[k].m !== null && st.p[k].s !== null; }
+  function answered() {
+    var n = 0, k;
+    for (k = 0; k < CAREER.length; k++) if (cDone(k)) n++;
+    for (k = 0; k < PERS.length; k++) if (pDone(k)) n++;
+    return n;
+  }
+
+  $("start").addEventListener("click", function () {
+    var v = nameEl.value.trim();
+    if (v.length < 2) { $("intro-alert").hidden = false; nameEl.focus(); return; }
+    $("intro-alert").hidden = true;
+    st.name = v;
+    if (!st.startedAt) st.startedAt = Date.now();
+    if (!st.sid) st.sid = Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
+    save(); render(); show("quiz");
+  });
+  nameEl.addEventListener("input", function () { if (nameEl.value.trim().length >= 2) $("intro-alert").hidden = true; });
+
+  function render() {
+    var pg = pages[st.page], box = $("items"), k;
+    box.innerHTML = "";
+    $("alert").hidden = true;
+    if (pg.part === 1) {
+      $("sect").innerHTML = "<h2>แบบประเมินที่ 1</h2><p>คลิกเลือก 1 ข้อความ (A หรือ B) ที่ท่านชอบหรือตรงกับตัวท่านมากกว่า</p>";
+      for (k = pg.from; k < pg.to; k++) box.appendChild(pairItem(k));
+    } else {
+      $("sect").innerHTML = "<h2>แบบประเมินที่ 2</h2><p>คลิกข้อความที่ตรงกับตัวท่าน<b>มากที่สุด</b>ก่อน แล้วคลิกข้อความที่ตรงกับตัวท่าน<b>มากกว่า</b>จากสองข้อความที่เหลือ</p>";
+      for (k = pg.from; k < pg.to; k++) box.appendChild(triadItem(k));
+    }
+    $("back").style.visibility = st.page === 0 ? "hidden" : "visible";
+    $("next").textContent = st.page === pages.length - 1 ? "ส่งคำตอบ" : "ถัดไป →";
+    progress();
+  }
+
+  function progress() {
+    var total = CAREER.length + PERS.length, n = answered();
+    $("bar").style.width = (n / total * 100) + "%";
+    var pg = pages[st.page];
+    $("count").textContent = "แบบประเมินที่ " + pg.part + " · ตอบแล้ว " + n + " จาก " + total + " ข้อ";
+  }
+
+  function pairItem(k) {
+    var el = document.createElement("div");
+    el.className = "item"; el.dataset.k = k;
+    el.innerHTML = '<p class="q"><span class="no">' + (k + 1) + '</span><span>เลือกข้อความที่ท่านชอบหรือตรงกับตัวท่านมากกว่า</span></p>';
+    var opts = document.createElement("div"); opts.className = "opts";
+    ["A", "B"].forEach(function (key, j) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "card";
+      b.setAttribute("aria-pressed", st.c[k] === key ? "true" : "false");
+      b.innerHTML = '<span class="key">' + key + '</span><span class="txt">' + esc(CAREER[k][j]) + "</span>";
+      b.addEventListener("click", function () {
+        st.c[k] = key; save();
+        opts.querySelectorAll(".card").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+        el.classList.remove("miss"); progress(); hideAlertIfComplete();
+      });
+      opts.appendChild(b);
+    });
+    el.appendChild(opts);
+    return el;
+  }
+
+  function triadItem(k) {
+    var el = document.createElement("div");
+    el.className = "item"; el.dataset.k = k;
+    el.innerHTML = '<p class="q"><span class="no">' + (k + 1) + '</span><span>เลือกข้อความที่ตรงที่สุด แล้วเลือกข้อความที่ตรงรองลงมา</span></p>';
+    var opts = document.createElement("div"); opts.className = "opts";
+    var stepEl = document.createElement("p"); stepEl.className = "step";
+    var reset = document.createElement("button"); reset.type = "button"; reset.className = "reset"; reset.textContent = "เลือกใหม่";
+    function paint() {
+      var a = st.p[k];
+      opts.querySelectorAll(".card").forEach(function (b, j) {
+        var r = a.m === j ? 1 : a.s === j ? 2 : 0;
+        b.setAttribute("aria-pressed", r ? "true" : "false");
+        b.dataset.rank = r;
+        var tag = b.querySelector(".rank");
+        if (tag) tag.remove();
+        if (r) {
+          var t = document.createElement("span"); t.className = "rank";
+          t.textContent = r === 1 ? "ตรงที่สุด" : "ตรงรองลงมา";
+          b.querySelector(".txt").prepend(t);
+        }
+      });
+      stepEl.textContent = a.m === null ? "ขั้นที่ 1: คลิกข้อความที่ตรงกับตัวท่านมากที่สุด"
+        : a.s === null ? "ขั้นที่ 2: จากอีกสองข้อความ คลิกข้อความที่ตรงกับตัวท่านมากกว่า" : "";
+      stepEl.hidden = !stepEl.textContent;
+      reset.hidden = a.m === null;
+    }
+    PERS[k].forEach(function (txt, j) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "card";
+      b.innerHTML = '<span class="txt">' + esc(txt) + "</span>";
+      b.addEventListener("click", function () {
+        var a = st.p[k];
+        if (a.m === j) { a.m = a.s; a.s = null; }
+        else if (a.s === j) { a.s = null; }
+        else if (a.m === null) { a.m = j; }
+        else if (a.s === null) { a.s = j; }
+        else { a.s = j; }
+        save(); paint();
+        if (pDone(k)) el.classList.remove("miss");
+        progress(); hideAlertIfComplete();
+      });
+      opts.appendChild(b);
+    });
+    reset.addEventListener("click", function () { st.p[k] = { m: null, s: null }; save(); paint(); progress(); });
+    el.appendChild(opts); el.appendChild(stepEl); el.appendChild(reset);
+    paint();
+    return el;
+  }
+
+  function missing() {
+    var pg = pages[st.page], out = [], k;
+    for (k = pg.from; k < pg.to; k++) if (pg.part === 1 ? !cDone(k) : !pDone(k)) out.push(k);
+    return out;
+  }
+  function hideAlertIfComplete() { if (!$("alert").hidden && missing().length === 0) $("alert").hidden = true; }
+
+  $("next").addEventListener("click", function () {
+    var miss = missing();
+    if (miss.length) {
+      document.querySelectorAll("#items .item").forEach(function (el) {
+        el.classList.toggle("miss", miss.indexOf(Number(el.dataset.k)) >= 0);
+      });
+      var label = pages[st.page].part === 1 ? "ข้อ" : "ชุดที่";
+      $("alert").textContent = "ยังตอบไม่ครบ " + label + " " + miss.map(function (k) { return k + 1; }).join(", ") + " กรุณาตอบให้ครบก่อนไปต่อ";
+      $("alert").hidden = false;
+      var first = document.querySelector("#items .miss");
+      if (first) window.scrollTo({ top: first.getBoundingClientRect().top + window.scrollY - 90, behavior: "smooth" });
+      return;
+    }
+    if (st.page < pages.length - 1) { st.page++; save(); render(); window.scrollTo(0, 0); return; }
+    submit();
+  });
+  $("back").addEventListener("click", function () { if (st.page > 0) { st.page--; save(); render(); window.scrollTo(0, 0); } });
+
+  function payload() {
+    return JSON.stringify({
+      sid: st.sid,
+      name: st.name,
+      duration_sec: Math.round((Date.now() - st.startedAt) / 1000),
+      device: window.matchMedia("(max-width: 700px)").matches ? "mobile" : "desktop",
+      career: st.c.join(""),
+      pers: st.p.map(function (a) { return [a.m, a.s]; })
+    });
+  }
+
+  function submit() {
+    if (sending) return;
+    sending = true;
+    var btn = $("next");
+    btn.disabled = true; btn.textContent = "กำลังส่ง…";
+    $("alert").hidden = true;
+    var body = payload();
+    if (!ENDPOINT) { console.warn("ยังไม่ได้ใส่ ENDPOINT — ไม่ได้ส่งข้อมูล", JSON.parse(body)); finish(); return; }
+    var tries = 0;
+    (function attempt() {
+      tries++;
+      fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: body })
+        .then(function (r) { return r.json(); })
+        .then(function (res) { if (res && res.ok) finish(); else throw new Error((res && res.error) || "fail"); })
+        .catch(function () {
+          if (tries < 4) { setTimeout(attempt, 1500 * tries + Math.random() * 1500); return; }
+          sending = false; btn.disabled = false; btn.textContent = "ส่งคำตอบอีกครั้ง";
+          $("alert").textContent = "ส่งคำตอบไม่สำเร็จ คำตอบของท่านยังอยู่ครบ กรุณาตรวจสอบอินเทอร์เน็ตแล้วกด \"ส่งคำตอบอีกครั้ง\"";
+          $("alert").hidden = false;
+        });
+    })();
+  }
+  function finish() { clear(); show("done"); }
+
+  if (st.startedAt && st.name) { render(); show("quiz"); }
+})();
+</script>
+</body>
+</html>
